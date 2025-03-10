@@ -33,7 +33,6 @@ export default async function Blog() {
   // Use our design token classes instead of hardcoded colors
   const primaryClass = "text-primary";
   const primaryBgClass = "bg-primary";
-  const primaryHoverClass = "hover:text-primary";
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background">
@@ -88,7 +87,7 @@ export default async function Blog() {
               {t.featuredPost || 'Featured Post'}
               <div className={cn("h-1 w-6 ml-2", primaryBgClass)}></div>
             </h2>
-            <Link href={`/blog/${allPosts[0].slug}`} className="group">
+            <Link href={`/${allPosts[0].slug}`} className="group">
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="relative h-72 md:h-96 overflow-hidden">
@@ -144,7 +143,7 @@ export default async function Blog() {
           {allPosts.slice(1).map((post) => (
             <Link 
               key={post.slug} 
-              href={`/blog/${post.slug}`}
+              href={`/${post.slug}`}
               className="group"
             >
               <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 border-0">
