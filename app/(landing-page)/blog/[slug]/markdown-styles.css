@@ -1,0 +1,177 @@
+/* app/blog/[slug]/markdown-styles.css */
+/* Basic styles for markdown content using CSS variables for theming */
+.markdown-content {
+  /* Overall content */
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--foreground);
+  
+  /* Headings */
+  & h1, & h2, & h3, & h4, & h5, & h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600; 
+    color: var(--foreground);
+  }
+  
+  & h1 {
+    font-size: 2rem;
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 0.5rem;
+  }
+  
+  & h2 {
+    font-size: 1.75rem;
+  }
+  
+  & h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* Paragraphs */
+  & p {
+    margin-bottom: 1rem;
+  }
+  
+  /* Lists */
+  & ul, & ol {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+  
+  & ul {
+    list-style-type: disc;
+  }
+  
+  & ol {
+    list-style-type: decimal;
+  }
+  
+  & ul ul, & ol ul {
+    list-style-type: circle;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  & ul ol, & ol ol {
+    list-style-type: lower-alpha;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  & li {
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Links */
+  & a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  & a:hover {
+    text-decoration: underline;
+    color: var(--primary);
+    opacity: 0.8;
+  }
+  
+  /* Blockquotes */
+  & blockquote {
+    border-left: 3px solid var(--primary);
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 1.5rem 0;
+    background-color: var(--primary-light);
+    border-radius: 0.25rem;
+  }
+
+  /* Code blocks */
+  & pre {
+    background-color: var(--muted);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+  }
+
+  & code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.85em;
+    background-color: var(--muted);
+  }
+
+  /* Tables */
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+
+  & th {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: left;
+  }
+
+  & td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  & tr:nth-child(even) {
+    background-color: var(--muted);
+  }
+
+  & tr:hover {
+    background-color: var(--primary-light);
+  }
+
+  /* Images */
+  & img {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Custom box for tips */
+  & .tip {
+    background-color: var(--success-light);
+    border-left: 4px solid var(--success);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0.25rem;
+  }
+
+  & .warning {
+    background-color: var(--warning-light);
+    border-left: 4px solid var(--warning);
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 0.25rem;
+  }
+}
+
+/* Add RTL support */
+[dir="rtl"] .markdown-content {
+  text-align: right;
+  
+  & ul, & ol {
+    padding-right: 1.5rem;
+    padding-left: 0;
+  }
+  
+  & blockquote {
+    border-right: 3px solid var(--primary);
+    border-left: none;
+    padding: 0.5rem 1rem 0.5rem 0;
+  }
+}

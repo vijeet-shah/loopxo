@@ -1,0 +1,80 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("editor") // admin, editor, author
+  image     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+}
+
+model Post {
+  id                String   @id @default(uuid())
+  title             String
+  slug              String   @unique
+  description       String?
+  content           String?  @db.Text
+  image             String?
+  author            String
+  date              String?
+  category          String?
+  readTime          Int?
+  tags              String[] @default([])
+  published         Boolean  @default(false)
+  featured          Boolean  @default(false)
+  language          String   @default("en")
+  translationSlugs  Json?    // Map of language -> slug
+  buildStatus       String?  // building, published, failed
+  pullRequestUrl    String?
+  pullRequestNumber Int?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  publishedAt       DateTime?
+  user              User?    @relation(fields: [userId], references: [id])
+  userId            String?
+  githubPrUrl       String?
+  githubPrNumber    Int?
+  githubMerged      Boolean  @default(false)
+  githubMergedAt    DateTime?
+}
+
+model Media {
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  publicId  String?
+  category  String   @default("general")
+  type      String   @default("image")
+  createdAt DateTime @default(now())
+}
+
+model SiteConfig {
+  id          String   @id @default("default")
+  name        String
+  legalName   String?
+  description String?
+  url         String
+  contact     Json?    // Contact details
+  links       Json?    // Social links
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
