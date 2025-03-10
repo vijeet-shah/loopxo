@@ -3,14 +3,14 @@ import type { Metadata } from 'next';
 import { siteConfig } from './site';
 
 // Define base keywords for SEO
+// config/metadata.ts
 const baseKeywords = [
-  'nextjs', 'react', 'typescript', 'tailwindcss', 'template', 'web development'
+  'web development', 'programming', 'react', 'nextjs', 'javascript', 'typescript'
 ];
 
-// Client-specific keywords - should be customized for each client
 const clientKeywords = [
-  'loopxo', 'template', 'nextjs template', 'react template', 'web template',
-  'typescript template', 'tailwind template', 'performance', 'accessibility'
+  'vijeet shah', 'developer blog', 'tech blog', 'coding tutorials', 
+  'web developer', 'software engineer', 'programming tips', 'react development'
 ];
 
 /**

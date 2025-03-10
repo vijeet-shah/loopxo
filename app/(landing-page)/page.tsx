@@ -1,19 +1,18 @@
-// app/blog/page.tsx
-import Link from 'next/link'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { ClockIcon, ArrowRight } from 'lucide-react'
-import { getAllPosts } from '@/lib/api'
-import { getLanguage, getTranslations } from '@/lib/i18n/server-utils'
-import { cn } from '@/lib/utils'
-import { SupportedLanguage } from '@/lib/i18n/types'
+import { getAllPosts } from '@/lib/api';
+import { getLanguage, getTranslations } from '@/lib/i18n/server-utils';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowRight, Clock, Calendar, UserIcon, Tag } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import HeroSection from '@/components/hero-section';
 
-export default async function Blog() {
-  // Use await for async functions
-  const currentLanguage = await getLanguage();
-  const t = await getTranslations(currentLanguage);
+export default async function HomePage() {
+  // Get translations
+  const lang = await getLanguage();
+  const t = await getTranslations(lang);
   
+  // Get featured and recent posts
   const allPosts = getAllPosts([
     'title',
     'date',
@@ -23,174 +22,186 @@ export default async function Blog() {
     'image',
     'category',
     'readTime',
-    // Make sure 'translationSlugs' is a valid key in your Post type
-  ], { language: currentLanguage as SupportedLanguage });
-
-  // Get unique categories from posts
-  const categoriesSet = new Set(allPosts.map(post => post.category).filter(Boolean));
-  const categories = Array.from(categoriesSet) as string[];
-
-  // Use our design token classes instead of hardcoded colors
-  const primaryClass = "text-primary";
-  const primaryBgClass = "bg-primary";
-
+    'featured'
+  ], { language: lang });
+  
+  // Separate featured and regular posts
+  const featuredPosts = allPosts.filter(post => post.featured);
+  const recentPosts = allPosts.slice(0, 6);
+  
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/20" />
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'radial-gradient(circle at center, white 0.5px, transparent 0.5px)',
-            backgroundSize: '24px 24px'
-          }}
-        />
-        <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center text-foreground">
-            {t.blogTitle || 'Blog'}
-          </h1>
-          <div className={cn("h-1 w-20 mx-auto mb-6", primaryBgClass)}></div>
-          <p className="text-xl text-center text-muted-foreground max-w-2xl mx-auto">
-            {t.blogDescription || 'Latest articles and updates'}
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <HeroSection/>
 
-      <main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        {/* Category Filter */}
-        {categories.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            <Button
-              variant="outline"
-              size="sm"
-              className={cn(primaryBgClass, "text-primary-foreground hover:bg-primary/90 transition-colors")}
-            >
-              {t.allPosts || 'All Posts'}
-            </Button>
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant="outline"
-                size="sm"
-                className={cn("border-primary text-primary hover:bg-primary/10 transition-colors")}
-              >
-                {category}
-              </Button>
-            ))}
+      {/* Featured Post Section */}
+      {featuredPosts.length > 0 && (
+        <section className="py-16 bg-background">
+          <div className="container px-4 mx-auto">
+            <div className="flex items-center justify-between mb-10">
+              <h2 className="text-3xl font-bold">Featured Post</h2>
+              <div className="h-0.5 bg-primary/10 flex-1 ml-6"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="relative h-96 rounded-xl overflow-hidden">
+                <Image
+                  src={featuredPosts[0].image || "/images/placeholder.jpg"}
+                  alt={featuredPosts[0].title}
+                  fill
+                  className="object-cover transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                {featuredPosts[0].category && (
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-primary text-white text-sm rounded-full">
+                      {featuredPosts[0].category}
+                    </span>
+                  </div>
+                )}
+              </div>
+              
+              <div className="flex flex-col justify-center space-y-4">
+                <h3 className="text-3xl font-bold">{featuredPosts[0].title}</h3>
+                <p className="text-muted-foreground">{featuredPosts[0].description}</p>
+                
+                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center">
+                    <UserIcon className="mr-1 h-4 w-4" />
+                    <span>{featuredPosts[0].author}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar className="mr-1 h-4 w-4" />
+                    <span>{featuredPosts[0].date}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="mr-1 h-4 w-4" />
+                    <span>{featuredPosts[0].readTime || 5} min read</span>
+                  </div>
+                </div>
+                
+                <Button asChild className="mt-4 self-start">
+                  <Link href={`/blog/${featuredPosts[0].slug}`}>
+                    Read Article <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
           </div>
-        )}
+        </section>
+      )}
 
-        {/* Featured Post */}
-        {allPosts.length > 0 && (
-          <div className="mb-16">
-            <h2 className={cn("text-2xl font-bold mb-6 text-foreground flex items-center")}>
-              {t.featuredPost || 'Featured Post'}
-              <div className={cn("h-1 w-6 ml-2", primaryBgClass)}></div>
-            </h2>
-            <Link href={`/${allPosts[0].slug}`} className="group">
-              <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="relative h-72 md:h-96 overflow-hidden">
+      {/* Recent Posts */}
+      <section className="py-16 bg-muted/20">
+        <div className="container px-4 mx-auto">
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-3xl font-bold">Recent Articles</h2>
+            <Link href="/blog" className="text-primary font-medium hover:underline flex items-center">
+              View All <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {recentPosts.map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <div className="bg-background rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                  <div className="relative h-48 overflow-hidden">
                     <Image
-                      src={allPosts[0].image || '/images/placeholder.jpg'}
-                      alt={allPosts[0].title}
+                      src={post.image || "/images/placeholder.jpg"}
+                      alt={post.title}
                       fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                    {allPosts[0].category && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    {post.category && (
                       <div className="absolute bottom-4 left-4">
-                        <span className={cn("text-primary-foreground text-sm px-3 py-1 rounded-full", primaryBgClass)}>
-                          {allPosts[0].category}
+                        <span className="px-2 py-1 bg-primary text-white text-xs rounded-full">
+                          {post.category}
                         </span>
                       </div>
                     )}
                   </div>
-                  <div className="p-8">
-                    <div className="flex items-center gap-2 text-sm">
-                      {allPosts[0].readTime && (
-                        <span className="text-muted-foreground flex items-center">
-                          <ClockIcon className="w-4 h-4 mr-1" /> {allPosts[0].readTime} {t.minRead || 'min read'}
-                        </span>
+                  
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="flex items-center text-xs text-muted-foreground mb-2">
+                      <Calendar className="mr-1 h-3 w-3" /> 
+                      <span>{post.date}</span>
+                      {post.readTime && (
+                        <>
+                          <span className="mx-2">·</span>
+                          <Clock className="mr-1 h-3 w-3" />
+                          <span>{post.readTime} min read</span>
+                        </>
                       )}
                     </div>
-                    <h3 className={cn("text-2xl md:text-3xl font-bold mt-4 mb-3 text-foreground group-hover:text-primary transition-colors")}>
-                      {allPosts[0].title}
+                    
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      {post.title}
                     </h3>
-                    <p className="text-muted-foreground mb-6 line-clamp-3">
-                      {allPosts[0].description}
+                    
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                      {post.description}
                     </p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div>
-                          <div className="font-medium text-foreground">{allPosts[0].author}</div>
-                          <div className="text-sm text-muted-foreground">{allPosts[0].date}</div>
-                        </div>
-                      </div>
-                      <div className={cn("flex items-center font-medium group-hover:translate-x-1 transition-transform", primaryClass)}>
-                        {t.readMore || 'Read More'} <ArrowRight className="w-4 h-4 ml-1" />
-                      </div>
+                    
+                    <div className="mt-auto flex items-center text-sm font-medium text-primary">
+                      Read Article <ArrowRight className="ml-1 h-3 w-3 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
                 </div>
-              </Card>
-            </Link>
+              </Link>
+            ))}
           </div>
-        )}
-
-        {/* All Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allPosts.slice(1).map((post) => (
-            <Link 
-              key={post.slug} 
-              href={`/${post.slug}`}
-              className="group"
-            >
-              <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 border-0">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={post.image || '/images/placeholder.jpg'}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  {post.category && (
-                    <div className="absolute bottom-4 left-4">
-                      <span className={cn("text-primary-foreground text-xs px-2 py-1 rounded-full", primaryBgClass)}>
-                        {post.category}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-sm mb-3">
-                    {post.readTime && (
-                      <span className="text-muted-foreground flex items-center">
-                        <ClockIcon className="w-4 h-4 mr-1" /> {post.readTime} {t.minRead || 'min read'}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className={cn("text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors line-clamp-2")}>
-                    {post.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
-                    {post.description}
-                  </p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="text-sm text-muted-foreground">
-                      {post.date}
-                    </div>
-                    <div className={cn("text-sm font-medium flex items-center group-hover:translate-x-1 transition-transform", primaryClass)}>
-                      {t.readMore || 'Read More'} <ArrowRight className="w-4 h-4 ml-1" />
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
         </div>
-      </main>
+      </section>
+
+      {/* Topics/Categories Section */}
+      <section className="py-16 bg-background">
+        <div className="container px-4 mx-auto">
+          <h2 className="text-3xl font-bold mb-10">Explore Topics</h2>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {["Web Development", "JavaScript", "React", "NextJS", "Career Growth", "TypeScript", "UI/UX", "Performance"].map((topic) => (
+              <Link 
+                key={topic} 
+                href={`/blog/category/${topic.toLowerCase().replace(/\s+/g, '-')}`}
+                className="bg-muted/50 hover:bg-primary/5 border border-border hover:border-primary/20 rounded-lg p-4 text-center transition-colors group"
+              >
+                <div className="flex flex-col items-center">
+                  <Tag className="h-8 w-8 mb-2 text-primary" />
+                  <span className="font-medium group-hover:text-primary transition-colors">{topic}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="py-16 bg-primary/5">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p className="text-muted-foreground mb-8">
+              Subscribe to my newsletter to receive updates on new articles, resources, and occasional dev tips.
+            </p>
+            
+            <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+              <input 
+                type="email" 
+                placeholder="Your email address" 
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm"
+                required
+              />
+              <Button type="submit">
+                Subscribe
+              </Button>
+            </form>
+            <p className="text-xs text-muted-foreground mt-3">
+              I respect your privacy. No spam, ever. Unsubscribe anytime.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }

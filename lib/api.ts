@@ -1,4 +1,3 @@
-// lib/api.ts
 import fs from 'fs';
 import matter from 'gray-matter';
 import { SupportedLanguage } from '@/lib/i18n/types';
