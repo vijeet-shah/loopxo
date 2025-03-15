@@ -5,7 +5,6 @@ import { defaultMetadata } from "@/config/metadata";
 import { Analytics } from "@/components/analytics";
 import { SkipToContent } from "@/components/accessibility/skip-to-content";
 import { ThemeProvider } from "./theme-provider";
-import { AuthProvider } from "./providers";
 
 // Optimize font loading - can be customized with different fonts
 const inter = Inter({
@@ -84,7 +83,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="relative flex min-h-screen flex-col">
             <SkipToContent />
             <main id="main-content" className="flex-1" tabIndex={-1}>
-              <AuthProvider>{children} </AuthProvider>
+              {children} 
             </main>
           </div>
         </ThemeProvider>

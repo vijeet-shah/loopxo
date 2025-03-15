@@ -166,7 +166,6 @@ export function Header() {
               {/* Conditional rendering of language selector */}
               {navigationConfig.i18n.enabled && (
                 <LanguageSelector
-                  variant={navigationConfig.i18n.displayVariant}
                 />
               )}
 

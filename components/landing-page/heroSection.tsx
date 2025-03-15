@@ -9,13 +9,23 @@ import Link from "next/link";
 import { useTranslation } from "@/lib/i18n/client-utils";
 
 const HeroSection = () => {
+
+  interface Particle {
+    id: number;
+    x: number;
+    y: number;
+    size: number;
+    duration: number;
+  }
+
+
   const { t } = useTranslation();
   const controls = useAnimation();
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef(null);
   
   // Fix for hydration mismatch - initialize particles as empty array
-  const [particles, setParticles] = useState([]);
+const [particles, setParticles] = useState<Particle[]>([]);
   
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -73,7 +83,7 @@ const HeroSection = () => {
   
   const socialIconVariants = {
     hidden: { scale: 0, opacity: 0 },
-    visible: i => ({
+    visible: (i: number) => ({
       scale: 1,
       opacity: 1,
       transition: { delay: 1.2 + (i * 0.1), type: "spring", stiffness: 200 }
@@ -83,6 +93,7 @@ const HeroSection = () => {
       transition: { type: "spring", stiffness: 400, damping: 10 }
     }
   };
+
 
   return (
     <section ref={ref} className="relative overflow-hidden bg-background py-24">

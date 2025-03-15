@@ -20,7 +20,6 @@ export type SiteConfig = {
     url: string;
     ogImage: string;
     links: {
-      facebook: string;
       twitter: string;
       instagram: string;
       [key: string]: string; // Allow for additional custom social links

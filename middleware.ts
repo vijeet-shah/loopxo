@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
 
 export async function middleware(request: NextRequest) {
-  const { pathname, searchParams } = request.nextUrl;
+  const {  searchParams } = request.nextUrl;
   
   // Get language from query parameter if available
   const langParam = searchParams.get('lang');
@@ -20,37 +19,7 @@ export async function middleware(request: NextRequest) {
     return response;
   }
   
-  // Handle admin routes separately
-  if (pathname.startsWith('/admin')) {
-    // Skip for admin login page
-    if (pathname === '/admin/login') {
-      return NextResponse.next();
-    }
-    
-    // Check for admin token (existing method)
-    const adminToken = request.cookies.get('adminToken');
-    if (adminToken && adminToken.value === 'true') {
-      return NextResponse.next();
-    }
-    
-    // If no adminToken, try NextAuth session
-    try {
-      const token = await getToken({ 
-        req: request, 
-        secret: process.env.NEXTAUTH_SECRET 
-      });
-      
-      if (token) {
-        return NextResponse.next();
-      }
-    } catch (error) {
-      console.error('Error checking NextAuth token:', error);
-    }
-    
-    // Redirect to login if neither authentication method worked
-    const url = new URL('/admin/login', request.url);
-    return NextResponse.redirect(url);
-  }
+ 
   
   // For non-admin routes, handle language detection
   const languageCookie = request.cookies.get('language');
