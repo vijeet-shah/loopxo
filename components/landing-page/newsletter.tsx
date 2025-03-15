@@ -5,7 +5,7 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Check, AlertCircle, Mail, Sparkles, Star, ArrowRight, Plus } from 'lucide-react';
 
-export default function Newsletter({ t }) {
+export default function Newsletter({ t }:{t: any}) {
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -15,7 +15,7 @@ export default function Newsletter({ t }) {
   const [showNewSubscription, setShowNewSubscription] = useState(false);
   const controls = useAnimation();
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, threshold: 0.2 });
+  const isInView = useInView(ref, { once: false});
   
   // Check if user is already subscribed on component mount
   useEffect(() => {
@@ -37,7 +37,7 @@ export default function Newsletter({ t }) {
     }
   }, [controls, isInView]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
@@ -74,7 +74,7 @@ export default function Newsletter({ t }) {
         setSuccess(false);
         setNeedsConfirmation(false);
       }, 8000);
-    } catch (error) {
+    } catch (error :any) {
       setError(error.message);
     } finally {
       setIsLoading(false);
@@ -111,19 +111,7 @@ export default function Newsletter({ t }) {
     }
   };
   
-  const floatingStarVariants = {
-    animate: {
-      y: [0, -15, 0],
-      opacity: [0.4, 1, 0.4],
-      scale: [0.9, 1.1, 0.9],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        repeatType: "mirror",
-        ease: "easeInOut"
-      }
-    }
-  };
+ 
 
   return (
     <section ref={ref} className="py-20 relative overflow-hidden">
@@ -149,7 +137,6 @@ export default function Newsletter({ t }) {
       
       {/* Floating stars */}
       <motion.div 
-        variants={floatingStarVariants}
         animate="animate"
         className="absolute top-20 left-[15%]"
       >
@@ -157,7 +144,6 @@ export default function Newsletter({ t }) {
       </motion.div>
       
       <motion.div 
-        variants={floatingStarVariants}
         animate="animate"
         transition={{ delay: 1 }}
         className="absolute bottom-20 right-[20%]"
@@ -166,7 +152,6 @@ export default function Newsletter({ t }) {
       </motion.div>
       
       <motion.div 
-        variants={floatingStarVariants}
         animate="animate"
         transition={{ delay: 2 }}
         className="absolute top-1/3 right-[10%]"

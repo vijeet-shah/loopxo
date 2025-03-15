@@ -15,7 +15,7 @@ import type { SupportedLanguage } from './types';
 export async function getLanguage(defaultLang: SupportedLanguage = 'en'): Promise<SupportedLanguage> {
   try {
     // Get cookies in a way that works with Next.js server components
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const langCookie = cookieStore.get('language');
     
     // Check if the cookie exists and has a valid value

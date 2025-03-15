@@ -1,4 +1,37 @@
 // config/navigation.ts
+
+// Define the type for navigation items
+interface NavItem {
+  title: string;
+  href: string;
+  children?: NavItem[];
+}
+
+// Define the type for the entire navigation configuration
+export interface NavigationConfig {
+  mainNav: NavItem[];
+  i18n: {
+    enabled: boolean;
+    defaultLanguage: string;
+    displayVariant: 'icon-only' | 'text' | 'both';
+  };
+  announcement: {
+    text: string;
+    href: string;
+    enabled: boolean;
+    bgColor: string;
+  };
+  ctaButton: {
+    text: string;
+    href: string;
+    variant: string;
+  };
+  mobileMenuMode: 'drawer' | 'dropdown';
+  enableSearch: boolean;
+  enableLanguageSelector: boolean;
+  enableThemeToggle: boolean;
+}
+
 export const navigationConfig: NavigationConfig = {
   mainNav: [
     {
@@ -9,7 +42,6 @@ export const navigationConfig: NavigationConfig = {
       title: "Blog",
       href: "/blog",
     },
-    
     {
       title: "Contact",
       href: "/contact",

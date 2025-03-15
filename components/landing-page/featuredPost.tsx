@@ -7,7 +7,7 @@ import { ArrowRight, Clock, Calendar, UserIcon, Bookmark, Sparkles } from 'lucid
 import { Button } from '@/components/ui/button';
 import { useRef } from 'react';
 
-export default function FeaturedPost({ post, t, isLoading }) {
+export default function FeaturedPost({ post, t, isLoading }: { post: any, t: any, isLoading: any }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,

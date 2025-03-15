@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
@@ -7,7 +6,18 @@ import { navigationConfig } from '@/config/navigation'
 import { cn } from '@/lib/utils'
 import { getLanguage, getTranslations } from '@/lib/i18n/server-utils'
 
+// Define interfaces for the navigation item types
+interface NavChildItem {
+  title: string;
+  href: string;
+  // Add other properties if needed
+}
 
+interface NavItem {
+  title: string;
+  children?: NavChildItem[];
+  // Add other properties if needed
+}
 
 // Helper function to build the sitemap structure from navigation
 const buildSitemapFromNav = () => {
@@ -24,7 +34,7 @@ const buildSitemapFromNav = () => {
   ];
   
   // Create sections for each top-level nav item with children
-  navigationConfig.mainNav.forEach(item => {
+  navigationConfig.mainNav.forEach((item: NavItem) => {
     if (item.children && item.children.length > 0) {
       structure.push({
         title: item.title,

@@ -49,7 +49,7 @@ export function MobileMenu() {
     closed: {
       opacity: 0,
       x: menuStyle === "drawer" ? -300 : 0,
-      y: menuStyle === "fullscreen" ? -20 : 0,
+      y: 0, 
       transition: {
         duration: 0.2,
         ease: "easeInOut"

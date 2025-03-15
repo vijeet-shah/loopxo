@@ -86,7 +86,7 @@ export default async function Blog() {
               {t.featuredPost || 'Featured Post'}
               <div className={cn("h-1 w-6 ml-2", primaryBgClass)}></div>
             </h2>
-            <Link href={`/${allPosts[0].slug}`} className="group">
+            <Link href={`/blog/${allPosts[0].slug}`} className="group">
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="relative h-72 md:h-96 overflow-hidden">
@@ -142,7 +142,7 @@ export default async function Blog() {
           {allPosts.slice(1).map((post) => (
             <Link 
               key={post.slug} 
-              href={`/${post.slug}`}
+              href={`/blog/${post.slug}`}
               className="group"
             >
               <Card className="h-full overflow-hidden hover:shadow-lg transition-all duration-300 border-0">
