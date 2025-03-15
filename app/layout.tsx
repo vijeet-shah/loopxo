@@ -74,7 +74,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           color="#3B82F6"
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

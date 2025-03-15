@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -17,6 +16,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { CldImage } from 'next-cloudinary';
+import Image from 'next/image';
 
 interface UploadedImage {
   id: string;
@@ -28,7 +28,6 @@ interface UploadedImage {
 }
 
 export default function MediaPage() {
-  const router = useRouter();
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [uploading, setUploading] = useState(false);
@@ -236,10 +235,12 @@ export default function MediaPage() {
 
               {preview && (
                 <div className="relative h-32 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 border border-amber-200 dark:border-amber-800">
-                  <img
+                  <Image
                     src={preview}
                     alt="Preview"
                     className="w-full h-full object-contain"
+                    height={200}
+                    width={200}
                   />
                 </div>
               )}

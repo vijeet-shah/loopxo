@@ -5,7 +5,6 @@ import { ChevronRight } from 'lucide-react'
 import { siteConfig } from '@/config/site'
 import { navigationConfig } from '@/config/navigation'
 import { cn } from '@/lib/utils'
-import { generatePageMetadata } from '@/components/SEO'
 import { getLanguage, getTranslations } from '@/lib/i18n/server-utils'
 
 
@@ -63,8 +62,7 @@ export default async function SitemapPage() {
   
   const siteStructure = buildSitemapFromNav();
   const primaryColorClass = "text-primary";
-  const primaryBgClass = "bg-primary";
-  const primaryHoverClass = "hover:text-primary";
+
   const primaryBorderClass = "border-primary";
 
   return (

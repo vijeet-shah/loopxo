@@ -1,11 +1,10 @@
 // components/admin/sidebar.tsx
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
 import {
   LayoutDashboard,
   FileText,
@@ -36,34 +35,8 @@ export function AdminSidebar() {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Initialize open submenu based on current path
-  useEffect(() => {
-    const checkForMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-      if (window.innerWidth < 768) {
-        setIsSidebarOpen(false);
-      }
-    };
-    
-    checkForMobile();
-    window.addEventListener('resize', checkForMobile);
 
-    // Set open submenu based on current path
-    menuItems.forEach(item => {
-      if (item.subItems && item.subItems.some(subItem => pathname === subItem.path)) {
-        setOpenSubmenu(item.title);
-      }
-    });
-
-    return () => window.removeEventListener('resize', checkForMobile);
-  }, [pathname]);
-
-  const handleSidebarToggle = () => setIsSidebarOpen(!isSidebarOpen);
-  const handleSubmenuToggle = (title: string) => {
-    setOpenSubmenu(openSubmenu === title ? null : title);
-  };
-
-  const menuItems: MenuItem[] = [
+  const menuItems = useMemo<MenuItem[]>(() => [
     { 
       title: "Dashboard", 
       icon: LayoutDashboard, 
@@ -96,7 +69,39 @@ export function AdminSidebar() {
       icon: Users,
       path: "/admin/users",
     }
-  ];
+  ], []);
+
+
+
+  // Initialize open submenu based on current path
+  useEffect(() => {
+    const checkForMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth < 768) {
+        setIsSidebarOpen(false);
+      }
+    };
+    
+    checkForMobile();
+    window.addEventListener('resize', checkForMobile);
+
+    // Set open submenu based on current path
+    menuItems.forEach(item => {
+      if (item.subItems && item.subItems.some(subItem => pathname === subItem.path)) {
+        setOpenSubmenu(item.title);
+      }
+    });
+
+    return () => window.removeEventListener('resize', checkForMobile);
+  }, [pathname, menuItems]);
+  
+
+  const handleSidebarToggle = () => setIsSidebarOpen(!isSidebarOpen);
+  const handleSubmenuToggle = (title: string) => {
+    setOpenSubmenu(openSubmenu === title ? null : title);
+  };
+
+  
 
   const isActive = (path: string) => {
     return pathname === path;

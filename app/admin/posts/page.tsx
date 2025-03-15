@@ -18,7 +18,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/utils';
 import { useTranslation } from '@/lib/i18n/client-utils';
 import { languageNames } from '@/lib/i18n/dictionary';
 import type { SupportedLanguage } from '@/lib/i18n/types';
@@ -61,7 +60,9 @@ export default function PostsPage() {
   
   // Filters
   const [search, setSearch] = useState('');
-  const [language, setLanguage] = useState<string>(lang || 'en');
+  const initialLang = typeof lang === 'string' ? lang : 'en';
+
+  const [language, setLanguage] = useState<string>(initialLang);
   const [category, setCategory] = useState('');
   const [status, setStatus] = useState('all');
   
@@ -106,7 +107,7 @@ export default function PostsPage() {
     };
 
     fetchPosts();
-  }, [pagination.page, pagination.limit, search, language, category, status, lang]);
+  }, [pagination, pagination.limit, search, language, category, status, lang]);
 
   // Handle pagination
   const handleChangePage = (newPage: number) => {

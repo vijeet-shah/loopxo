@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Generate translations based on translationSlugs
-    let translations = [];
+    const translations = [];
     try {
       // Use the translationSlugs field from the post to find translations
       if (post.translationSlugs && typeof post.translationSlugs === 'object') {
@@ -105,7 +105,9 @@ export async function POST(request: NextRequest) {
     }
     
     // Prepare files for committing
-    const files = [];
+    const files  = [];
+    console.log(files);
+    
     
     // Main post file - updated to match the file structure: blog/nameofblog/en.md
     const mainPostPath = `${config.contentPath}/${post.slug}/${post.language}.md`;
@@ -135,6 +137,8 @@ export async function POST(request: NextRequest) {
         branch: branchName,
       });
       
+      console.log('Main post commit response:', mainPostResponse);
+
       // Commit translation files if they exist
       if (translations && translations.length > 0) {
         for (const translation of translations) {

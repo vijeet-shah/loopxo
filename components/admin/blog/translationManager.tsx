@@ -93,7 +93,7 @@ export function TranslationManager({ postId, postSlug, defaultLanguage = 'en' }:
     } finally {
       setLoading(false);
     }
-  }, [postId, postSlug, defaultLanguage]); // Remove supportedLanguages from deps
+  }, [postId, postSlug, defaultLanguage, supportedLanguages]); 
 
   // Fetch translations only once on component mount
   useEffect(() => {

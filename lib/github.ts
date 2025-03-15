@@ -41,7 +41,7 @@ export async function commitFile(
       }
     } catch (error) {
       // File doesn't exist, which is fine for creation
-      console.log(`File doesn't exist yet: ${path}`);
+      console.log(`File doesn't exist yet: ${path}, ${error}`);
     }
     
     // Create or update the file

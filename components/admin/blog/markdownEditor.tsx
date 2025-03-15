@@ -5,8 +5,11 @@ import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
-import { Bold, Italic, Link, List, ListOrdered, Image, Code, Heading1, Heading2, Heading3 } from 'lucide-react';
+import { Bold, Italic, Link, List, ListOrdered, Code, Heading1, Heading2, Heading3 } from 'lucide-react';
 import markdownToHtml from '@/lib/markdownToHtml';
+import Image from 'next/image';
+
+
 
 interface MarkdownEditorProps {
   value: string;
@@ -127,7 +130,7 @@ export function MarkdownEditor({ value, onChange, preview = false }: MarkdownEdi
             </Button>
             <div className="h-5 border-r mx-1"></div>
             <Button variant="ghost" size="sm" onClick={handleImage}>
-              <Image className="h-4 w-4" />
+              <Image src={""} className="h-4 w-4" alt="image" width={100} height={100}/>
             </Button>
             <Button variant="ghost" size="sm" onClick={handleCode}>
               <Code className="h-4 w-4" />

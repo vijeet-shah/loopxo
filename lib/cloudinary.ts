@@ -1,6 +1,5 @@
 export async function deleteCloudinaryImage(publicId: string) {
     try {
-      const timestamp = new Date().getTime();
       const formData = new FormData();
       formData.append('public_id', publicId);
       formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || '');

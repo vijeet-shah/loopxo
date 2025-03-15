@@ -1,7 +1,6 @@
 // lib/seo.tsx
 "use client";
 
-import { usePathname } from 'next/navigation';
 import { Metadata } from 'next';
 import { siteConfig } from '@/config/site';
 import { defaultMetadata } from '@/config/metadata';
@@ -18,8 +17,7 @@ type SeoProps = {
 
 // This is a client component that can be used in special cases
 // where you need dynamic SEO that can't be handled by the Metadata API
-export default function Seo(props: SeoProps) {
-  const pathname = usePathname();
+export default function Seo() {
   
   // For client-side SEO needs
   // This component doesn't render anything visible

@@ -23,7 +23,6 @@ export default async function Blog() {
     'image',
     'category',
     'readTime',
-    // Make sure 'translationSlugs' is a valid key in your Post type
   ], { language: currentLanguage as SupportedLanguage });
 
   // Get unique categories from posts

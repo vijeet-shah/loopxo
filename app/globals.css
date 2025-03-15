@@ -1,41 +1,90 @@
-/* globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Light mode variables */
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Primary gradient palette - Serene Nature */
+    --primary-gradient-from: 145 65% 40%;  /* Emerald green */
+    --primary-gradient-via: 165 70% 45%;   /* Jade */
+    --primary-gradient-to: 130 60% 42%;    /* Forest green */
+    
+    /* Secondary gradient palette - Golden Sunlight */
+    --secondary-gradient-from: 40 95% 55%; /* Golden yellow */
+    --secondary-gradient-via: 35 90% 50%;  /* Amber */
+    --secondary-gradient-to: 25 85% 48%;   /* Warm gold */
+    
+    /* Light mode variables - Natural Daylight */
+    --background: 60 30% 98%;
+    --foreground: 160 40% 16%;
+    
+    --muted: 150 25% 95%;
+    --muted-foreground: 160 10% 40%;
+    
     --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
+    --card-foreground: 160 40% 16%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --popover-foreground: 160 40% 16%;
+    
+    --primary: 145 65% 40%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 40 95% 55%;
+    --secondary-foreground: 150 30% 15%;
+    
+    --accent: 35 90% 50%;
+    --accent-foreground: 150 30% 15%;
+    
+    --border: 160 20% 92%;
+    --input: 160 20% 92%;
+    --ring: 145 65% 40%;
+    
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Special Effects */
+    --glow-strength: 0.3;
+    --shimmer-angle: 45deg;
+    --glass-blur: 8px;
+    --depth-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
   }
 
   .dark {
-    /* Dark mode variables */
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    /* Dark mode variables - Evening Forest */
+    --background: 160 30% 6%;
+    --foreground: 150 15% 90%;
+    
+    --muted: 155 25% 12%;
+    --muted-foreground: 150 10% 70%;
+    
+    --card: 160 25% 9%;
+    --card-foreground: 150 15% 90%;
+    
+    --popover: 160 25% 9%;
+    --popover-foreground: 150 15% 90%;
+    
+    --primary: 145 50% 45%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 40 70% 50%;
+    --secondary-foreground: 155 30% 12%;
+    
+    --accent: 35 65% 50%;
+    --accent-foreground: 155 30% 12%;
+    
+    --border: 160 25% 15%;
+    --input: 160 25% 15%;
+    --ring: 145 50% 45%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Special Effects - Enhanced for dark mode */
+    --glow-strength: 0.5;
+    --shimmer-angle: 45deg;
+    --glass-blur: 12px;
+    --depth-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -43,9 +92,193 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: 
+      radial-gradient(
+        circle at 40% 10%, 
+        hsl(var(--primary-gradient-from) / 0.03) 0%, 
+        transparent 60%
+      ),
+      radial-gradient(
+        circle at 60% 80%, 
+        hsl(var(--secondary-gradient-from) / 0.03) 0%, 
+        transparent 60%
+      );
+  }
+  
+  /* Typography enhancements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    text-wrap: balance;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+    line-height: 1.1;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+    line-height: 1.2;
+  }
+  
+  /* Custom glow effect on focus for interactive elements - fixed to be more subtle */
+  button:focus, 
+  a:focus, 
+  input:focus, 
+  select:focus, 
+  textarea:focus {
+    @apply outline-none ring-1 ring-primary/30;
+    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.15);
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  /* Refined Card - elevated card with subtle border */
+  .cosmic-card {
+    @apply relative bg-card shadow-md overflow-hidden rounded-xl;
+    box-shadow: var(--depth-shadow);
+    border: 1px solid hsl(var(--border));
+  }
+  
+  /* Interactive Card with hover effect */
+  .cosmic-card-interactive {
+    @apply cosmic-card transition-all duration-300;
+  }
+  
+  .cosmic-card-interactive:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 20px 40px -20px hsl(var(--primary-gradient-from) / 0.15),
+      0 10px 20px -15px hsl(var(--primary-gradient-to) / 0.1);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+  
+  /* Glass panel effect for containers */
+  .glass-panel {
+    @apply bg-background/80 backdrop-blur border border-muted/40 rounded-lg;
+    backdrop-filter: blur(var(--glass-blur));
+  }
+  
+  /* Gradient text that shifts subtly */
+  .cosmic-text {
+    @apply font-bold;
+    background-image: linear-gradient(
+      60deg,
+      hsl(var(--primary-gradient-from)),
+      hsl(var(--primary-gradient-via)),
+      hsl(var(--primary-gradient-to))
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientText 8s ease infinite;
+  }
+  
+  /* Animation for subtle shifting gradient text */
+  @keyframes gradientText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Gradient button with dynamic hover effect - more subtle */
+  .cosmic-button {
+    @apply relative px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 overflow-hidden;
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--primary-gradient-from)),
+      hsl(var(--primary-gradient-to))
+    );
+    background-size: 200% auto;
+    box-shadow: 0 4px 12px -2px hsl(var(--primary-gradient-from) / 0.2);
+  }
+  
+  .cosmic-button:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px -4px hsl(var(--primary-gradient-from) / 0.25);
+  }
+  
+  .cosmic-button:active {
+    transform: translateY(0);
+  }
+  
+  /* Secondary cosmic button with alternate colors */
+.cosmic-button-secondary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 overflow-hidden;
+  color: hsl(var(--secondary-foreground));
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--secondary-gradient-from)),
+    hsl(var(--secondary-gradient-to))
+  );
+  background-size: 200% auto;
+  box-shadow: 0 4px 12px -2px hsl(var(--secondary-gradient-from) / 0.2);
+}
+
+.cosmic-button-secondary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px hsl(var(--secondary-gradient-from) / 0.25);
+}
+
+.cosmic-button-secondary:active {
+  transform: translateY(0);
+}
+  
+  /* Shimmer effect for loading states */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      var(--shimmer-angle),
+      transparent,
+      hsl(var(--primary) / 0.08),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+  
+  /* Floating animation */
+  .floating {
+    animation: floating 4s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  /* Pulse glow effect - more subtle */
+  .pulse-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.3); }
+    70% { box-shadow: 0 0 0 8px hsl(var(--primary) / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
   }
 }
 
@@ -58,4 +291,29 @@
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* Custom scrollbar for the rest of the site */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.7);
+}
+
+/* Custom selection color */
+::selection {
+  background-color: hsl(var(--primary) / 0.15);
+  color: hsl(var(--foreground));
 }

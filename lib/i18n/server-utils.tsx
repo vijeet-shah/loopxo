@@ -1,3 +1,4 @@
+// lib/i18n/server-utils.tsx
 'use server';
 
 import { cookies } from 'next/headers';
@@ -35,6 +36,11 @@ export async function getLanguage(defaultLang: SupportedLanguage = 'en'): Promis
  * @returns The translations object
  */
 export async function getTranslations(lang: SupportedLanguage = 'en'): Promise<BaseTranslations> {
-  // Make sure we only use valid dictionary entries
-  return dictionary[lang] || dictionary.en;
+  // Make sure we only use valid dictionary entries and that dictionary is defined
+  if (!dictionary) {
+    console.error('Dictionary is undefined');
+    return {} as BaseTranslations;
+  }
+  
+  return dictionary[lang] || dictionary.en || {} as BaseTranslations;
 }

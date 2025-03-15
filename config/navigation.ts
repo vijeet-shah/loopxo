@@ -9,40 +9,7 @@ export const navigationConfig: NavigationConfig = {
       title: "Blog",
       href: "/blog",
     },
-    {
-      title: "Categories",
-      href: "#",
-      children: [
-        {
-          title: "Web Development",
-          href: "/blog/category/web-development",
-        },
-        {
-          title: "JavaScript",
-          href: "/blog/category/javascript",
-        },
-        {
-          title: "React",
-          href: "/blog/category/react",
-        },
-        {
-          title: "NextJS",
-          href: "/blog/category/nextjs",
-        },
-        {
-          title: "Career Growth",
-          href: "/blog/category/career",
-        },
-      ],
-    },
-    {
-      title: "About",
-      href: "/about",
-    },
-    {
-      title: "Projects",
-      href: "/projects",
-    },
+    
     {
       title: "Contact",
       href: "/contact",

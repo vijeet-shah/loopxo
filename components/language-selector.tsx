@@ -2,8 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Globe } from "lucide-react";
-import { useTranslation, SupportedLanguage } from "@/lib/i18n/client-utils";
+import { useTranslation } from "@/lib/i18n/client-utils";
 import { cn } from "@/lib/utils";
+import { SupportedLanguage } from "@/lib/i18n/types";
 
 export interface LanguageSelectorProps {
   variant?: "icon-only" | "with-text" | "dropdown";
