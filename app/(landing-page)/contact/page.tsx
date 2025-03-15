@@ -43,7 +43,7 @@ export default function ContactPage() {
   }, [isCalScriptLoaded]);
 
   // Handle contact form submission
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
@@ -60,7 +60,7 @@ export default function ContactPage() {
 
       // Reset success state after 5 seconds
       setTimeout(() => setSubmitSuccess(false), 5000);
-    } catch (error ) {
+    } catch (error) {
       setSubmitError(`Failed to send message. Please try again, ${error}`);
     } finally {
       setIsSubmitting(false);

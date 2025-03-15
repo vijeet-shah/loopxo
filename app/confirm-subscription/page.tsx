@@ -1,18 +1,22 @@
-// app/confirm-subscription/page.tsx
 import { confirmSubscription } from '@/lib/resend';
 import { Check, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
+// Define types for Next.js v15 async params
+type SearchParamsType = Promise<{ [key: string]: string | string[] | undefined }>;
+
 export default async function ConfirmSubscription({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParams: SearchParamsType;
 }) {
-  console.log('Confirm subscription page loaded with params:', searchParams);
+  // Await the searchParams as they're now a Promise in Next.js v15
+  const resolvedSearchParams = await searchParams;
+  console.log('Confirm subscription page loaded with params:', resolvedSearchParams);
   
-  const email = searchParams.email as string;
-  const confirmationCode = searchParams.confirmationCode as string;
+  const email = resolvedSearchParams.email as string;
+  const confirmationCode = resolvedSearchParams.confirmationCode as string;
   
   // Validate params
   if (!email || !confirmationCode) {

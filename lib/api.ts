@@ -4,6 +4,7 @@ import { SupportedLanguage } from '@/lib/i18n/types';
 
 const postsDirectory = process.cwd() + '/blog';
 
+
 export type Category = 
   | 'Planning'
   | 'Development'
@@ -119,6 +120,10 @@ export function getPostBySlug(slug: string, fields: (keyof Post)[] = [], languag
     return null;
   }
 }
+
+
+
+
 
 /**
  * Get all posts with optional filtering and sorting

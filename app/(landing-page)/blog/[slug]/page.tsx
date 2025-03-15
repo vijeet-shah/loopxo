@@ -1,40 +1,37 @@
-// app/blog/[slug]/page.tsx
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
-import { getPostBySlug, getAllPosts, getAvailableLanguagesForPost } from '@/lib/api'
-import markdownToHtml from '@/lib/markdownToHtml'
-import TableOfContents from './TableOfContents'
-import { ArrowLeft, Calendar, Clock, UserIcon, Globe } from 'lucide-react'
-import { getLanguage, getTranslations } from '@/lib/i18n/server-utils'
-import { SupportedLanguage } from '@/lib/i18n/types'
-import './markdown-styles.css'
-import { languageNames } from '@/lib/i18n/dictionary'
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import { getPostBySlug, getAllPosts, getAvailableLanguagesForPost } from '@/lib/api';
+import markdownToHtml from '@/lib/markdownToHtml';
+import TableOfContents from './TableOfContents';
+import { ArrowLeft, Calendar, Clock, UserIcon, Globe } from 'lucide-react';
+import { getLanguage, getTranslations } from '@/lib/i18n/server-utils';
+import { SupportedLanguage } from '@/lib/i18n/types';
+import './markdown-styles.css';
+import { languageNames } from '@/lib/i18n/dictionary';
 
-export async function generateStaticParams() {
-  // Get all post slugs (directory names)
+export function generateStaticParams() {
   const slugs = getAllPosts(['slug']).map(post => post.slug);
-  
   return slugs.map((slug) => ({
     slug: slug,
   }));
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: {params: Promise<{ slug: string }>}) {
+  // Resolve the params Promise
+  const resolvedParams = await params;
   const currentLanguage = await getLanguage();
   const t = await getTranslations(currentLanguage);
-  
-  // First try to get the post in current language
+
   let post = getPostBySlug(
-    params.slug, 
+    resolvedParams.slug,
     ['title', 'date', 'slug', 'author', 'content', 'image', 'description', 'category', 'readTime'],
     currentLanguage
   );
 
-  // If not found, try to get it in the default language (English)
   if (!post && currentLanguage !== 'en') {
     post = getPostBySlug(
-      params.slug,
+      resolvedParams.slug,
       ['title', 'date', 'slug', 'author', 'content', 'image', 'description', 'category', 'readTime'],
       'en'
     );
@@ -44,17 +41,10 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     notFound();
   }
 
-  // Process the markdown content to HTML
   const { content, headings } = markdownToHtml(post.content || '');
-
-  // Get available languages for this post
-  const availableLanguages = getAvailableLanguagesForPost(params.slug);
+  const availableLanguages = getAvailableLanguagesForPost(resolvedParams.slug);
   const hasTranslations = availableLanguages.length > 1;
-
-  // Determine if the language reads right-to-left (only Arabic and Hebrew are truly RTL)
-  // Hindi is NOT an RTL language, so we remove it from this check
   const isRTL = currentLanguage === 'ar' || currentLanguage === 'he';
-  // Special font for Hindi without RTL
   const isHindi = currentLanguage === 'hi';
 
   return (
@@ -82,7 +72,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                   return (
                     <Link 
                       key={lang}
-                      href={`/blog/${params.slug}?lang=${lang}`}
+                      href={`/blog/${resolvedParams.slug}?lang=${lang}`}
                       className="text-primary hover:text-primary/80 transition-colors"
                     >
                       {displayName}
