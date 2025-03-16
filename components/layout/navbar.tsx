@@ -83,7 +83,7 @@ export function Header() {
             <Link href="/" className="flex items-center space-x-2 group">
               <div className="relative h-10 w-10 overflow-hidden rounded-full border border-primary/20 cosmic-card">
                 <Image
-                  src="/images/vijeet-profile.jpg"
+                  src="/logo.png"
                   alt={`${siteConfig.name}`}
                   width={40}
                   height={40}

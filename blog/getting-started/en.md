@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with Our Platform"
 date: "2025-01-15"
-author: "John Smith"
+author: "Vijeet Shah"
 category: "Development"
 image: "/images/blog/getting-started.jpg"
 description: "Learn how to get started with our platform and make the most of its features."

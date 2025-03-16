@@ -26,7 +26,7 @@ export async function Footer() {
             <div className="flex items-center mb-4">
               <div className="h-10 w-10 relative mr-3 bg-background rounded-full overflow-hidden shadow-lg">
                 <Image
-                  src="/images/vijeet-profile.jpg"
+                  src="/logo.png"
                   alt="Vijeet Shah"
                   width={40}
                   height={40}
