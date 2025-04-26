@@ -58,20 +58,21 @@ export default function StorySection() {
                 transition={{ delay: 0.5 }}
               >
                 <p>
-                  My story begins with a deep passion for technology and its potential to transform lives. Growing up in a small town, I was always fascinated by how computers worked and the endless possibilities they offered.
-                </p>
-                
-                <p>
-                  After graduating with a degree in Computer Science, I embarked on a career that would take me through various roles - from software engineer to technical product manager. Each experience shaped my understanding of how great products are built.
-                </p>
-                
-                <p>
-                  What drives me is the intersection of technology and human needs. I believe the best products aren&#39;t just technically excellent - they solve real problems for real people in elegant, intuitive ways.
-                </p>
-                
-                <p>
-                  Today, I focus on bridging the gap between technical complexity and user simplicity, ensuring that the products I help create are both powerful and accessible.
-                </p>
+  After graduating in Computer Science, I started my career as a Software Engineer at Pall while also completing my Master’s degree. After nearly two years in the corporate world, I transitioned to working remotely with international startups.
+</p>
+
+<p>
+  During this time, I discovered my passion for management and product development, leading me to start my own agency, Loopxo. There, I helped clients build MVPs, websites, and digital products, while also taking on marketing projects.
+</p>
+
+<p>
+  Later, I founded Srilakshmi Finance, a loan business in India, after securing an RBI license. Managing both Loopxo and Srilakshmi Finance strengthened my leadership, operational, and technical skills.
+</p>
+
+<p>
+  Today, I focus on building tech products and managing the technical side of my financial business, combining entrepreneurship, technology, and innovation.
+</p>
+
               </motion.div>
             </div>
           </motion.div>

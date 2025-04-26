@@ -31,7 +31,7 @@ export const PageNavigationControls = ({ currentPage, goNext, goPrev, pagesCount
   }, [currentPage, pagesCount, goNext, goPrev, isAnimating]);
 
   return (
-    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
+    <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex flex-col space-y-4">
       <button
         onClick={goPrev}
         disabled={currentPage === 1 || isAnimating}

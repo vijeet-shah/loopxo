@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Check, AlertCircle, Mail, Sparkles, Star, ArrowRight, Plus } from 'lucide-react';
+import { Check, AlertCircle, Mail, ArrowRight, Plus } from 'lucide-react';
 import TechnologyTicker from './technologyTicker';
 
 export default function Newsletter({ t }:{t: any}) {
@@ -137,29 +137,10 @@ export default function Newsletter({ t }:{t: any}) {
       />
       
       {/* Floating stars */}
-      <motion.div 
-        animate="animate"
-        className="absolute top-20 left-[15%]"
-      >
-        <Star className="text-primary/40 h-8 w-8" />
-      </motion.div>
       
-      <motion.div 
-        animate="animate"
-        transition={{ delay: 1 }}
-        className="absolute bottom-20 right-[20%]"
-      >
-        <Star className="text-primary/40 h-6 w-6" />
-      </motion.div>
       
-      <motion.div 
-        animate="animate"
-        transition={{ delay: 2 }}
-        className="absolute top-1/3 right-[10%]"
-      >
-        <Sparkles className="text-accent/40 h-10 w-10" />
-      </motion.div>
-
+    
+     
       <div className="container px-4 mx-auto relative z-10">
         <motion.div 
           variants={containerVariants}
