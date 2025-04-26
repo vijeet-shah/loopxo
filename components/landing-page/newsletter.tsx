@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Check, AlertCircle, Mail, Sparkles, Star, ArrowRight, Plus } from 'lucide-react';
+import TechnologyTicker from './technologyTicker';
 
 export default function Newsletter({ t }:{t: any}) {
   const [email, setEmail] = useState('');
@@ -318,6 +319,7 @@ export default function Newsletter({ t }:{t: any}) {
           </motion.div>
         </motion.div>
       </div>
+      <TechnologyTicker/>
     </section>
   );
 }

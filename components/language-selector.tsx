@@ -5,9 +5,10 @@ import { Globe } from "lucide-react";
 import { useTranslation } from "@/lib/i18n/client-utils";
 import { cn } from "@/lib/utils";
 import { SupportedLanguage } from "@/lib/i18n/types";
+import { motion, AnimatePresence } from "framer-motion";
 
 export interface LanguageSelectorProps {
-  variant?: "icon-only" | "with-text" | "dropdown";
+  variant?: "icon-only" | "with-text" | "dropdown" | "circular";
   className?: string;
 }
 
@@ -41,6 +42,51 @@ export function LanguageSelector({
     changeLanguage(newLang);
     setIsOpen(false);
   };
+
+  // For hero section's circular design
+  if (variant === "circular") {
+    return (
+      <div className={cn("relative", className)} ref={dropdownRef}>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full h-full flex items-center justify-center"
+          aria-label="Select language"
+        >
+          <span className="text-base font-medium">{typeof lang === "string" ? lang.toUpperCase() : lang}</span>
+        </button>
+        
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 shadow-lg z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-xl border border-white/20 dark:border-white/5 overflow-hidden"
+              style={{ width: '140px' }}
+            >
+              <div className="py-1">
+                {supportedLanguages.map((langCode) => (
+                  <motion.button
+                    key={langCode}
+                    whileHover={{ backgroundColor: 'rgba(var(--primary), 0.1)' }}
+                    onClick={() => handleLanguageChange(langCode)}
+                    className={cn(
+                      "block w-full text-left px-4 py-2 text-sm",
+                      langCode === lang 
+                        ? "bg-primary/10 text-primary font-medium" 
+                        : ""
+                    )}
+                  >
+                    {languageNames[langCode]}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    );
+  }
 
   if (variant === "with-text") {
     return (

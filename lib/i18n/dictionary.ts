@@ -6,6 +6,10 @@ export type TranslationDictionary<T extends Record<string, string>> = {
 
 // The base type that all language dictionaries must follow
 export type BaseTranslations = {
+  
+
+
+
   // Navigation
   home: string;
   about: string;
@@ -21,9 +25,13 @@ export type BaseTranslations = {
   viewAll: string;
   
   // Hero section
+  name: string;
+  post: string;
+  line: string;
   heroTitle: string;
   heroDescription: string;
   exploreMore: string;
+
   
   // Blog specific
   blogTitle: string;
@@ -117,6 +125,9 @@ const en: BaseTranslations = {
   viewAll: "View All",
   
   // Hero section
+  name: "Vijeet Shah",
+  post: "Technical Product Manager",
+  line: "Turning ideas into impactful products | Product leadership with engineering excellence",
   heroTitle: "Vijeet Shah's Blog",
   heroDescription: "Sharing ideas, tutorials, and insights about development and technology.",
   exploreMore: "Explore More",
@@ -210,6 +221,9 @@ const hi: BaseTranslations = {
   viewAll: "सभी देखें",
   
   // Hero section
+  name: "विजीत शाह",
+  post: "तकनीकी उत्पाद प्रबंधक",
+  line: "विचारों को प्रभावशाली उत्पादों में बदलना | इंजीनियरिंग उत्कृष्टता के साथ उत्पाद नेतृत्व",
   heroTitle: "विजीत शाह के ब्लॉग में आपका स्वागत है",
   heroDescription: "विकास और प्रौद्योगिकी के बारे में विचार, ट्यूटोरियल और अंतर्दृष्टि साझा करना।",
   exploreMore: "और एक्सप्लोर करें",
@@ -303,6 +317,9 @@ const de: BaseTranslations = {
   viewAll: "Alle anzeigen",
   
   // Hero section
+  name: "Vijeet Shah",
+  post:"Technischer Produktmanager",
+  line: "Ideen in wirkungsvolle Produkte verwandeln | Produktführung mit technischer Exzellenz",
   heroTitle: "Willkommen auf Vijeet Shahs Blog",
   heroDescription: "Teilen von Ideen, Tutorials und Einblicken über Entwicklung und Technologie.",
   exploreMore: "Mehr entdecken",
@@ -396,6 +413,9 @@ const fr: BaseTranslations = {
   viewAll: "Voir tout",
   
   // Hero section
+  name: "Vijeet Shah",
+  post:"Chef de produit technique",
+  line: "Transformer des idées en produits percutants | Leadership produit avec excellence en ingénierie",
   heroTitle: "Bienvenue sur le blog de Vijeet Shah",
   heroDescription: "Partage d'idées, de tutoriels et d'aperçus sur le développement et la technologie.",
   exploreMore: "Explorer davantage",
@@ -489,6 +509,9 @@ const es: BaseTranslations = {
   viewAll: "Ver todo",
   
   // Hero section
+  name: "Vijeet Shah",
+  post: "Gerente de producto técnico",
+  line: "Convertir ideas en productos impactantes | Liderazgo de producto con excelencia en ingeniería",
   heroTitle: "Bienvenido al blog de Vijeet Shah",
   heroDescription: "Compartiendo ideas, tutoriales y perspectivas sobre desarrollo y tecnología.",
   exploreMore: "Explorar más",
@@ -582,6 +605,9 @@ const zh: BaseTranslations = {
   viewAll: "查看全部",
   
   // Hero section
+  name: "Vijeet Shah",
+  post: "技术产品经理",
+  line: "将创意转化为有影响力的产品 | 具有工程卓越性的产品领导力",
   heroTitle: "欢迎来到Vijeet Shah的博客",
   heroDescription: "分享关于开发和技术的想法、教程和见解。",
   exploreMore: "探索更多",

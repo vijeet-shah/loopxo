@@ -1,8 +1,8 @@
 ---
-title: "Getting Started with Our Platform"
-date: "2025-01-15"
-author: "John Smith"
-category: "Development"
+title: "NEW"
+date: "2025-02-15"
+author: "Vijeet Shah"
+category: "Hêlo"
 image: "/images/blog/getting-started.jpg"
 description: "Learn how to get started with our platform and make the most of its features."
 tags: ["development", "tutorial", "beginner"]

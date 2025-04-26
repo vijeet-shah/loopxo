@@ -4,214 +4,246 @@
 
 @layer base {
   :root {
-    /* Primary gradient palette - Serene Nature */
-    --primary-gradient-from: 145 65% 40%;  /* Emerald green */
-    --primary-gradient-via: 165 70% 45%;   /* Jade */
-    --primary-gradient-to: 130 60% 42%;    /* Forest green */
+    /* Indian-inspired light theme */
+    --background: 36 70% 97%; /* Light cream */
+    --foreground: 339 36% 20%; /* Deep maroon text */
     
-    /* Secondary gradient palette - Golden Sunlight */
-    --secondary-gradient-from: 40 95% 55%; /* Golden yellow */
-    --secondary-gradient-via: 35 90% 50%;  /* Amber */
-    --secondary-gradient-to: 25 85% 48%;   /* Warm gold */
+    --card: 36 50% 94%;
+    --card-foreground: 339 36% 20%;
     
-    /* Light mode variables - Natural Daylight */
-    --background: 60 30% 98%;
-    --foreground: 160 40% 16%;
+    --popover: 36 50% 97%;
+    --popover-foreground: 339 36% 20%;
     
-    --muted: 150 25% 95%;
-    --muted-foreground: 160 10% 40%;
+    /* Primary: Saffron/Orange - symbolizes courage and sacrifice */
+    --primary: 27 90% 55%;
+    --primary-foreground: 36 30% 98%;
+    --primary-gradient-from: 27 90% 55%;
+    --primary-gradient-to: 18 80% 50%;
     
-    --card: 0 0% 100%;
-    --card-foreground: 160 40% 16%;
+    /* Secondary: Peacock Blue - symbolizes truth and knowledge */
+    --secondary: 196 70% 40%; 
+    --secondary-foreground: 36 30% 98%;
+    --secondary-gradient-from: 196 70% 40%;
+    --secondary-gradient-to: 200 60% 35%;
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 160 40% 16%;
+    /* Accent: Green - symbolizes growth and prosperity */
+    --accent: 142 50% 45%;
+    --accent-foreground: 36 30% 98%;
     
-    --primary: 145 65% 40%;
-    --primary-foreground: 0 0% 100%;
+    /* Destructive: Red - symbolizes purity and energy */
+    --destructive: 350 80% 45%;
+    --destructive-foreground: 36 30% 98%;
     
-    --secondary: 40 95% 55%;
-    --secondary-foreground: 150 30% 15%;
+    /* Muted: Subtle beige */
+    --muted: 36 30% 85%;
+    --muted-foreground: 339 20% 35%;
     
-    --accent: 35 90% 50%;
-    --accent-foreground: 150 30% 15%;
+    /* Border colors */
+    --border: 339 30% 85%;
+    --input: 339 30% 85%;
     
-    --border: 160 20% 92%;
-    --input: 160 20% 92%;
-    --ring: 145 65% 40%;
+    /* Radius and shadow */
+    --radius: 0.75rem;
+    --ring: 27 90% 55%;
     
-    --destructive: 0 85% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    /* Special Effects */
-    --glow-strength: 0.3;
-    --shimmer-angle: 45deg;
-    --glass-blur: 8px;
-    --depth-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    /* Special Indian-inspired colors */
+    --mehendi: 75 60% 35%; /* Henna green */
+    --gulal: 355 80% 60%; /* Festival red */
+    --royal-purple: 280 50% 40%; /* Royal purple */
+    --lotus-pink: 335 80% 65%; /* Lotus pink */
+    --marigold: 35 90% 55%; /* Marigold gold */
+    --peacock: 185 80% 40%; /* Peacock blue-green */
+    
+    /* Shadows */
+    --shadow-color: 27 30% 40%;
+    --shadow-strength: 5%;
   }
 
   .dark {
-    /* Dark mode variables - Evening Forest */
-    --background: 160 30% 6%;
-    --foreground: 150 15% 90%;
+    /* Indian-inspired dark theme */
+    --background: 339 30% 8%; /* Deep maroon background */
+    --foreground: 36 30% 90%; /* Light cream text */
     
-    --muted: 155 25% 12%;
-    --muted-foreground: 150 10% 70%;
+    --card: 339 25% 12%;
+    --card-foreground: 36 30% 90%;
     
-    --card: 160 25% 9%;
-    --card-foreground: 150 15% 90%;
+    --popover: 339 25% 12%;
+    --popover-foreground: 36 30% 90%;
     
-    --popover: 160 25% 9%;
-    --popover-foreground: 150 15% 90%;
+    /* Primary: Deeper saffron */
+    --primary: 27 85% 50%;
+    --primary-foreground: 36 30% 98%;
+    --primary-gradient-from: 27 85% 50%;
+    --primary-gradient-to: 18 75% 45%;
     
-    --primary: 145 50% 45%;
-    --primary-foreground: 0 0% 100%;
+    /* Secondary: Deeper peacock blue */
+    --secondary: 196 65% 35%;
+    --secondary-foreground: 36 30% 98%;
+    --secondary-gradient-from: 196 65% 35%;
+    --secondary-gradient-to: 200 55% 30%;
     
-    --secondary: 40 70% 50%;
-    --secondary-foreground: 155 30% 12%;
+    /* Accent: Deeper green */
+    --accent: 142 45% 40%;
+    --accent-foreground: 36 30% 98%;
     
-    --accent: 35 65% 50%;
-    --accent-foreground: 155 30% 12%;
+    /* Destructive: Deeper red */
+    --destructive: 350 75% 40%;
+    --destructive-foreground: 36 30% 98%;
     
-    --border: 160 25% 15%;
-    --input: 160 25% 15%;
-    --ring: 145 50% 45%;
+    /* Muted: Subtle dark brown */
+    --muted: 339 30% 20%;
+    --muted-foreground: 36 20% 70%;
     
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-
-    /* Special Effects - Enhanced for dark mode */
-    --glow-strength: 0.5;
-    --shimmer-angle: 45deg;
-    --glass-blur: 12px;
-    --depth-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    /* Border colors */
+    --border: 339 30% 25%;
+    --input: 339 30% 25%;
+    
+    /* Special Indian-inspired colors - darker versions */
+    --mehendi: 75 55% 30%; /* Dark henna green */
+    --gulal: 355 75% 45%; /* Deeper festival red */
+    --royal-purple: 280 45% 30%; /* Deep royal purple */
+    --lotus-pink: 335 70% 45%; /* Deep lotus pink */
+    --marigold: 35 85% 45%; /* Deep marigold gold */
+    --peacock: 185 75% 30%; /* Deep peacock blue */
+    
+    /* Shadows */
+    --shadow-color: 339 50% 10%;
+    --shadow-strength: 10%;
   }
 }
 
+/* Global styles */
 @layer base {
   * {
     @apply border-border;
   }
-  
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: 
-      radial-gradient(
-        circle at 40% 10%, 
-        hsl(var(--primary-gradient-from) / 0.03) 0%, 
-        transparent 60%
-      ),
-      radial-gradient(
-        circle at 60% 80%, 
-        hsl(var(--secondary-gradient-from) / 0.03) 0%, 
-        transparent 60%
-      );
+    background-image: radial-gradient(
+      circle at 50% 50%,
+      hsl(var(--primary) / 0.03) 0%,
+      transparent 70%
+    );
+    background-attachment: fixed;
   }
   
-  /* Typography enhancements */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
-    text-wrap: balance;
+  /* Traditional Indian border pattern */
+  .indian-border {
+    position: relative;
+    border-radius: var(--radius);
   }
   
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-    line-height: 1.1;
+  .indian-border::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(
+      45deg,
+      hsl(var(--primary)),
+      hsl(var(--royal-purple)),
+      hsl(var(--gulal)),
+      hsl(var(--marigold)),
+      hsl(var(--peacock))
+    );
+    border-radius: calc(var(--radius) + 4px);
+    z-index: -1;
+    animation: rotate 4s linear infinite;
+    opacity: 0.7;
   }
   
-  h2 {
-    @apply text-3xl md:text-4xl;
-    line-height: 1.2;
-  }
-  
-  /* Custom glow effect on focus for interactive elements - fixed to be more subtle */
-  button:focus, 
-  a:focus, 
-  input:focus, 
-  select:focus, 
-  textarea:focus {
-    @apply outline-none ring-1 ring-primary/30;
-    box-shadow: 0 0 0 2px hsl(var(--primary) / 0.15);
+  @keyframes rotate {
+    0% {
+      filter: hue-rotate(0deg);
+    }
+    100% {
+      filter: hue-rotate(360deg);
+    }
   }
 }
 
-/* Custom utility classes */
-@layer components {
-  /* Refined Card - elevated card with subtle border */
-  .cosmic-card {
-    @apply relative bg-card shadow-md overflow-hidden rounded-xl;
-    box-shadow: var(--depth-shadow);
-    border: 1px solid hsl(var(--border));
-  }
-  
-  /* Interactive Card with hover effect */
-  .cosmic-card-interactive {
-    @apply cosmic-card transition-all duration-300;
-  }
-  
-  .cosmic-card-interactive:hover {
-    transform: translateY(-5px);
-    box-shadow: 
-      0 20px 40px -20px hsl(var(--primary-gradient-from) / 0.15),
-      0 10px 20px -15px hsl(var(--primary-gradient-to) / 0.1);
-    border-color: hsl(var(--primary) / 0.3);
-  }
-  
-  /* Glass panel effect for containers */
-  .glass-panel {
-    @apply bg-background/80 backdrop-blur border border-muted/40 rounded-lg;
-    backdrop-filter: blur(var(--glass-blur));
-  }
-  
-  /* Gradient text that shifts subtly */
-  .cosmic-text {
-    @apply font-bold;
-    background-image: linear-gradient(
-      60deg,
-      hsl(var(--primary-gradient-from)),
-      hsl(var(--primary-gradient-via)),
-      hsl(var(--primary-gradient-to))
-    );
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: gradientText 8s ease infinite;
-  }
-  
-  /* Animation for subtle shifting gradient text */
-  @keyframes gradientText {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  /* Gradient button with dynamic hover effect - more subtle */
-  .cosmic-button {
-    @apply relative px-6 py-3 rounded-lg text-white font-medium transition-all duration-300 overflow-hidden;
-    background-image: linear-gradient(
-      90deg,
-      hsl(var(--primary-gradient-from)),
-      hsl(var(--primary-gradient-to))
-    );
-    background-size: 200% auto;
-    box-shadow: 0 4px 12px -2px hsl(var(--primary-gradient-from) / 0.2);
-  }
-  
-  .cosmic-button:hover {
-    background-position: right center;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px -4px hsl(var(--primary-gradient-from) / 0.25);
-  }
-  
-  .cosmic-button:active {
-    transform: translateY(0);
-  }
-  
-  /* Secondary cosmic button with alternate colors */
+/* Rangoli-inspired card */
+.rangoli-card {
+  @apply relative bg-card text-card-foreground rounded-lg border border-border p-6 shadow-md overflow-hidden;
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    hsl(var(--primary) / 0.1) 0%,
+    transparent 70%
+  );
+}
+
+.rangoli-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--marigold)),
+    hsl(var(--gulal)),
+    hsl(var(--royal-purple)),
+    hsl(var(--peacock))
+  );
+}
+
+/* Glass panel effect with Indian-inspired colors */
+.glass-panel {
+  @apply bg-background/50 backdrop-filter backdrop-blur-lg;
+  box-shadow: 0 8px 32px 0 hsl(var(--shadow-color) / var(--shadow-strength));
+  border: 1px solid hsl(var(--primary) / 0.1);
+}
+
+/* Cosmic button primary - inspired by marigold flowers and saffron */
+.cosmic-button-primary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 overflow-hidden relative;
+  color: hsl(var(--primary-foreground));
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--primary-gradient-from)),
+    hsl(var(--primary-gradient-to))
+  );
+  background-size: 200% auto;
+  box-shadow: 0 4px 12px -2px hsl(var(--primary-gradient-from) / 0.25);
+  border: 1px solid hsl(var(--primary) / 0.2);
+}
+
+.cosmic-button-primary::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    hsl(var(--marigold)),
+    hsl(var(--gulal)),
+    transparent
+  );
+  z-index: -1;
+  border-radius: calc(var(--radius) + 2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cosmic-button-primary:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px hsl(var(--primary-gradient-from) / 0.3);
+}
+
+.cosmic-button-primary:hover::before {
+  opacity: 0.8;
+}
+
+.cosmic-button-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary cosmic button - peacock blue inspiration */
 .cosmic-button-secondary {
-  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 overflow-hidden;
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300 overflow-hidden relative;
   color: hsl(var(--secondary-foreground));
   background-image: linear-gradient(
     90deg,
@@ -220,6 +252,7 @@
   );
   background-size: 200% auto;
   box-shadow: 0 4px 12px -2px hsl(var(--secondary-gradient-from) / 0.2);
+  border: 1px solid hsl(var(--secondary) / 0.2);
 }
 
 .cosmic-button-secondary:hover {
@@ -231,89 +264,237 @@
 .cosmic-button-secondary:active {
   transform: translateY(0);
 }
-  
-  /* Shimmer effect for loading states */
-  .shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .shimmer::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    transform: translateX(-100%);
-    background-image: linear-gradient(
-      var(--shimmer-angle),
-      transparent,
-      hsl(var(--primary) / 0.08),
-      transparent
+
+/* Cosmic card with Indian-inspired design */
+.cosmic-card {
+  @apply bg-card text-card-foreground rounded-lg shadow-md relative overflow-hidden;
+  border: 1px solid hsl(var(--border));
+  padding: 1.25rem;
+}
+
+.cosmic-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      circle at top right,
+      hsl(var(--primary) / 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      hsl(var(--secondary) / 0.1),
+      transparent 70%
     );
-    animation: shimmer 2s infinite;
+  z-index: -1;
+}
+
+/* Shadow glow effects */
+.shadow-glow-primary {
+  box-shadow: 0 0 15px hsl(var(--primary) / 0.3);
+}
+
+.shadow-glow-secondary {
+  box-shadow: 0 0 15px hsl(var(--secondary) / 0.3);
+}
+
+.shadow-glow-purple {
+  box-shadow: 0 0 15px hsl(var(--royal-purple) / 0.3);
+}
+
+.shadow-glow-green {
+  box-shadow: 0 0 15px hsl(var(--mehendi) / 0.3);
+}
+
+.shadow-glow-yellow {
+  box-shadow: 0 0 15px hsl(var(--marigold) / 0.3);
+}
+
+/* Cosmic object styles for interactive elements */
+.cosmic-object-primary {
+  --object-color: var(--primary);
+  --object-shadow: var(--primary);
+}
+
+.cosmic-object-secondary {
+  --object-color: var(--secondary);
+  --object-shadow: var(--secondary);
+}
+
+.cosmic-object-purple {
+  --object-color: var(--royal-purple);
+  --object-shadow: var(--royal-purple);
+}
+
+.cosmic-object-green {
+  --object-color: var(--mehendi);
+  --object-shadow: var(--mehendi);
+}
+
+.cosmic-object-yellow {
+  --object-color: var(--marigold);
+  --object-shadow: var(--marigold);
+}
+
+.cosmic-object-red {
+  --object-color: var(--gulal);
+  --object-shadow: var(--gulal);
+}
+
+.cosmic-object-blue {
+  --object-color: var(--peacock);
+  --object-shadow: var(--peacock);
+}
+
+/* Decorative pattern for headers */
+.diya-header {
+  position: relative;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.diya-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary)),
+    hsl(var(--gulal)),
+    hsl(var(--marigold)),
+    hsl(var(--peacock)),
+    transparent
+  );
+  border-radius: 2px;
+}
+
+/* Animation for particle effects */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
   }
-  
-  @keyframes shimmer {
-    100% { transform: translateX(100%); }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
   }
-  
-  /* Floating animation */
-  .floating {
-    animation: floating 4s ease-in-out infinite;
-  }
-  
-  @keyframes floating {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-  }
-  
-  /* Pulse glow effect - more subtle */
-  .pulse-glow {
-    animation: pulseGlow 4s ease-in-out infinite;
-  }
-  
-  @keyframes pulseGlow {
-    0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.3); }
-    70% { box-shadow: 0 0 0 8px hsl(var(--primary) / 0); }
-    100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+  100% {
+    transform: translateY(0) rotate(0deg);
   }
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+/* Mandala background pattern */
+.mandala-bg {
+  position: relative;
+  overflow: hidden;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.mandala-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 15C40 15 15 40 15 50C15 60 40 85 50 85C60 85 85 60 85 50C85 40 60 15 50 15Z' stroke='%23FF9933' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
 }
 
-/* Custom scrollbar for the rest of the site */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+.animate-shine {
+  animation: shine 3s linear infinite;
+  background-size: 200% auto;
+}
+@keyframes portal-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.5);
-  border-radius: 3px;
+.animate-portal-spin {
+  animation: portal-spin 20s linear infinite;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.7);
+/* Scanlines effect for vintage video */
+.bg-scanlines {
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.3) 50%
+  );
+  background-size: 100% 4px;
+  background-repeat: repeat;
 }
 
-/* Custom selection color */
-::selection {
-  background-color: hsl(var(--primary) / 0.15);
-  color: hsl(var(--foreground));
+/* Radial gradient */
+.bg-gradient-radial {
+  background-image: radial-gradient(var(--tw-gradient-stops));
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Page turning effect styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-container {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+@keyframes orbit {
+  0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+.orbit {
+  animation: orbit 20s linear infinite;
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
 }

@@ -50,7 +50,7 @@ export default async function Blog() {
           </h1>
           <div className={cn("h-1 w-20 mx-auto mb-6", primaryBgClass)}></div>
           <p className="text-xl text-center text-muted-foreground max-w-2xl mx-auto">
-            {t.blogDescription || 'Latest articles and updates'}
+            {t.blogDescription || 'Guides on starting and managing software projects'}
           </p>
         </div>
       </div>

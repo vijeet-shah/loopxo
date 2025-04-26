@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata } from "@/config/metadata";
 import { Analytics } from "@/components/analytics";
-import { SkipToContent } from "@/components/accessibility/skip-to-content";
 import { ThemeProvider } from "./theme-provider";
 
 // Optimize font loading - can be customized with different fonts
@@ -81,8 +80,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <div className="relative flex min-h-screen flex-col">
-            <SkipToContent />
             <main id="main-content" className="flex-1" tabIndex={-1}>
+              
               {children} 
             </main>
           </div>
