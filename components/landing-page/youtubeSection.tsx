@@ -1,31 +1,38 @@
 'use client';
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronRight, ChevronLeft, Play, Film, Youtube, Code, X } from "lucide-react";
+import { ChevronRight, ChevronLeft, Play, Youtube, Code } from "lucide-react";
 import Image from "next/image";
 import { useTranslation } from '@/lib/i18n/client-utils';
 
+// Define interfaces for better type safety
+interface VideoItem {
+  title: string;
+  description: string;
+  thumbnail: string;
+  url: string;
+}
 
-// Video data with titles, thumbnails and URLs
-const vlogVideos = [
+// Enhanced video data with FULL YouTube URLs
+const vlogVideos: VideoItem[] = [
   {
-    title: "My Day in New York City",
-    description: "Exploring the vibrant streets of NYC",
+    title: "unplanned KEDARNATH yatra 2024",
+    description: "Exploring KEDARNATH",
     thumbnail: "https://i.ytimg.com/vi/bGIPH-7NR-w/maxresdefault.jpg",
-    url: "https://youtu.be/bGIPH-7NR-w?si=5oLI0noae9JUtkrH"
+    url: "https://youtu.be/bGIPH-7NR-w?si=D5cqXaICmfIA2gjk" 
   },
   {
     title: "Product Design Insights",
     description: "Key learnings from my recent project",
     thumbnail: "https://i.ytimg.com/vi/g-0NXx36Tuk/maxresdefault.jpg",
-    url: "https://youtu.be/g-0NXx36Tuk?si=Uy3rRN1bho0AvFW1"
+    url: "https://www.youtube.com/watch?v=g-0NXx36Tuk"
   },
   {
     title: "Software Architecture Tips",
     description: "How I approach system design",
     thumbnail: "https://i.ytimg.com/vi/RTBnVSfV1LM/maxresdefault.jpg", 
-    url: "https://youtu.be/RTBnVSfV1LM?si=IYEP5qxkQkOIRHeq"
+    url: "https://www.youtube.com/watch?v=RTBnVSfV1LM"
   },
   {
     title: "Startup Journey Vlog",
@@ -35,205 +42,230 @@ const vlogVideos = [
   }
 ];
 
-export default function YoutubeSection() {
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+export default function YoutubeSection(): JSX.Element {
   const vlogCarouselRef = useRef<HTMLDivElement | null>(null);
   const { t } = useTranslation();
+  const [canScrollLeft, setCanScrollLeft] = useState<boolean>(false);
+  const [canScrollRight, setCanScrollRight] = useState<boolean>(true);
   
+  const checkScrollPosition = (): void => {
+    if (vlogCarouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = vlogCarouselRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
   
-  const scrollLeft = () => {
+  useEffect(() => {
+    const currentRef = vlogCarouselRef.current;
+    if (currentRef) {
+      currentRef.addEventListener('scroll', checkScrollPosition);
+      checkScrollPosition();
+      return () => currentRef.removeEventListener('scroll', checkScrollPosition);
+    }
+  }, []);
+  
+  const scrollLeft = (): void => {
     if (vlogCarouselRef.current) {
       vlogCarouselRef.current.scrollBy({ left: -220, behavior: 'smooth' });
     }
   };
   
-  const scrollRight = () => {
+  const scrollRight = (): void => {
     if (vlogCarouselRef.current) {
       vlogCarouselRef.current.scrollBy({ left: 220, behavior: 'smooth' });
     }
   };
   
+  // Handle video playback by redirecting to YouTube
+  const openVideo = (videoUrl: string): void => {
+    // Open YouTube directly in a new tab
+    window.open(videoUrl, '_blank', 'noopener,noreferrer');
+  };
+  
   return (
-    <div className="relative h-screen w-full flex items-center justify-center bg-background py-4 sm:py-8 px-2 sm:px-4">
+    <div className="relative h-screen w-full flex items-center justify-center bg-background py-4 sm:py-6 px-3 sm:px-4">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-1/3 w-[150px] sm:w-[300px] md:w-[400px] h-[150px] sm:h-[300px] md:h-[400px] rounded-full bg-gradient-to-r from-red-500/5 to-primary/10 blur-3xl" />
-        <div className="absolute bottom-1/3 left-1/4 w-[100px] sm:w-[250px] md:w-[350px] h-[100px] sm:h-[250px] md:h-[350px] rounded-full bg-gradient-to-r from-blue-500/5 to-purple-500/10 blur-3xl" />
+        <div className="absolute top-1/4 right-1/3 w-[150px] sm:w-[300px] md:w-[400px] h-[150px] sm:h-[300px] md:h-[400px] rounded-full bg-gradient-to-br from-red-500/5 to-primary/5 blur-3xl" />
+        <div className="absolute bottom-1/3 left-1/4 w-[100px] sm:w-[250px] md:w-[300px] h-[100px] sm:h-[250px] md:h-[300px] rounded-full bg-gradient-to-br from-blue-500/5 to-purple-500/5 blur-3xl" />
       </div>
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col overflow-hidden">
-        {/* Header section - extremely compact */}
-        <div className="flex items-center space-x-3 md:space-x-4 mb-1 sm:mb-3">
-          <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-red-500 to-primary flex items-center justify-center">
-            <Youtube className="h-3 w-3 sm:h-5 sm:w-5 text-white" />
-          </div>
-          <div className="flex-1">
-            <h2 className="text-lg sm:text-2xl font-bold">{t.youTubeChannel || "My YouTube Channel"}</h2>
-            <p className="text-[10px] sm:text-xs text-muted-foreground">{t.latestVideos || "Check out my videos"}</p>
-          </div>
-          <a 
+      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col h-full overflow-hidden">
+        {/* Centralized header section */}
+        <motion.div 
+          className="flex flex-col items-center text-center mb-4 sm:mb-5"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div 
+            className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center mb-2"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Youtube className="h-5 w-5 text-white" />
+          </motion.div>
+          
+          <motion.h2 
+            className="text-xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-red-500 to-primary mb-1"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Vijeet Shah
+          </motion.h2>
+          
+          <motion.p 
+            className="text-xs sm:text-sm text-muted-foreground max-w-xs sm:max-w-sm mb-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            {t.latestVideos || "Latest videos on tech, product & entrepreneurship"}
+          </motion.p>
+          
+          <motion.a 
             href="https://youtube.com/@vijeet_" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="px-2 py-1 rounded-lg bg-red-600 text-white text-[10px] font-medium flex items-center hover:bg-red-700"
+            className="group px-4 py-1.5 rounded-full bg-red-600 text-white text-xs sm:text-sm font-medium flex items-center hover:bg-red-700 transition-colors shadow-md hover:shadow-lg"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Youtube className="h-2.5 w-2.5 mr-1" />
-            <span>{t.subscribe ||"Subscribe"}</span>
-          </a>
-        </div>
+            <Youtube className="h-3.5 w-3.5 mr-1.5 group-hover:animate-pulse" />
+            <span>{t.subscribe || "Subscribe"}</span>
+          </motion.a>
+        </motion.div>
 
-        {/* Content area with NO GAPS */}
-        <div className="flex-1 overflow-hidden flex flex-col">
-          {/* First section */}
-          <div className="mb-1">
-            <div className="flex items-center space-x-1 mb-0.5">
-              <Film className="h-3 w-3 text-primary" />
-              <h3 className="text-xs sm:text-sm font-medium">{ t.vlogVideos ||"Fun & Vlog Videos"}</h3>
-              
-              {/* Only show navigation on non-mobile */}
-              <div className="hidden sm:flex space-x-1 ml-auto">
-                <button
-                  onClick={scrollLeft}
-                  className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10 dark:bg-black/20 border border-white/20 text-primary"
-                >
-                  <ChevronLeft className="h-3 w-3" />
-                </button>
-                <button
-                  onClick={scrollRight}
-                  className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10 dark:bg-black/20 border border-white/20 text-primary"
-                >
-                  <ChevronRight className="h-3 w-3" />
-                </button>
+        {/* Video section - REMOVED flex-1 to fix spacing */}
+        <div className="w-full overflow-hidden">
+          {/* Section title with navigation */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center">
+              <div className="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center mr-2">
+                <Play className="h-3 w-3 text-red-500 fill-red-500" />
               </div>
+              <h3 className="text-sm font-medium">Featured Videos</h3>
             </div>
             
-            {/* Videos - vertical on mobile, horizontal on larger screens */}
-            <div 
-              ref={vlogCarouselRef}
-              className="sm:flex sm:overflow-x-auto sm:space-x-2 hidden"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {vlogVideos.map((video, index) => (
-                <div
-                  key={`desktop-${index}`}
-                  className="flex-shrink-0 w-[180px] md:w-[220px] cursor-pointer border border-primary/10 rounded-lg overflow-hidden hover:border-primary/30 transition-colors"
-                  onClick={() => setActiveVideo(video.url)}
-                >
-                  <div className="relative aspect-video bg-black/80">
-                    <Image
-                      src={video.thumbnail}
-                      alt={video.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 180px, 220px"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <div className="w-8 h-8 rounded-full bg-primary/90 flex items-center justify-center">
-                        <Play className="h-4 w-4 text-white" fill="white" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-2">
-                    <h4 className="text-xs font-medium line-clamp-1">
-                      {video.title}
-                    </h4>
-                    <div className="text-[10px] text-muted-foreground line-clamp-1">
-                      {video.description}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            {/* Mobile vertical video grid */}
-            <div className="grid grid-cols-2 gap-1 sm:hidden">
-              {vlogVideos.slice(0, 2).map((video, index) => (
-                <div
-                  key={`mobile-${index}`}
-                  className="cursor-pointer border border-primary/10 rounded-lg overflow-hidden"
-                  onClick={() => setActiveVideo(video.url)}
-                >
-                  <div className="relative aspect-video bg-black/80">
-                    <Image
-                      src={video.thumbnail}
-                      alt={video.title}
-                      fill
-                      className="object-cover"
-                      sizes="150px"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <div className="w-5 h-5 rounded-full bg-primary/90 flex items-center justify-center">
-                        <Play className="h-2.5 w-2.5 text-white" fill="white" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-1">
-                    <h4 className="text-[9px] font-medium line-clamp-1">
-                      {video.title}
-                    </h4>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* Technical section - NO GAP */}
-          <div>
-            <div className="flex items-center space-x-1 mb-0.5">
-              <Code className="h-4 w-4 text-primary" />
-              <h3 className="text-sm sm:text-lg font-medium">{t.technicalContent||"Technical Content"}</h3>
-            </div>
-            
-            {/* Ultra-minimal coming soon box */}
-            <div className="border border-primary/10 rounded-lg p-1.5 sm:p-3 md:p-4 bg-muted/5 text-center">
-              <div className="w-5 h-5 sm:w-8 sm:h-8 mx-auto rounded-full bg-muted/20 flex items-center justify-center mb-0.5 sm:mb-2">
-                <Youtube className="h-2.5 w-2.5 sm:h-4 sm:w-4 text-muted-foreground/50" />
-              </div>
-              <h4 className="text-xs sm:text-base font-medium mb-0.5">{t.comingSoon|| "Coming Soon"}</h4>
-              <p className="text-[9px] sm:text-xs text-muted-foreground max-w-lg mx-auto line-clamp-1 sm:line-clamp-2">
-                {t.technicalLine || "Technical tutorials and coding videos are in production."}
-              </p>
-              <motion.button 
-                className="mt-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] sm:text-xs hover:bg-primary/20"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            {/* Navigation arrows */}
+            <div className="flex space-x-1.5">
+              <motion.button
+                onClick={scrollLeft}
+                disabled={!canScrollLeft}
+                className={`w-6 h-6 rounded-full flex items-center justify-center ${canScrollLeft ? 'bg-white/10 border border-white/20 text-primary hover:bg-white/20' : 'opacity-30 cursor-not-allowed bg-white/5 border border-white/10 text-muted-foreground'}`}
+                whileHover={canScrollLeft ? { scale: 1.05 } : {}}
+                whileTap={canScrollLeft ? { scale: 0.95 } : {}}
               >
-                {t.getNotified|| "Get Notified"}
+                <ChevronLeft className="h-3 w-3" />
+              </motion.button>
+              <motion.button
+                onClick={scrollRight}
+                disabled={!canScrollRight}
+                className={`w-6 h-6 rounded-full flex items-center justify-center ${canScrollRight ? 'bg-white/10 border border-white/20 text-primary hover:bg-white/20' : 'opacity-30 cursor-not-allowed bg-white/5 border border-white/10 text-muted-foreground'}`}
+                whileHover={canScrollRight ? { scale: 1.05 } : {}}
+                whileTap={canScrollRight ? { scale: 0.95 } : {}}
+              >
+                <ChevronRight className="h-3 w-3" />
               </motion.button>
             </div>
           </div>
+          
+          {/* Video carousel - REMOVED pb-2 to reduce gap */}
+          <div 
+            ref={vlogCarouselRef}
+            className="grid grid-flow-col auto-cols-max gap-3 overflow-x-auto scroll-smooth min-h-0"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              WebkitOverflowScrolling: 'touch' 
+            }}
+          >
+            {vlogVideos.map((video, index) => (
+              <motion.div
+                key={index}
+                className="w-[210px] sm:w-[240px] md:w-[260px] rounded-xl bg-card border border-white/10 dark:border-white/10 overflow-hidden cursor-pointer"
+                whileHover={{ y: -3, boxShadow: "0 5px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                onClick={() => openVideo(video.url)} 
+              >
+                <div className="relative aspect-video overflow-hidden">
+                  <Image
+                    src={video.thumbnail}
+                    alt={video.title}
+                    fill
+                    className="object-cover transition-transform duration-300 hover:scale-105"
+                    sizes="(max-width: 640px) 210px, (max-width: 768px) 240px, 260px"
+                  />
+                  {/* Overlay gradient and play button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-80" />
+                    <motion.div 
+                      className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center z-10"
+                      initial={{ opacity: 0.8, scale: 0.9 }}
+                      whileHover={{ opacity: 1, scale: 1 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <Play className="h-4 w-4 text-white fill-white ml-0.5" />
+                    </motion.div>
+                  </div>
+                </div>
+                <div className="p-2 pb-2.5 bg-gradient-to-b from-black/5 to-transparent">
+                  <h4 className="text-xs font-medium line-clamp-1 mb-0.5">
+                    {video.title}
+                  </h4>
+                  <p className="text-[10px] text-muted-foreground line-clamp-1">
+                    {video.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
         
-        {/* Video modal */}
-        {activeVideo && (
-          <div
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-1 sm:p-2"
-            onClick={() => setActiveVideo(null)}
-          >
-            <div
-              className="relative w-full max-w-3xl aspect-video bg-black rounded-lg overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <iframe
-                src={`https://www.youtube.com/embed/${
-                  activeVideo.includes('v=') 
-                    ? activeVideo.split('v=')[1].split('&')[0] 
-                    : activeVideo.split('/').pop()?.split('?')[0]
-                }?autoplay=1`}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full"
-              />
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-1 right-1 sm:top-2 sm:right-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-black/70 flex items-center justify-center text-white"
-              >
-                <X className="h-3 w-3 sm:h-4 sm:w-4" />
-              </button>
+        {/* Compact coming soon section - REMOVED top margin to reduce gap */}
+        <motion.div 
+          className="relative overflow-hidden rounded-lg border border-primary/20 bg-gradient-to-br from-muted/20 to-muted/5 p-3 mt-1"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex-shrink-0 flex items-center justify-center">
+              <Code className="h-3.5 w-3.5 text-primary" />
+            </div>
+            
+            <div className="flex-1 min-w-0">
+              <h3 className="text-xs sm:text-sm font-medium mb-1">{t.technicalContent || "Technical Content"}</h3>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-2 line-clamp-1">
+                {t.technicalLine || "In-depth technical tutorials coming soon"}
+              </p>
+              
+              <div className="flex items-center gap-2">
+                <motion.a 
+                  href="https://youtube.com/@vijeet_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-2 py-1 rounded-md bg-primary/10 text-primary text-[10px] hover:bg-primary/15 transition-colors"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Youtube className="h-2.5 w-2.5 mr-1" />
+                  <span>{t.channelName || "Channel"}</span>
+                </motion.a>
+                
+                <motion.button 
+                  className="inline-flex items-center px-2 py-1 rounded-md bg-primary text-[10px] text-primary-foreground hover:bg-primary/90 transition-colors"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {t.getNotified || "Notify Me"}
+                </motion.button>
+              </div>
             </div>
           </div>
-        )}
+        </motion.div>
       </div>
     </div>
   );

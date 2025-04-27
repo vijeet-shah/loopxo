@@ -1,8 +1,7 @@
 import React from "react";
 import { useTranslation } from "@/lib/i18n/client-utils";
 import {
-  ChevronRight,
-  ChevronLeft,
+ 
 } from "lucide-react";
 import { usePageNavigation } from "@/hook/usePageNavigation";
 import { PageTurn } from "./book/pageTurn";
@@ -106,14 +105,7 @@ export default function Main() {
         isAnimating={isAnimating}
       />
 
-      {/* Mobile page turn hint */}
-      <div className="fixed bottom-8 left-0 right-0 md:hidden flex justify-center items-center z-50">
-        <div className="px-4 py-2 bg-gray-200/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full text-sm flex items-center">
-          <ChevronLeft className="h-4 w-4 mr-1" />
-          <span>Swipe to navigate</span>
-          <ChevronRight className="h-4 w-4 ml-1" />
-        </div>
-      </div>
+     
     </div>
   );
 }
