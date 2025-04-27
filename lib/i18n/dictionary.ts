@@ -865,7 +865,7 @@ const zh: BaseTranslations = {
 
   youTubeChannel: "我的YouTube频道",
   latestVideos: "查看我的最新视频",
-  Subscribe: "订阅",
+  subscribe: "订阅",
   vlogVideos: "有趣和视频博客",
   technicalContent: "技术内容",
   comingSoon: "即将推出",
