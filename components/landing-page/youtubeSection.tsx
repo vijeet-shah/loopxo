@@ -4,6 +4,8 @@ import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, ChevronLeft, Play, Film, Youtube, Code, X } from "lucide-react";
 import Image from "next/image";
+import { useTranslation } from '@/lib/i18n/client-utils';
+
 
 // Video data with titles, thumbnails and URLs
 const vlogVideos = [
@@ -36,6 +38,8 @@ const vlogVideos = [
 export default function YoutubeSection() {
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const vlogCarouselRef = useRef<HTMLDivElement | null>(null);
+  const { t } = useTranslation();
+  
   
   const scrollLeft = () => {
     if (vlogCarouselRef.current) {
@@ -64,8 +68,8 @@ export default function YoutubeSection() {
             <Youtube className="h-3 w-3 sm:h-5 sm:w-5 text-white" />
           </div>
           <div className="flex-1">
-            <h2 className="text-lg sm:text-2xl font-bold">My YouTube Channel</h2>
-            <p className="text-[10px] sm:text-xs text-muted-foreground">Check out my videos</p>
+            <h2 className="text-lg sm:text-2xl font-bold">{t.youTubeChannel || "My YouTube Channel"}</h2>
+            <p className="text-[10px] sm:text-xs text-muted-foreground">{t.latestVideos || "Check out my videos"}</p>
           </div>
           <a 
             href="https://youtube.com/@vijeet_" 
@@ -74,7 +78,7 @@ export default function YoutubeSection() {
             className="px-2 py-1 rounded-lg bg-red-600 text-white text-[10px] font-medium flex items-center hover:bg-red-700"
           >
             <Youtube className="h-2.5 w-2.5 mr-1" />
-            <span>Subscribe</span>
+            <span>{t.subscribe ||"Subscribe"}</span>
           </a>
         </div>
 
@@ -84,7 +88,7 @@ export default function YoutubeSection() {
           <div className="mb-1">
             <div className="flex items-center space-x-1 mb-0.5">
               <Film className="h-3 w-3 text-primary" />
-              <h3 className="text-xs sm:text-sm font-medium">Fun & Vlog Videos</h3>
+              <h3 className="text-xs sm:text-sm font-medium">{ t.vlogVideos ||"Fun & Vlog Videos"}</h3>
               
               {/* Only show navigation on non-mobile */}
               <div className="hidden sm:flex space-x-1 ml-auto">
@@ -177,7 +181,7 @@ export default function YoutubeSection() {
           <div>
             <div className="flex items-center space-x-1 mb-0.5">
               <Code className="h-4 w-4 text-primary" />
-              <h3 className="text-sm sm:text-lg font-medium">Technical Content</h3>
+              <h3 className="text-sm sm:text-lg font-medium">{t.technicalContent||"Technical Content"}</h3>
             </div>
             
             {/* Ultra-minimal coming soon box */}
@@ -185,16 +189,16 @@ export default function YoutubeSection() {
               <div className="w-5 h-5 sm:w-8 sm:h-8 mx-auto rounded-full bg-muted/20 flex items-center justify-center mb-0.5 sm:mb-2">
                 <Youtube className="h-2.5 w-2.5 sm:h-4 sm:w-4 text-muted-foreground/50" />
               </div>
-              <h4 className="text-xs sm:text-base font-medium mb-0.5">Coming Soon</h4>
+              <h4 className="text-xs sm:text-base font-medium mb-0.5">{t.comingSoon|| "Coming Soon"}</h4>
               <p className="text-[9px] sm:text-xs text-muted-foreground max-w-lg mx-auto line-clamp-1 sm:line-clamp-2">
-                Technical tutorials and coding videos are in production.
+                {t.technicalLine || "Technical tutorials and coding videos are in production."}
               </p>
               <motion.button 
                 className="mt-1 px-2 py-0.5 rounded-full bg-primary/10 text-primary text-[9px] sm:text-xs hover:bg-primary/20"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get Notified
+                {t.getNotified|| "Get Notified"}
               </motion.button>
             </div>
           </div>

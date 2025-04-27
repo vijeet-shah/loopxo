@@ -169,7 +169,7 @@ export default function Newsletter({ t }:{t: any}) {
               variants={itemVariants}
               className="cosmic-text text-4xl font-bold mb-4"
             >
-              {t?.newsletterTitle || "Stay Updated with My Newsletter"}
+              {t?.stayUpdated || "Stay Updated with My Newsletter"}
             </motion.h2>
             
             <motion.p 
@@ -268,13 +268,13 @@ export default function Newsletter({ t }:{t: any}) {
                       <Check className="h-5 w-5 text-primary" />
                     </div>
                     <p className="font-medium text-primary">
-                      {t?.alreadySubscribed || "You're subscribed to our newsletter"}
+                      {t?.subscribed || "You're subscribed to our newsletter"}
                     </p>
                   </div>
                   
                   <div className="text-muted-foreground mb-6">
                     <p>
-                      {localStorage.getItem('newsletter_email') || "Your email"} {t?.subscribedMessage || "is receiving our weekly updates."}
+                      {localStorage.getItem('newsletter_email') || "Your email"} {t?.receiving || "is receiving our weekly updates."}
                     </p>
                   </div>
                   
@@ -300,7 +300,8 @@ export default function Newsletter({ t }:{t: any}) {
           </motion.div>
         </motion.div>
       </div>
-      <TechnologyTicker/>
+      <div className='mt-10'>      <TechnologyTicker/>
+      </div>
     </section>
   );
 }

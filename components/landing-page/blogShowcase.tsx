@@ -211,7 +211,7 @@ export default function BlogShowcase() {
           <div className="mt-4 sm:mt-10 text-center">
             <Button asChild size="sm" className="text-xs sm:text-sm">
               <Link href="/blog" className="flex items-center">
-                {t.viewAllPosts || "View All Posts"}
+                {t.ViewAllPosts || "View All Posts"}
                 <ArrowRight className="ml-1 sm:ml-2 h-3 w-3 sm:h-4 sm:w-4" />
               </Link>
             </Button>

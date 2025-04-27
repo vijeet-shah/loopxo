@@ -17,22 +17,22 @@ const socialLinks = [
   { 
     icon: Github, 
     label: "GitHub",
-    url: "https://github.com/vijeetshah" 
+    url: "https://github.com/vijeet-shah" 
   },
   { 
     icon: Twitter, 
     label: "Twitter",
-    url: "https://twitter.com/vijeetshah" 
+    url: "https://twitter.com/vijeetshah_" 
   },
   { 
     icon: Linkedin, 
     label: "LinkedIn",
-    url: "https://linkedin.com/in/vijeetshah" 
+    url: "https://linkedin.com/in/vijeet-shah" 
   },
   { 
     icon: Mail, 
     label: "Email",
-    url: "mailto:contact@vijeetshah.com" 
+    url: "mailto:vijeet@vijeetshah.com" 
   },
 ];
 
