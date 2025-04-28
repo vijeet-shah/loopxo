@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '@/lib/i18n/client-utils';
 
 interface Post {
@@ -24,6 +24,32 @@ export default function BlogShowcase() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+  
+  // Check scroll position
+  const checkScrollPosition = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+  
+  // Carousel navigation
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+  
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
   
   // Fetch posts data
   useEffect(() => {
@@ -49,15 +75,17 @@ export default function BlogShowcase() {
     fetchPosts();
   }, [lang]); // Refetch when language changes
   
-  // Animation variants for consistent animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
+  // Set up scroll event listener
+  useEffect(() => {
+    const currentRef = carouselRef.current;
+    if (currentRef) {
+      currentRef.addEventListener('scroll', checkScrollPosition);
+      checkScrollPosition();
+      return () => currentRef.removeEventListener('scroll', checkScrollPosition);
     }
-  };
+  }, [posts]);
   
+  // Animation variants
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -69,16 +97,16 @@ export default function BlogShowcase() {
   
   return (
     <div className="relative h-screen w-full flex items-center justify-center bg-background px-4 sm:px-6 lg:px-8 py-12 overflow-hidden">
-      {/* Background elements - kept exactly as original */}
+      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-primary/5 to-primary/10 blur-3xl" />
         <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-blue-500/5 to-purple-500/10 blur-3xl" />
       </div>
       
-      {/* Main content with fixed height container */}
+      {/* Main content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto h-full flex flex-col">
-        {/* Section header - reduced margins on mobile */}
-        <div className="flex flex-col items-center justify-center text-center mb-6 sm:mb-12">
+        {/* Section header */}
+        <div className="flex flex-col items-center justify-center text-center mb-6 sm:mb-10">
           <motion.h2 
             className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4"
             initial={{ opacity: 0, y: 20 }}
@@ -98,16 +126,49 @@ export default function BlogShowcase() {
           </motion.p>
         </div>
         
-        {/* Content with auto-height constraints */}
+        {/* Blog posts carousel */}
         <div className="flex-1 flex flex-col">
+          {/* Heading with navigation arrows */}
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-sm sm:text-base font-medium">Latest Posts</h3>
+            
+            {/* Carousel navigation buttons */}
+            <div className="flex space-x-2">
+              <motion.button
+                onClick={scrollLeft}
+                disabled={!canScrollLeft}
+                className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors 
+                  ${canScrollLeft 
+                    ? 'bg-white/10 border border-white/20 text-primary hover:bg-white/20' 
+                    : 'opacity-30 cursor-not-allowed bg-white/5 border border-white/10 text-muted-foreground'}`}
+                whileHover={canScrollLeft ? { scale: 1.05 } : {}}
+                whileTap={canScrollLeft ? { scale: 0.95 } : {}}
+              >
+                <ChevronLeft className="h-3.5 w-3.5" />
+              </motion.button>
+              <motion.button
+                onClick={scrollRight}
+                disabled={!canScrollRight}
+                className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors 
+                  ${canScrollRight 
+                    ? 'bg-white/10 border border-white/20 text-primary hover:bg-white/20' 
+                    : 'opacity-30 cursor-not-allowed bg-white/5 border border-white/10 text-muted-foreground'}`}
+                whileHover={canScrollRight ? { scale: 1.05 } : {}}
+                whileTap={canScrollRight ? { scale: 0.95 } : {}}
+              >
+                <ChevronRight className="h-3.5 w-3.5" />
+              </motion.button>
+            </div>
+          </div>
+          
           {/* Loading state */}
           {isLoading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="border border-border rounded-lg p-2 sm:p-4">
-                  <div className="w-full h-24 sm:h-48 bg-muted/50 rounded-md mb-2 sm:mb-4"></div>
-                  <div className="h-4 sm:h-6 w-3/4 bg-muted/50 rounded-md mb-1 sm:mb-2"></div>
-                  <div className="h-3 sm:h-4 w-1/2 bg-muted/50 rounded-md"></div>
+            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+              {[1, 2, 3, 4].map(i => (
+                <div key={i} className="border border-border rounded-lg p-3 flex-shrink-0 w-[280px] sm:w-[320px] snap-start">
+                  <div className="w-full h-32 sm:h-40 bg-muted/50 rounded-md mb-3"></div>
+                  <div className="h-5 w-3/4 bg-muted/50 rounded-md mb-2"></div>
+                  <div className="h-3 w-1/2 bg-muted/50 rounded-md"></div>
                 </div>
               ))}
             </div>
@@ -115,8 +176,8 @@ export default function BlogShowcase() {
           
           {/* Error state */}
           {!isLoading && error && (
-            <div className="text-center py-6 sm:py-12">
-              <p className="text-base sm:text-lg font-medium text-red-500">{error}</p>
+            <div className="text-center py-6">
+              <p className="text-base font-medium text-red-500">{error}</p>
               <Button 
                 onClick={() => window.location.reload()} 
                 className="mt-4"
@@ -129,86 +190,80 @@ export default function BlogShowcase() {
           
           {/* No posts state */}
           {!isLoading && !error && posts.length === 0 && (
-            <div className="text-center py-6 sm:py-12 border border-border rounded-lg">
-              <p className="text-base sm:text-lg font-medium">{t.noPosts || "No posts found"}</p>
+            <div className="text-center py-6 border border-border rounded-lg">
+              <p className="text-base font-medium">{t.noPosts || "No posts found"}</p>
               <p className="text-sm text-muted-foreground mt-2">{t.checkBackSoon || "Check back soon for new content"}</p>
             </div>
           )}
           
-          {/* Blog posts grid - with very compact mobile layout */}
+          {/* Blog posts carousel */}
           {!isLoading && !error && posts.length > 0 && (
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6"
+            <div 
+              ref={carouselRef}
+              className="flex gap-4 overflow-x-auto scroll-smooth pb-4 snap-x snap-mandatory"
+              style={{ 
+                scrollbarWidth: 'none', 
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch' 
+              }}
             >
-              {posts.map((post) => (
+              {posts.map((post, index) => (
                 <motion.div
                   key={post.slug}
                   variants={itemVariants}
-                  className="bg-card/50 border border-border rounded-lg overflow-hidden flex flex-col h-full transition-colors hover:border-primary/30"
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-card/50 border border-border rounded-lg overflow-hidden flex-shrink-0 w-[280px] sm:w-[320px] md:w-[350px] snap-start hover:border-primary/30 transition-colors"
                 >
-                  <Link href={`/blog/${post.slug}`} className="block h-full">
-                    {/* Much smaller image on mobile */}
-                    <div className="relative w-full h-28 sm:h-40 md:h-48">
+                  <Link href={`/blog/${post.slug}`} className="block">
+                    <div className="relative w-full h-32 sm:h-40">
                       <Image
                         src={post.image || "/images/placeholder.jpg"}
                         alt={post.title}
                         fill
-                        className="object-cover"
+                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        sizes="(max-width: 640px) 280px, (max-width: 768px) 320px, 350px"
                       />
                     </div>
                     
-                    {/* Reduced padding on mobile */}
-                    <div className="p-2 sm:p-4 md:p-6 flex flex-col flex-grow">
-                      {/* Simplified meta info on mobile */}
-                      <div className="flex items-center text-[10px] sm:text-xs text-muted-foreground mb-1 sm:mb-3">
+                    <div className="p-3 sm:p-4">
+                      <div className="flex items-center text-[10px] sm:text-xs text-muted-foreground mb-2">
                         <span>{post.date}</span>
-                        {post.category && !window.matchMedia('(max-width: 640px)').matches && (
-                          <>
-                            <span className="mx-2">•</span>
-                            <span className="capitalize">{post.category}</span>
-                          </>
-                        )}
                         {post.readTime && (
                           <>
                             <span className="mx-1 sm:mx-2">•</span>
                             <span className="flex items-center">
                               <Clock className="w-2 h-2 sm:w-3 sm:h-3 mr-0.5 sm:mr-1" /> 
-                              <span className="hidden sm:inline">{post.readTime} min read</span>
-                              <span className="sm:hidden">{post.readTime}m</span>
+                              <span>{post.readTime}m</span>
                             </span>
                           </>
                         )}
                       </div>
                       
-                      {/* Smaller title on mobile */}
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 line-clamp-2">
+                      <h3 className="text-sm sm:text-base font-bold mb-1 sm:mb-2 line-clamp-2">
                         {post.title}
                       </h3>
                       
-                      {/* Hide description on smallest screens */}
-                      <p className="hidden sm:block text-xs sm:text-sm text-muted-foreground line-clamp-2 mb-2 sm:mb-4">
+                      <p className="text-xs text-muted-foreground line-clamp-2 mb-3">
                         {post.description}
                       </p>
                       
-                      <div className="mt-auto pt-1 sm:pt-4 flex items-center text-primary text-xs sm:text-sm">
-                        <span className="hidden sm:inline">{t.readMore || "Read more"}</span>
-                        <span className="sm:hidden">Read</span>
-                        <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4" />
+                      <div className="flex items-center text-primary text-xs">
+                        <span>{t.readMore || "Read more"}</span>
+                        <ArrowRight className="ml-1 h-3 w-3" />
                       </div>
                     </div>
                   </Link>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           )}
         </div>
         
-        {/* View all button with smaller size on mobile */}
+        {/* View all button */}
         {!isLoading && !error && posts.length > 0 && (
-          <div className="mt-4 sm:mt-10 text-center">
+          <div className="mt-4 sm:mt-8 text-center">
             <Button asChild size="sm" className="text-xs sm:text-sm">
               <Link href="/blog" className="flex items-center">
                 {t.ViewAllPosts || "View All Posts"}

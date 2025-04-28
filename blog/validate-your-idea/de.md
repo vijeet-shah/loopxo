@@ -1,6 +1,6 @@
 ---
 title: "Validieren, validieren & validieren Sie Ihre Idee - bevor Sie auch nur eine Zeile Code schreiben"
-date: "2025-02-15"
+date: "2025-02-30"
 author: "Vijeet Shah"
 category: "Produktmanagement"
 image: "/blog/thumb2.jpg"

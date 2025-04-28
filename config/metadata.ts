@@ -30,7 +30,7 @@ export function generateMetadata(
   // Construct title with client name
   const title = pageTitle 
     ? `${pageTitle} | ${siteConfig.name}`
-    : `${siteConfig.name} | Founder`;
+    : `${siteConfig.name}`;
   
   // Use page-specific description or fall back to site description
   const description = pageDescription ?? siteConfig.description;
