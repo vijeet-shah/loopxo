@@ -23,13 +23,13 @@ const vlogVideos: VideoItem[] = [
     url: "https://youtu.be/bGIPH-7NR-w?si=D5cqXaICmfIA2gjk" 
   },
   {
-    title: "Product Design Insights",
-    description: "Key learnings from my recent project",
+    title: "TREK to chandrabadni temple in uttarakhand",
+    description: "Exploring uttarakhand",
     thumbnail: "https://i.ytimg.com/vi/g-0NXx36Tuk/maxresdefault.jpg",
-    url: "https://www.youtube.com/watch?v=g-0NXx36Tuk"
+    url: "https://youtu.be/g-0NXx36Tuk?si=Pg-8WDG9tXeOi8Q7"
   },
   {
-    title: "Software Architecture Tips",
+    title: "left for UTTARAKHAND यात्रा",
     description: "How I approach system design",
     thumbnail: "https://i.ytimg.com/vi/RTBnVSfV1LM/maxresdefault.jpg", 
     url: "https://www.youtube.com/watch?v=RTBnVSfV1LM"
@@ -99,13 +99,7 @@ export default function YoutubeSection(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          <motion.div 
-            className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center mb-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Youtube className="h-5 w-5 text-white" />
-          </motion.div>
+          
           
           <motion.h2 
             className="text-xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-red-500 to-primary mb-1"
