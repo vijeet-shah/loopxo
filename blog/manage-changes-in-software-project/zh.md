@@ -1,6 +1,6 @@
 ---
 title: "如何在不减慢进度的情况下管理软件项目中的变更"
-date: "2025-02-15"
+date: "2025-03-04"
 author: "Vijeet Shah"
 category: "产品管理"
 image: "/blog/thumb1.jpg"

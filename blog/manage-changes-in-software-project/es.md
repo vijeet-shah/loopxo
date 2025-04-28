@@ -1,6 +1,6 @@
 ---
 title: "Cómo gestionar cambios en proyectos de software sin frenar el progreso"
-date: "2025-02-15"
+date: "2025-03-04"
 author: "Vijeet Shah"
 category: "Gestión de Productos"
 image: "/blog/thumb1.jpg"

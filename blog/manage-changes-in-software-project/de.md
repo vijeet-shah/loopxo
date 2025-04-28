@@ -1,6 +1,6 @@
 ---
 title: "Wie man Änderungen in Softwareprojekten verwaltet, ohne den Fortschritt zu verlangsamen"
-date: "2025-02-15"
+date: "2025-03-04"
 author: "Vijeet Shah"
 category: "Produktmanagement"
 image: "/blog/thumb1.jpg"

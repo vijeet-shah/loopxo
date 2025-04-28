@@ -1,6 +1,6 @@
 ---
 title: "Comment gérer les changements dans les projets logiciels sans ralentir les progrès"
-date: "2025-02-15"
+date: "2025-03-04"
 author: "Vijeet Shah"
 category: "Gestion de produit"
 image: "/blog/thumb1.jpg"

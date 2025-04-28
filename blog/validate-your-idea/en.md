@@ -1,6 +1,6 @@
 ---
 title: "Validate, Validate & Validate your idea  - before you ever write a line of code."
-date: "2025-02-15"
+date: "2025-02-30"
 author: "Vijeet Shah"
 category: "Product Management"
 image: "/blog/thumb2.jpg"

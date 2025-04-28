@@ -1,6 +1,6 @@
 ---
 title: "Valida, valida y valida tu idea - antes de escribir una sola línea de código"
-date: "2025-02-15"
+date: "2025-02-30"
 author: "Vijeet Shah"
 category: "Gestión de Producto"
 image: "/blog/thumb2.jpg"

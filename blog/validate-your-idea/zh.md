@@ -1,6 +1,6 @@
 ---
 title: "验证、验证再验证你的创意 - 在编写任何代码之前"
-date: "2025-02-15"
+date: "2025-02-30"
 author: "Vijeet Shah"
 category: "产品管理"
 image: "/blog/thumb2.jpg"

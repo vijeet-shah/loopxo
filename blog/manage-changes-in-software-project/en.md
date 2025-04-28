@@ -1,6 +1,6 @@
 ---
 title: "How to Manage Changes in Software Projects Without Slowing Progress"
-date: "2025-02-15"
+date: "2025-03-04"
 author: "Vijeet Shah"
 category: "Product Management"
 image: "/blog/thumb1.jpg"
