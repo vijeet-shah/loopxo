@@ -30,7 +30,7 @@ export function generateMetadata(
   // Construct title with client name
   const title = pageTitle 
     ? `${pageTitle} | ${siteConfig.name}`
-    : `${siteConfig.name} | Modern Web Template`;
+    : `${siteConfig.name} | Founder`;
   
   // Use page-specific description or fall back to site description
   const description = pageDescription ?? siteConfig.description;
@@ -86,12 +86,7 @@ export function generateMetadata(
       description,
       images: [ogImage],
     },
-    applicationName: siteConfig.name,
-    verification: {
-      // Replace these with actual verification IDs when deploying
-      google: 'google-site-verification-id',
-      yandex: 'yandex-verification-id',
-    },
+   
   };
 }
 
