@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPostBySlug, getAllPosts, getAvailableLanguagesForPost } from '@/lib/api';
+import { getPostBySlug, getAllPosts } from '@/lib/api';
 import markdownToHtml from '@/lib/markdownToHtml';
 import TableOfContents from './TableOfContents';
-import { ArrowLeft, Calendar, Clock, UserIcon, Globe } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, UserIcon } from 'lucide-react';
 import { getLanguage, getTranslations } from '@/lib/i18n/server-utils';
-import { SupportedLanguage } from '@/lib/i18n/types';
 import './markdown-styles.css';
-import { languageNames } from '@/lib/i18n/dictionary';
+import { LanguageSelector } from '@/components/language-selector';
+import { ModeToggle } from '@/components/mode-toggle';
 
 export function generateStaticParams() {
   const slugs = getAllPosts(['slug']).map(post => post.slug);
@@ -42,8 +42,6 @@ export default async function BlogPostPage({ params }: {params: Promise<{ slug: 
   }
 
   const { content, headings } = markdownToHtml(post.content || '');
-  const availableLanguages = getAvailableLanguagesForPost(resolvedParams.slug);
-  const hasTranslations = availableLanguages.length > 1;
   const isRTL = currentLanguage === 'ar' || currentLanguage === 'he';
   const isHindi = currentLanguage === 'hi';
 
@@ -55,33 +53,15 @@ export default async function BlogPostPage({ params }: {params: Promise<{ slug: 
             href="/blog"
             className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" /> {t.backToBlog || 'Back to Blog'}
+            <ArrowLeft className="mr-2 h-4 w-4" /> 
           </Link>
           
-          {/* Language switcher for the current post */}
-          {hasTranslations && (
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-primary" />
-              <div className="flex flex-wrap gap-2">
-                {availableLanguages.map(lang => {
-                  if (lang === currentLanguage) return null;
-                  
-                  // Ensure languageNames[lang] exists before using it
-                  const displayName = languageNames[lang as SupportedLanguage] || lang;
-                  
-                  return (
-                    <Link 
-                      key={lang}
-                      href={`/blog/${resolvedParams.slug}?lang=${lang}`}
-                      className="text-primary hover:text-primary/80 transition-colors"
-                    >
-                      {displayName}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          <div className='flex'>
+          <LanguageSelector className='pr-3'/>
+
+          <ModeToggle/>
+          </div>
+          
         </div>
         
         <article className="bg-background shadow-lg rounded-xl overflow-hidden">

@@ -71,7 +71,7 @@ export default function StorySection() {
                 </p>
                 <p className="text-xs sm:text-base md:text-lg">
                   {t.line4 ||
-                    "Later, I founded Srilakshmi Finance, a loan business in India, after securing an RBI license. Managing both Loopxo and Srilakshmi Finance strengthened my leadership, operational, and technical skills."}{" "}
+                    "Later, I founded Shri Laxmi Finance, a loan business in India, after securing an RBI license. Managing both Loopxo and Srilakshmi Finance strengthened my leadership, operational, and technical skills."}{" "}
                 </p>
                 <p className="text-xs sm:text-base md:text-lg">
                   {t.line5 ||

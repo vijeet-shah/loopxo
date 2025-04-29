@@ -1,8 +1,5 @@
 import React from "react";
 import { useTranslation } from "@/lib/i18n/client-utils";
-import {
- 
-} from "lucide-react";
 import { usePageNavigation } from "@/hook/usePageNavigation";
 import { PageTurn } from "./book/pageTurn";
 import Newsletter from "./landing-page/newsletter";
@@ -17,9 +14,7 @@ export default function Main() {
   const { t } = useTranslation();
   const { currentPage, goNext, goPrev, direction, isAnimating } =
     usePageNavigation();
-
     
-
   // Page content sections
   const pages = [
     { id: "hero", title: "Hero" },
@@ -27,8 +22,10 @@ export default function Main() {
     { id: "featured", title: "Featured" },
     { id: "recent", title: "Recent Posts" },
     { id: "subscribe", title: "Subscribe to Newsletter" },
-
   ];
+
+  // Ensure currentPage is always valid (never 0 or undefined)
+  const safePage = currentPage || 1;
 
   return (
     <div className="relative min-h-screen overflow-hidden perspective-1000">
@@ -44,68 +41,60 @@ export default function Main() {
       <div className="relative min-h-screen w-full perspective-1000 bg-background">
         {/* Hero Page - Completely reimagined centerpiece design */}
         <PageTurn
-          isVisible={currentPage === 1}
+          isVisible={safePage === 1}
           direction={direction}
-          zIndex={40 - currentPage}
+          zIndex={40 - safePage}
         >
           <HeroSection/>
         </PageTurn>
 
         {/* Technology Page - Using your TechnologyTicker component */}
         <PageTurn
-          isVisible={currentPage === 2}
+          isVisible={safePage === 2}
           direction={direction}
-          zIndex={40 - currentPage}
+          zIndex={40 - safePage}
         >
           <div className="min-h-screen relative overflow-hidden">
             <div className="min-h-screen ">
-              <BlogShowcase  />
+              <BlogShowcase />
             </div>
           </div>
         </PageTurn>
 
         {/* Featured Post Page - Using your FeaturedPost component */}
         <PageTurn
-          isVisible={currentPage === 3}
+          isVisible={safePage === 3}
           direction={direction}
-          zIndex={40 - currentPage}
+          zIndex={40 - safePage}
         >
           <StorySection/>
         </PageTurn>
 
- 
-
         <PageTurn
-          isVisible={currentPage === 4}
+          isVisible={safePage === 4}
           direction={direction}
-          zIndex={40 - currentPage}
+          zIndex={40 - safePage}
         >
-<YoutubeSection/>           
+          <YoutubeSection/>           
         </PageTurn>
 
         <PageTurn
-          isVisible={currentPage === 5}
+          isVisible={safePage === 5}
           direction={direction}
-          zIndex={40 - currentPage}
+          zIndex={40 - safePage}
         >
-      <Newsletter t={t} />
+          <Newsletter t={t} />
         </PageTurn>
-
-
-
-
       </div>
 
       {/* Page navigation controls */}
       <PageNavigationControls
-        currentPage={currentPage}
+        currentPage={safePage}
         goNext={goNext}
         goPrev={goPrev}
         pagesCount={pages.length}
         isAnimating={isAnimating}
       />
-
-     
     </div>
   );
 }

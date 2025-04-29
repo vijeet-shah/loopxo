@@ -118,7 +118,7 @@ export default function Newsletter({ t }:{t: any}) {
     <section ref={ref} className="py-20 relative overflow-hidden">
       {/* Background with cosmos effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
-      <div className="absolute inset-0 bg-[url('/nebula-pattern.svg')] opacity-20 bg-repeat"></div>
+      <div className="absolute inset-0  opacity-20 bg-repeat"></div>
       
       {/* Animated stars and decorative elements */}
       <motion.div

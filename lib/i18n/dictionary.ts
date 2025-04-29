@@ -151,7 +151,7 @@ const en: BaseTranslations = {
 
   // Blog specific
   blogTitle: "Blog",
-  blogDescription: "Latest articles and updates",
+  blogDescription: "All my writing in one place",
   featuredPost: "Featured Post",
   allPosts: "All Posts",
   readMore: "Read More",
@@ -234,7 +234,7 @@ const en: BaseTranslations = {
   line3:
     "During this time, I discovered my passion for management and product development, leading me to start my own agency, Loopxo. There, I helped clients build MVPs, websites, and digital products (SAAS), while also taking on marketing projects.",
   line4:
-    "Later, I founded Srilakshmi Finance, a loan business in India, after securing an RBI license. Managing both Loopxo and Srilakshmi Finance strengthened my leadership, operational, and technical skills.",
+    "Later, I founded Shri Laxmi Finance, a loan business in India, after securing an RBI license. Managing both Loopxo and Srilakshmi Finance strengthened my leadership, operational, and technical skills.",
   line5:
     "Today, I focus on building tech products and managing the technical side of my financial business, combining entrepreneurship, technology, and innovation.",
 
@@ -276,7 +276,7 @@ const hi: BaseTranslations = {
 
   // Blog specific
   blogTitle: "ब्लॉग",
-  blogDescription: "नवीनतम लेख और अपडेट",
+  blogDescription: "मेरी सारी लिखी गई सामग्री एक ही जगह एकत्रित है",
   featuredPost: "विशेष पोस्ट",
   allPosts: "सभी पोस्ट",
   readMore: "और पढ़ें",
@@ -401,7 +401,7 @@ const de: BaseTranslations = {
 
   // Blog specific
   blogTitle: "Blog",
-  blogDescription: "Neueste Artikel und Updates",
+  blogDescription: "All meine schriftlichen Inhalte an einem Ort gesammelt",
   featuredPost: "Empfohlener Beitrag",
   allPosts: "Alle Beiträge",
   readMore: "Weiterlesen",
@@ -528,7 +528,7 @@ const fr: BaseTranslations = {
 
   // Blog specific
   blogTitle: "Blog",
-  blogDescription: "Derniers articles et mises à jour",
+  blogDescription: "Tout mon contenu écrit rassemblé en un seul endroit",
   featuredPost: "Article à la une",
   allPosts: "Tous les articles",
   readMore: "Lire la suite",
@@ -653,7 +653,7 @@ const es: BaseTranslations = {
 
   // Blog specific
   blogTitle: "Blog",
-  blogDescription: "Últimos artículos y actualizaciones",
+  blogDescription: "Todo mi contenido escrito recopilado en un solo lugar",
   featuredPost: "Artículo destacado",
   allPosts: "Todos los artículos",
   readMore: "Leer más",
@@ -779,7 +779,7 @@ const zh: BaseTranslations = {
 
   // Blog specific
   blogTitle: "博客",
-  blogDescription: "最新文章和更新",
+  blogDescription: "我所有的书面内容都集中在一个地方",
   featuredPost: "精选文章",
   allPosts: "所有文章",
   readMore: "阅读更多",

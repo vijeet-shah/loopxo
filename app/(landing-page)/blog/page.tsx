@@ -3,11 +3,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { ClockIcon, ArrowRight } from 'lucide-react'
+import { ClockIcon, ArrowRight, ArrowLeft } from 'lucide-react'
 import { getAllPosts } from '@/lib/api'
 import { getLanguage, getTranslations } from '@/lib/i18n/server-utils'
 import { cn } from '@/lib/utils'
 import { SupportedLanguage } from '@/lib/i18n/types'
+import { LanguageSelector } from '@/components/language-selector'
+import { ModeToggle } from '@/components/mode-toggle'
 
 export default async function Blog() {
   // Use await for async functions
@@ -36,23 +38,32 @@ export default async function Blog() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background">
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/20" />
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'radial-gradient(circle at center, white 0.5px, transparent 0.5px)',
-            backgroundSize: '24px 24px'
-          }}
-        />
-        <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center text-foreground">
-            {t.blogTitle || 'Blog'}
-          </h1>
-          <div className={cn("h-1 w-20 mx-auto mb-6", primaryBgClass)}></div>
-          <p className="text-xl text-center text-muted-foreground max-w-2xl mx-auto">
-            {t.blogDescription || 'Guides on starting and managing software projects'}
-          </p>
-        </div>
+       
+      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 relative">
+  <div className="flex items-center justify-between">
+    {/* Left: Back button */}
+    <Link
+      href="/"
+      className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
+    >
+      <ArrowLeft className="mr-1.5 h-4 w-4" /> 
+      <span className="text-sm font-medium">{t.back || 'Back'}</span>
+    </Link>
+    
+    {/* Center: Heading */}
+    <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground max-w-2xl text-center mx-auto">
+      {t.blogDescription || 'Guides on starting and managing software projects'}
+    </h2>
+    
+    {/* Right: Controls */}
+    <div className="flex items-center space-x-2">
+      <LanguageSelector />
+      <ModeToggle />
+    </div>
+  </div>
+</div>
+
+        
       </div>
 
       <main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -84,7 +95,6 @@ export default async function Blog() {
           <div className="mb-16">
             <h2 className={cn("text-2xl font-bold mb-6 text-foreground flex items-center")}>
               {t.featuredPost || 'Featured Post'}
-              <div className={cn("h-1 w-6 ml-2", primaryBgClass)}></div>
             </h2>
             <Link href={`/blog/${allPosts[0].slug}`} className="group">
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0">
