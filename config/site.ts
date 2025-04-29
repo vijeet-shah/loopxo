@@ -60,16 +60,16 @@ export const siteConfig: SiteConfig = {
   legalName: "Vijeet Shah Blog",
   description: "Personal blog and portfolio of Vijeet Shah - Thoughts on technology, web development, and personal growth.",
   url: "https://vijeetshah.com",
-  ogImage: "/images/vijeet-profile.jpg",
+  ogImage: "/vijeet.jpg",
   links: {
-    twitter: "https://twitter.com/vijeetshah",
-    github: "https://github.com/vijeetshah",
-    linkedin: "https://linkedin.com/in/vijeetshah",
-    instagram: "https://instagram.com/vijeetshah",
+    twitter: "https://twitter.com/vijeetshah_",
+    github: "https://github.com/vijeet-shah",
+    linkedin: "https://linkedin.com/in/vijeet-shah",
+    instagram: "https://instagram.com/",
   },
   contact: {
-    email: "hello@vijeetshah.com",
-    phone: "+91 9876543210",
+    email: "vijeet@vijeetshah.com",
+    phone: "+91 9082053880",
     address: {
       street: "Mumbai",
       locality: "Maharashtra",
