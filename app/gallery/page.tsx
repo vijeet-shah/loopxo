@@ -1,7 +1,10 @@
 // app/gallery/page.tsx
 import React from "react";
 import Image from "next/image";
-import { getLanguage } from "@/lib/i18n/utils";
+import { getLanguage } from "@/lib/i18n/server-utils";
+
+
+
 
 // Define gallery image type
 interface GalleryImage {
