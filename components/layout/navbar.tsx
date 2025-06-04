@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Mail } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
 import { navigationConfig } from "@/config/navigation";
@@ -14,13 +14,10 @@ import { MobileMenu } from "./mobile-menu";
 import { ModeToggle } from "@/components/mode-toggle";
 import { LanguageSelector } from "@/components/language-selector";
 import { SearchDialog } from "@/components/search-dialog";
-import { NewsletterBanner } from "./newsletter-banner";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function Header() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showNewsletter, setShowNewsletter] = useState(true);
 
   // Track scroll position for navbar styling
   useEffect(() => {
@@ -44,55 +41,51 @@ export function Header() {
     return pathname.startsWith(href);
   };
 
-  // Close newsletter banner
-  const closeNewsletter = () => {
-    setShowNewsletter(false);
-    // Optional: save to localStorage to keep it closed across page refreshes
-    localStorage.setItem("newsletterClosed", "true");
-  };
-
-  // Check localStorage on component mount
-  useEffect(() => {
-    const isClosed = localStorage.getItem("newsletterClosed");
-    if (isClosed === "true") {
-      setShowNewsletter(false);
-    }
-  }, []);
-
   return (
     <>
-      {/* Newsletter Banner */}
-      <AnimatePresence>
-        {showNewsletter && <NewsletterBanner onClose={closeNewsletter} />}
-      </AnimatePresence>
+      {/* Announcement Banner */}
+      {navigationConfig.announcement?.enabled && (
+        <div
+          className=" text-center py-1 px-4 overflow-hidden"
+          style={{
+            backgroundColor:
+              navigationConfig.announcement.bgColor || "var(--color-primary)",
+          }}
+        >
+          <div className="container mx-auto whitespace-nowrap overflow-x-auto scrollbar-hide">
+            <Link
+              href={navigationConfig.announcement.href}
+              className="text-sm md:text-base font-medium hover:underline"
+            >
+              {navigationConfig.announcement.text}
+            </Link>
+          </div>
+        </div>
+      )}
 
-      <motion.header
-        initial={{ y: -5 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      <header
         className={cn(
           "sticky top-0 z-50 w-full transition-all duration-200",
           isScrolled
-            ? "glass-panel backdrop-blur-lg shadow-sm border-b border-primary/10"
+            ? "bg-background/95 backdrop-blur-sm shadow-sm"
             : "bg-background"
         )}
       >
-        <div className="container mx-auto max-w-7xl px-4 py-3">
+        <div className="container mx-auto max-w-7xl px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative h-10 w-10 overflow-hidden rounded-full border border-primary/20 cosmic-card">
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="relative h-8 w-8 overflow-hidden">
                 <Image
                   src="/logo.png"
-                  alt={`${siteConfig.name}`}
-                  width={40}
-                  height={40}
-                  className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  alt={`${siteConfig.name} Logo`}
+                  width={32}
+                  height={32}
+                  className="object-contain"
                 />
               </div>
-              <div className="flex flex-col">
-                <h1 className="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Vijeet Shah</h1>
-                <span className="text-xs text-muted-foreground">Developer & Educator</span>
+              <div>
+                <h1 className="text-xl font-bold">{siteConfig.name}</h1>
               </div>
             </Link>
 
@@ -113,14 +106,14 @@ export function Header() {
                       >
                         {item.title} <ChevronDown className="ml-1 h-4 w-4" />
                       </button>
-                      <div className="absolute left-0 mt-1 w-48 rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                        <div className="cosmic-card py-1 rounded-md overflow-hidden">
+                      <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-background dark:bg-slate-800 ring-1 ring-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                        <div className="py-1 rounded-md overflow-hidden">
                           {item.children.map((child) => (
                             <Link
                               key={child.title}
                               href={child.href}
                               className={cn(
-                                "block px-4 py-2 text-sm hover:bg-primary/5",
+                                "block px-4 py-2 text-sm hover:bg-muted",
                                 isActiveLink(child.href)
                                   ? "text-primary font-medium"
                                   : "text-foreground/80"
@@ -141,19 +134,13 @@ export function Header() {
                     key={item.title}
                     href={item.href}
                     className={cn(
-                      "px-3 py-2 text-sm font-medium transition-colors relative",
+                      "px-3 py-2 text-sm font-medium transition-colors",
                       isActiveLink(item.href)
                         ? "text-primary"
                         : "text-foreground/80 hover:text-primary"
                     )}
                   >
                     {item.title}
-                    {isActiveLink(item.href) && (
-                      <motion.span 
-                        layoutId="activeNavIndicator"
-                        className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"
-                      />
-                    )}
                   </Link>
                 );
               })}
@@ -166,17 +153,27 @@ export function Header() {
               {/* Conditional rendering of language selector */}
               {navigationConfig.i18n.enabled && (
                 <LanguageSelector
+                  variant={navigationConfig.i18n.displayVariant}
                 />
               )}
 
               {navigationConfig.enableThemeToggle && <ModeToggle />}
 
               <Link
-                href="/subscribe"
-                className="cosmic-button-secondary flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium"
+                href={navigationConfig.ctaButton.href}
+                className={cn(
+                  "bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md text-sm font-medium",
+                  {
+                    "bg-transparent border border-primary text-primary hover:bg-primary/10":
+                      navigationConfig.ctaButton.variant === "outline",
+                    "bg-transparent text-primary hover:bg-primary/10":
+                      navigationConfig.ctaButton.variant === "ghost",
+                    "bg-transparent text-primary underline hover:no-underline":
+                      navigationConfig.ctaButton.variant === "link",
+                  }
+                )}
               >
-                <Mail className="h-4 w-4" />
-                <span>Subscribe</span>
+                {navigationConfig.ctaButton.text}
               </Link>
             </div>
 
@@ -186,7 +183,7 @@ export function Header() {
             </div>
           </div>
         </div>
-      </motion.header>
+      </header>
     </>
   );
 }

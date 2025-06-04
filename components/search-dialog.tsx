@@ -8,8 +8,10 @@ export function SearchDialog() {
   const [isOpen, setIsOpen] = useState(false)
 
   const openSearchDialog = () => {
-    console.log(isOpen);
     setIsOpen(true)
+    // Implement actual search dialog logic
+    console.log(isOpen);
+    
   }
 
   return (

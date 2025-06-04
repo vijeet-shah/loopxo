@@ -17,8 +17,10 @@ type SeoProps = {
 
 // This is a client component that can be used in special cases
 // where you need dynamic SEO that can't be handled by the Metadata API
-export default function Seo() {
+// export default function Seo(props: SeoProps) {
   
+  export default function Seo() {
+
   // For client-side SEO needs
   // This component doesn't render anything visible
   // It would be used for things like dynamically setting meta tags
@@ -53,11 +55,7 @@ export function generatePageMetadata(props: SeoProps): Metadata {
     // Handle both array and single object cases
     if (Array.isArray(metadata.openGraph.images) && metadata.openGraph.images.length > 0) {
       const firstImage = metadata.openGraph.images[0];
-      if (typeof firstImage === 'string') {
-        ogImage = firstImage;
-      } else if (firstImage instanceof URL) {
-        ogImage = firstImage.toString(); // Convert URL object to string
-      }
+      ogImage = typeof firstImage === 'string' ? firstImage : firstImage.url;
     } else if (typeof metadata.openGraph.images === 'object') {
       ogImage = (metadata.openGraph.images as { url: string }).url;
     }

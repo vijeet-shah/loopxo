@@ -3,7 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { defaultMetadata } from "@/config/metadata";
 import { Analytics } from "@/components/analytics";
+import { SkipToContent } from "@/components/accessibility/skip-to-content";
 import { ThemeProvider } from "./theme-provider";
+import { AuthProvider } from "./providers";
 
 // Optimize font loading - can be customized with different fonts
 const inter = Inter({
@@ -72,7 +74,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           color="#3B82F6"
         />
       </head>
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -80,9 +82,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           disableTransitionOnChange
         >
           <div className="relative flex min-h-screen flex-col">
+            <SkipToContent />
             <main id="main-content" className="flex-1" tabIndex={-1}>
-              
-              {children} 
+              <AuthProvider>{children} </AuthProvider>
             </main>
           </div>
         </ThemeProvider>

@@ -1,9 +1,17 @@
-import React from 'react';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/layout/navbar';
+
+
+
+import { ReactNode } from 'react';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <main>{children}</main>
-    </>
+    <Header />
+    <main>{children}</main>
+    <Footer />
+  </>
   );
 }
