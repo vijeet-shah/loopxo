@@ -11,8 +11,6 @@ import { SupportedLanguage } from '@/lib/i18n/types'
 import './markdown-styles.css'
 import { languageNames } from '@/lib/i18n/dictionary'
 
-
-
 export async function generateStaticParams() {
   // Get all post slugs (directory names)
   const slugs = getAllPosts(['slug']).map(post => post.slug);
@@ -22,13 +20,22 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+// Updated type definition for Next.js 15
+type PageProps = {
+  params: Promise<{ slug: string }>
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  // Await the params since it's now a Promise in Next.js 15
+  const { slug } = await params;
+  
   const currentLanguage = await getLanguage();
   const t = await getTranslations(currentLanguage);
   
   // First try to get the post in current language
   let post = getPostBySlug(
-    params.slug, 
+    slug, 
     ['title', 'date', 'slug', 'author', 'content', 'image', 'description', 'category', 'readTime'],
     currentLanguage
   );
@@ -36,7 +43,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   // If not found, try to get it in the default language (English)
   if (!post && currentLanguage !== 'en') {
     post = getPostBySlug(
-      params.slug,
+      slug,
       ['title', 'date', 'slug', 'author', 'content', 'image', 'description', 'category', 'readTime'],
       'en'
     );
@@ -50,7 +57,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   const { content, headings } = markdownToHtml(post.content || '');
 
   // Get available languages for this post
-  const availableLanguages = getAvailableLanguagesForPost(params.slug);
+  const availableLanguages = getAvailableLanguagesForPost(slug);
   const hasTranslations = availableLanguages.length > 1;
 
   // Determine if the language reads right-to-left (only Arabic and Hebrew are truly RTL)
@@ -84,7 +91,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                   return (
                     <Link 
                       key={lang}
-                      href={`/blog/${params.slug}?lang=${lang}`}
+                      href={`/blog/${slug}?lang=${lang}`}
                       className="text-primary hover:text-primary/80 transition-colors"
                     >
                       {displayName}
