@@ -104,7 +104,7 @@ const TrustBadge = ({ icon: Icon, text, delay }) => {
 
 export function HeroSection() {
   const { theme } = useTheme();
-  const heroRef = useRef(null);
+  const heroRef = useRef<HTMLElement>(null);
   const isInView = useInView(heroRef, { once: false, margin: "-10% 0px" });
   const controls = useAnimation();
   
@@ -572,22 +572,18 @@ export function HeroSection() {
                   icon={BarChart} 
                   title="Projects" 
                   value="150+" 
-                  color="from-blue-600 to-blue-400"
-                  colorDark="from-blue-500 to-blue-300" 
                 />
                 <StatItem 
                   icon={Users} 
                   title="Clients" 
                   value="80+" 
-                  color="from-indigo-600 to-indigo-400"
-                  colorDark="from-indigo-500 to-indigo-300"  
+                 
                 />
                 <StatItem 
                   icon={Star} 
                   title="Awards" 
                   value="25+" 
-                  color="from-purple-600 to-purple-400"
-                  colorDark="from-purple-500 to-purple-300"
+                 
                 />
               </motion.div>
             </motion.div>

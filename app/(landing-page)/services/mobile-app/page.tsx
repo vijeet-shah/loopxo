@@ -129,7 +129,7 @@ interface ProcessStep {
 }
 
 const ProcessCard = ({ step, index }: { step: ProcessStep, index: number }) => {
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: "-100px 0px" });
   const controls = useAnimation();
   
@@ -196,7 +196,7 @@ const PlatformCard = ({
   isExpanded: boolean; 
   toggleExpand: (id: string) => void; 
 }) => {
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, margin: "-100px 0px" });
   const controls = useAnimation();
   const { theme } = useTheme();
@@ -434,7 +434,7 @@ const PlatformCard = ({
 // Main Mobile App Development Page Component
 export default function MobileAppDevelopmentPage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const pageRef = useRef(null);
+  const pageRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(pageRef, { once: false, margin: "-10% 0px" });
   const controls = useAnimation();
   const { theme } = useTheme();
@@ -446,7 +446,7 @@ export default function MobileAppDevelopmentPage() {
   // 3D Tilt effect on mouse move
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = pageRef.current?.getBoundingClientRect();
     if (!rect) return;
     
@@ -747,7 +747,7 @@ export default function MobileAppDevelopmentPage() {
               </div>
               
               <div className="bg-card aspect-square relative group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-t fromblack/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
                   <h4 className="text-white font-medium">Finance Master</h4>
                   <p className="text-white/80 text-sm">Personal finance management app</p>
                 </div>

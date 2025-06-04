@@ -3,11 +3,10 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, ChevronRight, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import {  getTranslations } from "@/lib/i18n/server-utils";
 import { siteConfig } from "@/config/site";
 import { navigationConfig } from "@/config/navigation";
 import { cn } from "@/lib/utils";
-import { getLanguage } from "@/lib/i18n/server-utils";
+import { getClientLanguage, getClientTranslations } from "@/lib/i18n/client-utils";
 
 // Define the footer config type and export it for use in the site config
 export type FooterConfig = {
@@ -58,12 +57,12 @@ const defaultFooterConfig: FooterConfig = {
 };
 
 export function Footer() {
-  const lang = getLanguage();
-  const t = getTranslations(lang);
+  const lang = getClientLanguage();
+  const t = getClientTranslations(lang);
   const currentYear = new Date().getFullYear();
   
   // Get footer config from site config or use default
-  const footerConfig: FooterConfig = siteConfig.footer || defaultFooterConfig;
+  const footerConfig: FooterConfig =  defaultFooterConfig;
   
   // If footer is disabled, return null
   if (!footerConfig.enabled) {

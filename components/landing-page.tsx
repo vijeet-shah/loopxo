@@ -1,7 +1,7 @@
 // components/landing-page.tsx
 import React from "react";
 import Link from "next/link";
-import { siteConfig } from "@/config/site";
+// import { siteConfig } from "@/config/site";
 import { getLanguage, getTranslations } from "@/lib/i18n/server-utils";
 import { cn } from "@/lib/utils";
 import {  CTAConfig } from "@/types";
@@ -40,7 +40,7 @@ export async function LandingPage() {
   const t = await getTranslations(lang);
 
 
-  const ctaConfig: CTAConfig = siteConfig.landing?.cta || defaultCTAConfig;
+  const ctaConfig: CTAConfig =  defaultCTAConfig;
 
   // Determine primary color class
   const primaryBgClass = "bg-primary";
@@ -50,7 +50,7 @@ export async function LandingPage() {
     <div className="min-h-screen bg-background">
      <HeroSection/>
 
-    <CoreValue translations = {t} language={lang} />
+    <CoreValue translations = {t} s={lang} />
      <ServiceSection/>
 
       {/* CTA Section */}

@@ -54,8 +54,8 @@ export function generatePageMetadata(props: SeoProps): Metadata {
   } else if (metadata.openGraph && metadata.openGraph.images) {
     // Handle both array and single object cases
     if (Array.isArray(metadata.openGraph.images) && metadata.openGraph.images.length > 0) {
-      const firstImage = metadata.openGraph.images[0];
-      ogImage = typeof firstImage === 'string' ? firstImage : firstImage.url;
+      // const firstImage = metadata.openGraph.images[0];
+      // ogImage = typeof firstImage === 'string' ? firstImage : firstImage.url;
     } else if (typeof metadata.openGraph.images === 'object') {
       ogImage = (metadata.openGraph.images as { url: string }).url;
     }

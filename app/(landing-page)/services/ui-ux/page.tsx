@@ -450,7 +450,7 @@ const ProcessCard = ({ step, index }: { step: ProcessStep, index: number }) => {
 // Main UI/UX Services Page Component
 export default function UiUxServicesPage() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const pageRef = useRef(null);
+  const pageRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(pageRef, { once: false, margin: "-10% 0px" });
   const controls = useAnimation();
   const { theme } = useTheme();

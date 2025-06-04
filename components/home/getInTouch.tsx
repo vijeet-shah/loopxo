@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 export function GetInTouchSection() {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-10% 0px" });
   const controls = useAnimation();
   const { theme } = useTheme();
@@ -110,10 +110,10 @@ export function GetInTouchSection() {
           repeat: Infinity,
           repeatType: "reverse"
         }}
-        style={{ 
-          "--gradient-1": theme === "dark" ? "rgba(59, 130, 246, 0.15)" : "rgba(59, 130, 246, 0.2)",
-          "--gradient-2": theme === "dark" ? "rgba(79, 70, 229, 0.15)" : "rgba(79, 70, 229, 0.2)"
-        }}
+        // style={{ 
+        //   "--gradient-1": theme === "dark" ? "rgba(59, 130, 246, 0.15)" : "rgba(59, 130, 246, 0.2)",
+        //   "--gradient-2": theme === "dark" ? "rgba(79, 70, 229, 0.15)" : "rgba(79, 70, 229, 0.2)"
+        // }}
       />
       
       {/* Decorative floating elements */}

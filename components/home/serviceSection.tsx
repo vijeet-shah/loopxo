@@ -443,7 +443,7 @@ const FloatingObject = ({ delay, duration, x, y, size, children }) => {
 // Main component
 export function ServiceSection() {
   const [expandedId, setExpandedId] = useState(null);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-10% 0px" });
   const controls = useAnimation();
   const { theme } = useTheme();
@@ -502,11 +502,7 @@ export function ServiceSection() {
           repeat: Infinity,
           repeatType: "loop"
         }}
-        style={{
-          "--gradient-1": theme === "dark" 
-            ? "rgba(78, 84, 200, 0.3)" 
-            : "rgba(59, 130, 246, 0.2)"
-        }}
+       
       />
 
       {/* Floating decorative elements */}
