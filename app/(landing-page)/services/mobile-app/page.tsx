@@ -22,7 +22,7 @@ import {
   Target
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { FloatingObject, SectionHeader, FeatureCard } from "@/components/animation/FloatingElements";
+import { SectionHeader, FeatureCard, FloatingObject } from "@/components/animation/floatingElements";
 
 // Interface for platform feature
 interface PlatformFeature {
