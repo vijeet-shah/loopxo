@@ -116,10 +116,10 @@ export const navigationConfig: NavigationConfig = {
     displayVariant: 'icon-only',
   },
   announcement: {
-    text: "🚀 Welcome to Loopxo ",
+    text: "Book a Appoinent with us right Now",
     href: "/intro",
     enabled: true,
-    bgColor: "#3B82F6", // Default blue
+    bgColor: "#000000", 
   },
   ctaButton: {
     text: "Get Started",

@@ -135,3 +135,100 @@ export const FeatureCard = ({
     </motion.div>
   );
 };
+
+
+export const StatItem = ({ icon: Icon, title, value}) => {
+  
+  return (
+    <motion.div 
+      className={`flex flex-col items-center p-6 backdrop-blur-sm rounded-2xl border`}
+      whileHover={{ 
+        y: -5, 
+        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+      }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    >
+      <motion.div 
+        className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-gradient-to-r `}
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        animate={{
+          boxShadow: [
+            "0 0 0 rgba(255, 255, 255, 0.4)",
+            "0 0 20px rgba(255, 255, 255, 0.2)",
+            "0 0 0 rgba(255, 255, 255, 0.4)"
+          ]
+        }}
+        transition={{
+          boxShadow: {
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "loop"
+          }
+        }}
+      >
+        <Icon className="h-6 w-6 text-white" />
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className={`text-4xl font-bold mb-1 `}
+      >
+        {value}
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        {title}
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// Trust badge component
+export const TrustBadge = ({ icon: Icon, text, delay }) => {
+  
+  return (
+    <motion.div 
+      className={`flex items-center gap-2 pr-4  backdrop-blur-sm rounded-full `}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay, type: "spring", stiffness: 100, damping: 15 }}
+    >
+      <Icon className="h-4 w-4 text-blue-500" />
+      <span >
+        {text}
+      </span>
+    </motion.div>
+  );
+};
+
+
+export const FloatingElement = ({ delay, duration, x, y, size, children }) => {
+  return (
+    <motion.div
+      className="absolute"
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        width: size,
+        height: size
+      }}
+      animate={{
+        y: [0, -15, 0, 15, 0],
+        x: [0, 10, 0, -10, 0],
+        rotate: [0, 5, 0, -5, 0]
+      }}
+      transition={{
+        duration,
+        delay,
+        repeat: Infinity,
+        repeatType: "loop"
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};

@@ -20,6 +20,7 @@ export type SiteConfig = {
     url: string;
     ogImage: string;
     links: {
+      facebook: string;
       twitter: string;
       instagram: string;
       [key: string]: string; // Allow for additional custom social links
@@ -54,34 +55,36 @@ export type SiteConfig = {
   
   // Default Loopxo template configuration
   // This should be replaced with client-specific data
-  // config/site.ts
-export const siteConfig: SiteConfig = {
-  name: "Vijeet Shah",
-  legalName: "Vijeet Shah Blog",
-  description: "Personal blog and portfolio of Vijeet Shah - Thoughts on technology, web development, and personal growth.",
-  url: "https://vijeetshah.com",
-  ogImage: "/vijeet.jpg",
-  links: {
-    twitter: "https://twitter.com/vijeetshah_",
-    github: "https://github.com/vijeet-shah",
-    linkedin: "https://linkedin.com/in/vijeet-shah",
-    instagram: "https://instagram.com/",
-  },
-  contact: {
-    email: "vijeet@vijeetshah.com",
-    phone: "+91 9082053880",
-    address: {
-      street: "Mumbai",
-      locality: "Maharashtra",
-      postalCode: "400001",
-      region: "Maharashtra",
-      country: "India",
+  export const siteConfig: SiteConfig = {
+    name: "Loopxo",
+    legalName: "Loopxo",
+    description: "A highly customizable Next.js 15 template for creating modern websites with TypeScript and Tailwind CSS.",
+    url: "https://loopxo-template.vercel.app",
+    ogImage: "/images/og-image.jpg",
+    links: {
+      facebook: "https://facebook.com/loopxotemplate",
+      twitter: "https://twitter.com/loopxotemplate",
+      instagram: "https://instagram.com/loopxotemplate",
+      github: "https://github.com/loopxotemplate",
     },
-    openingHours: "Available for consultations Monday-Friday, 10 AM - 6 PM IST",
-  },
-  customFields: {
-    profession: "Full Stack Developer & Technical Writer",
-    expertise: ["Web Development", "React", "Next.js", "JavaScript", "TypeScript"],
-    yearsOfExperience: 8,
-  }
-};
+    contact: {
+      phone: "+1234567890",
+      email: "hello@loopxotemplate.com",
+      address: {
+        street: "123 Template Street",
+        locality: "Web City",
+        postalCode: "10101",
+        region: "Digital State",
+        country: "US",
+      },
+    },
+    customFields: {
+      // Add any client-specific fields here
+      industry: "Technology",
+      yearEstablished: 2024,
+      customerSatisfaction: "99%",
+    }
+  };
+
+
+  

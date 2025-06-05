@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import {  CTAConfig } from "@/types";
 import { HeroSection } from "./home/heroSection";
 import { ServiceSection } from "./home/serviceSection";
-import { CoreValue } from "./home/coreValue";
+import {CoreValue}  from "./home/coreValue";
 import { GetInTouchSection } from "./home/getInTouch";
 
 

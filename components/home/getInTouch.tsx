@@ -1,17 +1,16 @@
 "use client"
 
 import React, { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
-import { ArrowRight, Send, Phone, Mail, MapPin, ExternalLink, Check } from "lucide-react";
+import {  Send, Phone, Check, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
+import { useTranslation } from "@/lib/i18n/client-utils";
 
 export function GetInTouchSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-10% 0px" });
   const controls = useAnimation();
-  const { theme } = useTheme();
+  const { t } = useTranslation();
   
   // Form state
   const [formState, setFormState] = useState({
@@ -23,7 +22,7 @@ export function GetInTouchSection() {
     error: null
   });
   
-  // 3D Tilt effect on mouse move (similar to ServiceSection)
+  // 3D Tilt effect on mouse move
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   
   const handleMouseMove = (e) => {
@@ -35,8 +34,8 @@ export function GetInTouchSection() {
     const mouseX = e.clientX - rect.left - centerX;
     const mouseY = e.clientY - rect.top - centerY;
     
-    const tiltX = (mouseY / centerY) * 3;
-    const tiltY = -(mouseX / centerX) * 3;
+    const tiltX = (mouseY / centerY) * 2;
+    const tiltY = -(mouseX / centerX) * 2;
     
     setMousePosition({ x: tiltX, y: tiltY });
   };
@@ -63,91 +62,62 @@ export function GetInTouchSection() {
     }, 1500);
   };
   
-  // Contact methods with animations for staggered entry
-  const contactMethods = [
-    {
-      icon: Phone,
-      title: "Call Us",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
-      color: theme === "dark" ? "from-blue-400 to-indigo-500" : "from-blue-500 to-indigo-600"
-    },
-    {
-      icon: Mail,
-      title: "Email Us",
-      value: "contact@example.com",
-      href: "mailto:contact@example.com",
-      color: theme === "dark" ? "from-cyan-400 to-teal-500" : "from-cyan-500 to-teal-600"
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      value: "123 Business Ave, Suite 100",
-      href: "https://maps.google.com",
-      external: true,
-      color: theme === "dark" ? "from-amber-400 to-orange-500" : "from-amber-500 to-orange-600"
-    }
+ 
+
+  // Trust indicators
+  const trustIndicators = [
+    { icon: Star, text: t.trustedBy || "Trusted by 500+ clients" },
+    { icon: Check, text: t.response24h || "24h response time" },
+    { icon: Phone, text: t.freeConsultation || "Free consultation" }
   ];
   
   return (
     <motion.section
       ref={sectionRef}
-      className="min-h-screen relative py-24 px-6 bg-background overflow-hidden"
+      className="min-h-screen relative py-24 px-6 bg-gradient-to-b from-background via-background/95 to-background overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* Animated background gradient */}
+      {/* Enhanced animated background with professional gradients */}
       <motion.div 
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-20"
         animate={{
           background: [
-            "radial-gradient(circle at 30% 70%, var(--gradient-2) 0%, transparent 70%)",
-            "radial-gradient(circle at 60% 20%, var(--gradient-2) 0%, transparent 70%)",
-            "radial-gradient(circle at 30% 70%, var(--gradient-2) 0%, transparent 70%)"
+            "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)",
+            "radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%)"
           ]
         }}
         transition={{
-          duration: 10,
+          duration: 15,
           repeat: Infinity,
           repeatType: "reverse"
         }}
-        // style={{ 
-        //   "--gradient-1": theme === "dark" ? "rgba(59, 130, 246, 0.15)" : "rgba(59, 130, 246, 0.2)",
-        //   "--gradient-2": theme === "dark" ? "rgba(79, 70, 229, 0.15)" : "rgba(79, 70, 229, 0.2)"
-        // }}
       />
       
-      {/* Decorative floating elements */}
-      <FloatingObject
-        delay={0.2}
-        duration={6}
-        x={85}
-        y={15}
-        size={80}
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 backdrop-blur-md" />
+      {/* Professional floating elements */}
+      <FloatingObject delay={0.2} duration={8} x={85} y={15} size={120}>
+        <div className="w-full h-full rounded-2xl bg-gradient-to-br from-blue-500/5 to-indigo-500/5 backdrop-blur-xl border border-blue-200/20 dark:border-blue-700/20" />
       </FloatingObject>
       
-      <FloatingObject
-        delay={0.5}
-        duration={8}
-        x={15}
-        y={75}
-        size={100}
-      >
-        <div className="w-full h-full rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-md" />
+      <FloatingObject delay={0.5} duration={10} x={10} y={75} size={80}>
+        <div className="w-full h-full rounded-full bg-gradient-to-br from-emerald-500/5 to-teal-500/5 backdrop-blur-xl border border-emerald-200/20 dark:border-emerald-700/20" />
       </FloatingObject>
       
-      {/* Content container with 3D tilt effect */}
+      <FloatingObject delay={1} duration={12} x={90} y={85} size={60}>
+        <div className="w-full h-full rounded-xl bg-gradient-to-br from-amber-500/5 to-orange-500/5 backdrop-blur-xl border border-amber-200/20 dark:border-amber-700/20" />
+      </FloatingObject>
+      
+      {/* Content container with enhanced 3D effect */}
       <motion.div 
         className="container mx-auto max-w-7xl relative z-10"
         style={{ 
-          perspective: "1000px",
+          perspective: "1200px",
           transform: `rotateX(${mousePosition.x}deg) rotateY(${mousePosition.y}deg)`
         }}
       >
-        {/* Section header with animations */}
+        {/* Enhanced section header */}
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-16 relative"
+          className="text-center max-w-4xl mx-auto mb-20 relative"
           initial="hidden"
           animate={controls}
           variants={{
@@ -155,11 +125,30 @@ export function GetInTouchSection() {
             visible: { opacity: 1 }
           }}
         >
+          {/* Decorative badge */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { 
+                opacity: 1, 
+                y: 0,
+                transition: { type: "spring", stiffness: 100, damping: 20 }
+              }
+            }}
+            className="inline-block mb-6"
+          >
+            <div className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/50 dark:to-indigo-950/50 border border-blue-200/50 dark:border-blue-700/50">
+              <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                {t.getInTouch || "Get In Touch"}
+              </span>
+            </div>
+          </motion.div>
+
           <motion.h2
             variants={{
               hidden: { 
                 opacity: 0, 
-                y: 20,
+                y: 30,
                 filter: "blur(10px)"  
               },
               visible: { 
@@ -174,16 +163,18 @@ export function GetInTouchSection() {
                 }
               }
             }}
-            className="text-4xl md:text-6xl font-bold mb-6 relative"
+            className="text-4xl md:text-6xl font-bold mb-6 relative leading-tight"
           >
             <span className="text-foreground">
-              Let&#39;s Start a
+              {t.letsStart || "Let's Start a "}
             </span>
-            <br />
-            <span className="relative inline-block text-blue-500 dark:text-blue-400">
-              Conversation
+            <span className="relative inline-block">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">
+                {t.conversation || "Conversation"}
+              </span>           
+
               <motion.span
-                className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ 
@@ -209,95 +200,41 @@ export function GetInTouchSection() {
                 }
               }
             }}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8"
           >
-            Have a question or want to work together? We&#39;d love to hear from you.
-            Reach out through any of the methods below.
+            {t.contactDescription || "Have a question or want to work together? We'd love to hear from you. Reach out through any of the methods below."}
           </motion.p>
+
+          {/* Trust indicators */}
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { 
+                opacity: 1, 
+                y: 0,
+                transition: {
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                  delay: 0.5
+                }
+              }
+            }}
+            className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
+          >
+            {trustIndicators.map((indicator, index) => (
+              <div key={index} className="flex items-center gap-2">
+                <indicator.icon className="w-4 h-4 text-blue-500" />
+                <span>{indicator.text}</span>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
       
-        {/* Contact information and form in a two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Contact cards column */}
-          <motion.div 
-            className="space-y-6"
-            initial="hidden"
-            animate={controls}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1 }
-            }}
-          >            
-            {/* Contact method cards with animations */}
-            {contactMethods.map((method, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: { 
-                    opacity: 0, 
-                    y: 50,
-                    filter: "blur(10px)"
-                  },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    filter: "blur(0px)",
-                    transition: { 
-                      type: "spring", 
-                      damping: 30, 
-                      stiffness: 200, 
-                      delay: index * 0.1 + 0.4
-                    }
-                  }
-                }}
-              >
-                <Link 
-                  href={method.href}
-                  target={method.external ? "_blank" : "_self"}
-                  rel={method.external ? "noopener noreferrer" : ""}
-                  className="group block p-6 bg-background border border-border shadow-sm rounded-xl hover:shadow-md transition-all hover:-translate-y-1 relative overflow-hidden"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className={cn(
-                      "w-12 h-12 rounded-full flex items-center justify-center",
-                      "bg-gradient-to-r",
-                      method.color
-                    )}>
-                      <method.icon className="w-5 h-5 text-white" />
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-medium mb-1">{method.title}</h4>
-                      <p className="text-muted-foreground">{method.value}</p>
-                      
-                      <div className="flex items-center gap-1 mt-2 text-blue-500 dark:text-blue-400 font-medium">
-                        <span>Contact us</span>
-                        {method.external ? <ExternalLink className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Animated gradient background on hover */}
-                  <motion.div
-                    className={cn(
-                      "absolute inset-0 opacity-0 group-hover:opacity-5",
-                      "bg-gradient-to-r",
-                      method.color
-                    )}
-                    initial={{ x: "-100%" }}
-                    whileHover={{ 
-                      x: "100%",
-                      transition: { duration: 0.8 }
-                    }}
-                  />
-                </Link>
-              </motion.div>
-            ))}
-            
+        {/* Enhanced contact information and form layout */}
         
-          </motion.div>
           
-          {/* Contact form column */}
+          {/* Enhanced contact form */}
           <motion.div
             initial="hidden"
             animate={controls}
@@ -315,8 +252,16 @@ export function GetInTouchSection() {
               }
             }}
           >
-            <div className="bg-background border border-border rounded-xl shadow-sm p-8">
-              <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
+            <div className="bg-background/80 backdrop-blur-sm border border-border/50 rounded-2xl shadow-lg p-8 relative overflow-hidden">
+              {/* Form header */}
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold mb-2 text-foreground">
+                  {t.sendMessage || "Send a Message"}
+                </h3>
+                <p className="text-muted-foreground">
+                  {t.formDescription || "Fill out the form below and we'll get back to you within 24 hours."}
+                </p>
+              </div>
               
               <AnimatePresence mode="wait">
                 {formState.submitted ? (
@@ -325,16 +270,18 @@ export function GetInTouchSection() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
-                    className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg border border-green-200 dark:border-green-700"
+                    className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 p-8 rounded-xl border border-green-200/50 dark:border-green-700/50"
                   >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-green-100 dark:bg-green-800 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Check className="w-5 h-5 text-green-600 dark:text-green-400" />
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+                        <Check className="w-6 h-6 text-white" />
                       </div>
-                      <h4 className="text-xl font-medium text-green-800 dark:text-green-400">Message Sent!</h4>
+                      <h4 className="text-2xl font-bold text-green-800 dark:text-green-400">
+                        {t.messageSent || "Message Sent!"}
+                      </h4>
                     </div>
-                    <p className="text-green-700 dark:text-green-300 mb-4">
-                      Thank you for reaching out. We&#39;ve received your message and will get back to you shortly.
+                    <p className="text-green-700 dark:text-green-300 mb-6 text-lg">
+                      {t.thankYouMessage || "Thank you for reaching out. We've received your message and will get back to you shortly."}
                     </p>
                     <button
                       onClick={() => setFormState({
@@ -345,9 +292,9 @@ export function GetInTouchSection() {
                         submitting: false,
                         error: null
                       })}
-                      className="text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-5 py-2.5 rounded-lg font-medium transition-all"
+                      className="text-white bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-6 py-3 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-green-500/25"
                     >
-                      Send Another Message
+                      {t.sendAnother || "Send Another Message"}
                     </button>
                   </motion.div>
                 ) : (
@@ -359,52 +306,55 @@ export function GetInTouchSection() {
                     onSubmit={handleSubmit}
                     className="space-y-6"
                   >
-                    {/* Name field */}
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium mb-2">
-                        Your Name
-                      </label>
-                      <motion.div
-                        whileFocus={{ scale: 1.01 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      >
-                        <input
-                          id="name"
-                          type="text"
-                          required
-                          className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
-                          placeholder="John Doe"
-                          value={formState.name}
-                          onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
-                        />
-                      </motion.div>
-                    </div>
-                    
-                    {/* Email field */}
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium mb-2">
-                        Email Address
-                      </label>
-                      <motion.div
-                        whileFocus={{ scale: 1.01 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      >
-                        <input
-                          id="email"
-                          type="email"
-                          required
-                          className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
-                          placeholder="your@email.com"
-                          value={formState.email}
-                          onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
-                        />
-                      </motion.div>
+                    {/* Enhanced form fields */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Name field */}
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-semibold mb-3 text-foreground">
+                          {t.yourName || "Your Name"} <span className="text-red-500">*</span>
+                        </label>
+                        <motion.div
+                          whileFocus={{ scale: 1.02 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        >
+                          <input
+                            id="name"
+                            type="text"
+                            required
+                            className="w-full px-4 py-4 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all placeholder:text-muted-foreground/50"
+                            placeholder={t.namePlaceholder || "John Doe"}
+                            value={formState.name}
+                            onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
+                          />
+                        </motion.div>
+                      </div>
+                      
+                      {/* Email field */}
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-semibold mb-3 text-foreground">
+                          {t.emailAddress || "Email Address"} <span className="text-red-500">*</span>
+                        </label>
+                        <motion.div
+                          whileFocus={{ scale: 1.02 }}
+                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        >
+                          <input
+                            id="email"
+                            type="email"
+                            required
+                            className="w-full px-4 py-4 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all placeholder:text-muted-foreground/50"
+                            placeholder={t.emailPlaceholder || "your@email.com"}
+                            value={formState.email}
+                            onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
+                          />
+                        </motion.div>
+                      </div>
                     </div>
                     
                     {/* Message field */}
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium mb-2">
-                        Your Message
+                      <label htmlFor="message" className="block text-sm font-semibold mb-3 text-foreground">
+                        {t.yourMessage || "Your Message"} <span className="text-red-500">*</span>
                       </label>
                       <motion.div
                         whileFocus={{ scale: 1.01 }}
@@ -413,36 +363,37 @@ export function GetInTouchSection() {
                         <textarea
                           id="message"
                           required
-                          rows={5}
-                          className="w-full px-4 py-3 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all resize-none"
-                          placeholder="How can we help you?"
+                          rows={6}
+                          className="w-full px-4 py-4 rounded-xl border border-border/50 bg-background/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all resize-none placeholder:text-muted-foreground/50"
+                          placeholder={t.messagePlaceholder || "Tell us about your project or how we can help you..."}
                           value={formState.message}
                           onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
                         />
                       </motion.div>
                     </div>
                     
-                    {/* Error message if there is one */}
+                    {/* Error message */}
                     {formState.error && (
                       <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm border border-red-200 dark:border-red-800"
+                        className="p-4 rounded-xl bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 border border-red-200/50 dark:border-red-800/50"
                       >
                         {formState.error}
                       </motion.div>
                     )}
                     
-                    {/* Submit button */}
+                    {/* Enhanced submit button */}
                     <motion.button
                       type="submit"
                       disabled={formState.submitting}
                       className={cn(
-                        "w-full flex items-center justify-center gap-2 py-3 px-6 rounded-lg font-medium text-white",
+                        "w-full flex items-center justify-center gap-3 py-4 px-8 rounded-xl font-semibold text-white text-lg",
                         "bg-gradient-to-r from-blue-500 to-indigo-600",
                         "hover:from-blue-600 hover:to-indigo-700",
                         "focus:outline-none focus:ring-2 focus:ring-blue-500/50",
-                        "transition-all",
+                        "shadow-lg hover:shadow-xl hover:shadow-blue-500/25",
+                        "transition-all duration-300",
                         formState.submitting && "opacity-80 cursor-not-allowed"
                       )}
                       whileHover={{ 
@@ -454,16 +405,16 @@ export function GetInTouchSection() {
                       {formState.submitting ? (
                         <>
                           <motion.div 
-                            className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                            className="w-6 h-6 border-2 border-white border-t-transparent rounded-full"
                             animate={{ rotate: 360 }}
                             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                           />
-                          <span>Sending...</span>
+                          <span>{t.sending || "Sending..."}</span>
                         </>
                       ) : (
                         <>
                           <Send className="w-5 h-5" />
-                          <span>Send Message</span>
+                          <span>{t.sendMessage || "Send Message"}</span>
                         </>
                       )}
                     </motion.button>
@@ -472,17 +423,16 @@ export function GetInTouchSection() {
               </AnimatePresence>
             </div>
           </motion.div>
-        </div>
       </motion.div>
     </motion.section>
   );
 }
 
-// Floating decorative element similar to ServiceSection
+// Enhanced floating decorative element
 const FloatingObject = ({ delay, duration, x, y, size, children }) => {
   return (
     <motion.div
-      className="absolute"
+      className="absolute pointer-events-none"
       style={{
         left: `${x}%`,
         top: `${y}%`,
@@ -490,15 +440,17 @@ const FloatingObject = ({ delay, duration, x, y, size, children }) => {
         height: size
       }}
       animate={{
-        y: [0, -20, 0, 20, 0],
-        x: [0, 15, 0, -15, 0],
-        rotate: [0, 10, 0, -10, 0]
+        y: [0, -30, 0, 20, 0],
+        x: [0, 20, 0, -15, 0],
+        rotate: [0, 5, 0, -5, 0],
+        scale: [1, 1.1, 1, 0.95, 1]
       }}
       transition={{
         duration,
         delay,
         repeat: Infinity,
-        repeatType: "loop"
+        repeatType: "loop",
+        ease: "easeInOut"
       }}
     >
       {children}

@@ -5,876 +5,559 @@ export type TranslationDictionary<T extends Record<string, string>> = {
 
 // The base type that all language dictionaries must follow
 export type BaseTranslations = {
-  // Navigation
+  // Hero Section
   home: string;
-  about: string;
-  services: string;
-  blog: string;
-  contact: string;
-
-  // Common actions
-  login: string;
-  register: string;
-  applyNow: string;
-  learnMore: string;
-  viewAll: string;
-
-  // Hero section
-  name: string;
-  post: string;
-  line: string;
-  heroTitle: string;
-  heroDescription: string;
-  exploreMore: string;
-
-  // Blog specific
-  blogTitle: string;
-  blogDescription: string;
-  featuredPost: string;
-  allPosts: string;
-  readMore: string;
-  minRead: string;
-  backToBlog: string;
-  tableOfContents: string;
-  ViewAllPosts: string;
-
-  // Footer
-  footerTagline: string;
-  allRightsReserved: string;
-  quickLinks: string;
-
-  // Newsletter
-  joinNewsletter: string;
-  newsletterDescription: string;
-  subscribeButton: string;
-  privacyNotice: string;
-  stayUpdated: string;
-  subscribed: string;
-  receiving: string;
-  subscribeAnother: string;
-
-  // Personal branding
-  developer: string;
-  educator: string;
-  personalBio: string;
-  downloadResume: string;
-  viewProjects: string;
-  connectWithMe: string;
-
-  // Blog categories
-  webDevelopment: string;
-  javascript: string;
-  react: string;
-  nextjs: string;
-  typescript: string;
-  uiux: string;
-  performance: string;
-  careerGrowth: string;
-
-  // Topics
-  exploreTopics: string;
-  recentArticles: string;
-
-  // Project sections
-  myProjects: string;
-  projectsDescription: string;
-  viewLiveDemo: string;
-  viewSourceCode: string;
-  technologiesUsed: string;
-
-  // Skills section
-  mySkills: string;
-  frontendDevelopment: string;
+  digitalInnovation: string;
+  digitalSolutions: string;
+  thatDriveGrowth: string;
+  yourVisionBuilt: string;
+  deliveringResults: string;
+  partneringWith: string;
+  clientSupport: string;
+  getStarted: string;
+  viewOurWork: string;
+  transformingBusinesses: string;
+  latestProjectGrowth: string;
+  projects: string;
+  clients: string;
+  caseStudies: string;
+  ourCoreValues: string;
+  valuesDescription: string;
+  integrity: string;
+  integrityDescription: string;
+  collaboration: string;
+  collaborationDescription: string;
+  reliability: string;
+  reliabilityDescription: string;
+  innovation: string;
+  innovationDescription: string;
+  uiUxDesign: string;
+  uiUxDesignDescription: string;
+  mobileApps: string;
+  mobileAppsDescription: string;
   backendDevelopment: string;
-  devOps: string;
-  tools: string;
+  backendDevelopmentDescription: string;
+  frontendDevelopment: string;
+  frontendDevelopmentDescription: string;
+  artificialIntelligence: string;
+  artificialIntelligenceDescription: string;
+  dataScience: string;
+  dataScienceDescription: string;
+  cloudDevOps: string;
+  cloudDevOpsDescription: string;
 
-  // Contact form
+  getStartedWithUs: string;
+  readyToGetStarted: string;
+  joinThousandsOfSatisfiedCustomersToday: string;
+  contactUs: string;
   getInTouch: string;
-  fullName: string;
-  email: string;
-  message: string;
+  letsStartAConversation: string;
+  wantToWorkTogether: string;
+  trustedByClients: string;
+  responseTime: string;
+  freeConsultation: string;
+  sendAMessage: string;
+  willGetBack: string;
+  yourName: string;
+  vijeetShah: string;
+  emailAddress: string;
+  yourEmail: string;
+  yourMessage: string;
+  weCanHelpYou: string;
   sendMessage: string;
-  contactSuccess: string;
+  creatingInnovativeDigitalSolutions: string;
 
-  // About page
-  aboutMe: string;
-  myJourney: string;
-  myExperience: string;
-  education: string;
-
-  //About Me
-  line1: string;
-  line2: string;
-  line3: string;
-  line4: string;
-  line5: string;
-
-  //YoutubeSection
-  youTubeChannel: string;
-  latestVideos: string;
-  subscribe: string;
-  vlogVideos: string;
-  technicalContent: string;
-  comingSoon: string;
-  technicalLine: string;
-  getNotified: string;
-
-  // Allow for extension with any string key
   [key: string]: string;
 };
 
 // English translations
 const en: BaseTranslations = {
-  // Navigation
   home: "Home",
-  about: "About",
-  services: "Services",
-  blog: "Blog",
-  contact: "Contact",
-
-  // Common actions
-  login: "Login",
-  register: "Register",
-  applyNow: "Apply Now",
-  learnMore: "Learn More",
-  viewAll: "View All",
-
-  // Hero section
-  name: "Vijeet Shah",
-  post: "Technical Product Manager",
-  line: "Turning ideas into impactful products | Product leadership with engineering excellence",
-  heroTitle: "Vijeet Shah's Blog",
-  heroDescription:
-    "Sharing ideas, tutorials, and insights about development and technology.",
-  exploreMore: "Explore More",
-
-  // Blog specific
-  blogTitle: "Blog",
-  blogDescription: "All my writing in one place",
-  featuredPost: "Featured Post",
-  allPosts: "All Posts",
-  readMore: "Read More",
-  minRead: "min read",
-  backToBlog: "Back to Blog",
-  tableOfContents: "Table of Contents",
-  ViewAllPosts: "View All Posts",
-
-  // Footer
-  footerTagline: "Software Engineer & Educator",
-  allRightsReserved: "All rights reserved.",
-  quickLinks: "Quick Links",
-
-  // Newsletter
-  joinNewsletter: "Join My Newsletter",
-  newsletterDescription:
-    "Get the latest articles, tutorials, and updates delivered to your inbox.",
-  subscribeButton: "Subscribe",
-  privacyNotice: "I respect your privacy. No spam, ever. Unsubscribe anytime.",
-  stayUpdated: "Stay Updated with My Newsletter",
-  subscribed: "You're subscribed to our newsletter",
-  receiving: "is receiving our weekly updates.",
-  subscribeAnother: "Subscribe with another email",
-
-  // Personal branding
-  developer: "Developer",
-  educator: "Educator",
-  personalBio:
-    "Versatile software engineer, committed to delivering high-quality and scalable web applications.",
-  downloadResume: "Download Resume",
-  viewProjects: "View Projects",
-  connectWithMe: "Connect with me",
-
-  // Blog categories
-  webDevelopment: "Web Development",
-  javascript: "JavaScript",
-  react: "React",
-  nextjs: "Next.js",
-  typescript: "TypeScript",
-  uiux: "UI/UX",
-  performance: "Performance",
-  careerGrowth: "Career Growth",
-
-  // Topics
-  exploreTopics: "Explore Topics",
-  recentArticles: "Recent Articles",
-
-  // Project sections
-  myProjects: "My Projects",
-  projectsDescription: "Here are some of the projects I've worked on.",
-  viewLiveDemo: "View Live Demo",
-  viewSourceCode: "View Source Code",
-  technologiesUsed: "Technologies Used",
-
-  // Skills section
-  mySkills: "My Skills",
-  frontendDevelopment: "Frontend Development",
+  digitalInnovation: "Digital Innovation",
+  digitalSolutions: "Digital Solutions",
+  thatDriveGrowth: "That Drive Growth",
+  yourVisionBuilt:
+    "Your Vision, Validated and Built. We partner to efficiently develop your concepts into impactful digital solutions, delivering tangible results fast.",
+  deliveringResults: "Delivering Proven Results",
+  partneringWith: "Partnering with 100+ Visionaries",
+  clientSupport: "Dedicated 5-Star Client Support",
+  getStarted: "Get Started",
+  viewOurWork: "View Our Work",
+  transformingBusinesses: "Transforming Businesses",
+  latestProjectGrowth: "Our latest project delivered 40% growth",
+  projects: "Projects",
+  clients: "Clients",
+  caseStudies: "Case Studies",
+  ourCoreValues: "Our Core Values",
+  valuesDescription:
+    "At the heart of our organization lies a set of unwavering principles that define who we are and guide every decision we make. These values aren't merely words on a wall—they're the DNA of our success, the promise we uphold with every client interaction, and the foundation upon which we build lasting partnerships.",
+  integrity: "Integrity",
+  integrityDescription:
+    "Transparency and ethical excellence form the cornerstone of our identity. We operate with unwavering moral standards, fostering deep trust through authentic communication, complete accountability, and honest dealings in every interaction.",
+  collaboration: "Collaboration",
+  collaborationDescription:
+    "Our greatest triumphs emerge from the synergy of collective brilliance. We cultivate an environment where diverse perspectives converge, knowledge flows freely, and individual strengths unite to create extraordinary outcomes that exceed expectations.",
+  reliability: "Reliability",
+  reliabilityDescription:
+    "Consistency is our signature. We deliver unwavering performance, maintaining the highest standards of dependability. Our commitment to reliability means you can confidently rely on us to exceed expectations, every single time.",
+  innovation: "Innovation",
+  innovationDescription:
+    "We are pioneers in an ever-evolving landscape, continuously pushing boundaries to redefine what's possible. Our relentless pursuit of innovation drives us to anticipate tomorrow's challenges and deliver cutting-edge solutions that transform industries.",
+  uiUxDesign: "UI/UX Design",
+  uiUxDesignDescription:
+    "We focus on creating attractive and user-friendly interfaces that significantly boost engagement and user satisfaction. By emphasizing intuitive design elements, we create experiences that keep users connected.",
+  mobileApps: "Mobile Apps",
+  mobileAppsDescription:
+    "We specialize in developing innovative and user-friendly mobile applications for both iOS and Android platforms. Our process covers every stage from ideation and design to final deployment.",
   backendDevelopment: "Backend Development",
-  devOps: "DevOps",
-  tools: "Tools",
-
-  // Contact form
-  getInTouch: "Get in Touch",
-  fullName: "Full Name",
-  email: "Email",
-  message: "Message",
-  sendMessage: "Send Message",
-  contactSuccess: "Thank you for your message! I'll get back to you soon.",
-
-  // About page
-  aboutMe: "About Me",
-  myJourney: "My Journey",
-  myExperience: "My Experience",
-  education: "Education",
-
-  //About me
-  line1: "My Journey",
-  line2:
-    "After graduating in Computer Science, I started my career as a Software Engineer while also completing my Master's degree. After nearly two years in the corporate world, I transitioned to working remotely with international startups.",
-  line3:
-    "During this time, I discovered my passion for management and product development, leading me to start my own agency, Loopxo. There, I helped clients build MVPs, websites, and digital products (SAAS), while also taking on marketing projects.",
-  line4:
-    "Later, I founded Shri Laxmi Finance, a loan business in India, after securing an RBI license. Managing both Loopxo and Srilakshmi Finance strengthened my leadership, operational, and technical skills.",
-  line5:
-    "Today, I focus on building tech products and managing the technical side of my financial business, combining entrepreneurship, technology, and innovation.",
-
-  youTubeChannel: "My YouTube Channel",
-  latestVideos: "Check out my latest videos",
-  subscribe: "Subscribe",
-  vlogVideos: "Fun & Vlog Videos",
-  technicalContent: "Technical Content",
-  comingSoon: "Coming Soon",
-  technicalLine:
-    "Technical tutorials and coding videos are in production. Subscribe to my channel to be notified when new content is released!",
-  getNotified: "Get Notified",
+  backendDevelopmentDescription:
+    "We offer responsive, secure, and user-centric web solutions to elevate your online presence. Our approach ensures your website aligns with modern standards and supports business growth.",
+  frontendDevelopment: "Frontend Development",
+  frontendDevelopmentDescription:
+    "We deliver expertly crafted website designs that blend aesthetics with functionality. Our designs prioritize user experience and intuitive navigation.",
+  artificialIntelligence: "Artificial Intelligence",
+  artificialIntelligenceDescription:
+    "We harness the power of AI to connect information and convert data into actionable insights, helping organizations make strategic decisions with precision.",
+  dataScience: "Data Science & Analytics",
+  dataScienceDescription:
+    "We specialize in uncovering hidden stories in your data using advanced visualizations, actionable insights, and precise forecasting to empower strategic decisions.",
+  cloudDevOps: "Managed Cloud & DevOps",
+  cloudDevOpsDescription:
+    "We optimize your cloud infrastructure and streamline operations through managed cloud and DevOps services. Our approach integrates automation, continuous monitoring, and agile practices.",
+      getStartedWithUs: "Get Started With Us",
+      readyToGetStarted: "Ready to Get Started?",
+      joinThousandsOfSatisfiedCustomersToday: "Join thousands of satisfied customers today.",
+      contactUs: "Contact Us",
+      getInTouch: "Get In Touch",
+      letsStartAConversation: "Let's Start a Conversation",
+      wantToWorkTogether: "Have a question or want to work together? We'd love to hear from you. Reach out through any of the methods below.",
+      trustedByClients: "Trusted by 500+ clients",
+      responseTime: "24h response time",
+      freeConsultation: "Free consultation",
+      sendAMessage: "Send a Message",
+      willGetBack: "Fill out the form below and we'll get back to you within 24 hours.",
+      yourName: "Your Name",
+      vijeetShah: "Vijeet Shah",
+      emailAddress: "Email Address",
+      yourEmail: "your@email.com",
+      yourMessage: "Your Message",
+      weCanHelpYou: "Tell us about your project or how we can help you...",
+      sendMessage: "Send Message",
+      creatingInnovativeDigitalSolutions: "We specialize in creating innovative digital solutions that drive business growth. Our team of experts is dedicated to delivering exceptional results that exceed expectations."
+    
 };
 
-// Hindi translations
 const hi: BaseTranslations = {
-  // Navigation
   home: "होम",
-  about: "मेरे बारे में",
-  services: "सेवाएं",
-  blog: "ब्लॉग",
-  contact: "संपर्क",
+  digitalInnovation: "डिजिटल नवाचार",
+  digitalSolutions: "डिजिटल समाधान",
+  thatDriveGrowth: "जो विकास को आगे बढ़ाते हैं",
+  yourVisionBuilt:
+    "आपकी दृष्टि, मान्य और निर्मित। हम आपके विचारों को प्रभावशाली डिजिटल समाधानों में कुशलता से विकसित करने के लिए साझेदारी करते हैं, जो तेज़ी से ठोस परिणाम प्रदान करते हैं।",
+  deliveringResults: "सिद्ध परिणाम प्रदान करना",
+  partneringWith: "100+ दूरदर्शियों के साथ साझेदारी",
+  clientSupport: "समर्पित 5-स्टार क्लाइंट समर्थन",
+  getStarted: "शुरू करें",
+  viewOurWork: "हमारा कार्य देखें",
+  transformingBusinesses: "व्यवसायों का रूपांतरण",
+  latestProjectGrowth: "हमारे नवीनतम प्रोजेक्ट ने 40% वृद्धि प्रदान की",
+  projects: "प्रोजेक्ट्स",
+  clients: "क्लाइंट्स",
+  caseStudies: "मामले का अध्ययन",
+  ourCoreValues: "हमारे मूल मूल्य",
+  valuesDescription:
+    "हमारे संगठन के केंद्र में ऐसी अटल सिद्धांतों की एक श्रृंखला है जो यह परिभाषित करती है कि हम कौन हैं और प्रत्येक निर्णय को मार्गदर्शन करती है। ये मूल्य केवल दीवार पर लिखे शब्द नहीं हैं—वे हमारी सफलता की डीएनए हैं, हर क्लाइंट बातचीत में हम जो वादा निभाते हैं, और दीर्घकालिक साझेदारियों की नींव हैं।",
+  integrity: "ईमानदारी",
+  integrityDescription:
+    "पारदर्शिता और नैतिक उत्कृष्टता हमारी पहचान का आधार हैं। हम अडिग नैतिक मानकों के साथ कार्य करते हैं, हर बातचीत में प्रामाणिक संचार, पूर्ण जवाबदेही और ईमानदार व्यवहार के माध्यम से गहरी विश्वास पैदा करते हैं।",
+  collaboration: "सहयोग",
+  collaborationDescription:
+    "हमारी सबसे बड़ी सफलताएँ सामूहिक प्रतिभा की समन्वय से उत्पन्न होती हैं। हम एक ऐसा वातावरण तैयार करते हैं जहाँ विविध दृष्टिकोण एकत्रित होते हैं, ज्ञान स्वतंत्र रूप से प्रवाहित होता है, और व्यक्तिगत ताकतें मिलकर असाधारण परिणाम उत्पन्न करती हैं जो अपेक्षाओं से परे जाते हैं।",
+  reliability: "विश्वसनीयता",
+  reliabilityDescription:
+    "संगति हमारी पहचान है। हम अडिग प्रदर्शन प्रदान करते हैं, उच्चतम विश्वसनीयता मानकों को बनाए रखते हैं। हमारी प्रतिबद्धता विश्वसनीयता के लिए है, जिससे आप हर बार हम पर पूरी तरह भरोसा कर सकते हैं।",
+  innovation: "नवाचार",
+  innovationDescription:
+    "हम निरंतर विकसित हो रहे परिदृश्य में अग्रणी हैं, लगातार संभावनाओं की सीमाओं को पार करते हैं। नवाचार की हमारी सतत खोज हमें आने वाली चुनौतियों की भविष्यवाणी करने और अत्याधुनिक समाधान प्रदान करने के लिए प्रेरित करती है जो उद्योगों को रूपांतरित करते हैं।",
+  uiUxDesign: "यूआई-यूएक्स डिज़ाइन",
+  uiUxDesignDescription:
+    "हम आकर्षक और उपयोगकर्ता-अनुकूल इंटरफेस बनाने पर ध्यान केंद्रित करते हैं जो जुड़ाव और उपयोगकर्ता संतुष्टि को काफी बढ़ाते हैं। सहज डिज़ाइन तत्वों पर ध्यान केंद्रित करके, हम ऐसे अनुभव बनाते हैं जो उपयोगकर्ताओं को जोड़े रखते हैं।",
 
-  // Common actions
-  login: "लॉगिन",
-  register: "रजिस्टर",
-  applyNow: "अभी आवेदन करें",
-  learnMore: "और जानें",
-  viewAll: "सभी देखें",
+  mobileApps: "मोबाइल ऐप्स",
+  mobileAppsDescription:
+    "हम iOS और Android दोनों प्लेटफार्मों के लिए नवाचारी और उपयोगकर्ता-अनुकूल मोबाइल एप्लिकेशन के विकास में विशेषज्ञ हैं। हमारी प्रक्रिया विचार, डिज़ाइन से लेकर अंतिम डिप्लॉयमेंट तक हर चरण को शामिल करती है।",
 
-  // Hero section
-  name: "विजीत शाह",
-  post: "तकनीकी उत्पाद प्रबंधक",
-  line: "विचारों को प्रभावशाली उत्पादों में बदलना | इंजीनियरिंग उत्कृष्टता के साथ उत्पाद नेतृत्व",
-  heroTitle: "विजीत शाह के ब्लॉग में आपका स्वागत है",
-  heroDescription:
-    "विकास और प्रौद्योगिकी के बारे में विचार, ट्यूटोरियल और अंतर्दृष्टि साझा करना।",
-  exploreMore: "और एक्सप्लोर करें",
-
-  // Blog specific
-  blogTitle: "ब्लॉग",
-  blogDescription: "मेरी सारी लिखी गई सामग्री एक ही जगह एकत्रित है",
-  featuredPost: "विशेष पोस्ट",
-  allPosts: "सभी पोस्ट",
-  readMore: "और पढ़ें",
-  minRead: "मिनट का पठन",
-  backToBlog: "ब्लॉग पर वापस जाएं",
-  tableOfContents: "विषय-सूची",
-  ViewAllPosts: "सभी पोस्ट देखें",
-
-  // Footer
-  footerTagline: "सॉफ्टवेयर इंजीनियर और शिक्षक",
-  allRightsReserved: "सर्वाधिकार सुरक्षित।",
-  quickLinks: "त्वरित लिंक",
-
-  // Newsletter
-  joinNewsletter: "मेरे न्यूज़लेटर में शामिल हों",
-  newsletterDescription:
-    "नवीनतम लेख, ट्यूटोरियल और अपडेट अपने इनबॉक्स में प्राप्त करें।",
-  subscribeButton: "सब्सक्राइब",
-  privacyNotice:
-    "मैं आपकी गोपनीयता का सम्मान करता हूं। कोई स्पैम नहीं, कभी भी। किसी भी समय अनसब्सक्राइब करें।",
-    stayUpdated: "मेरे न्यूज़लेटर के साथ अपडेटेड रहें",
-  subscribed: "आप हमारे न्यूज़लेटर के सदस्य हैं",
-  receiving: "हमारे साप्ताहिक अपडेट प्राप्त कर रहा है।",
-  subscribeAnother: "दूसरे ईमेल के साथ सदस्यता लें",
-
-  // Personal branding
-  developer: "डेवलपर",
-  educator: "शिक्षक",
-  personalBio:
-    "बहुमुखी सॉफ्टवेयर इंजीनियर, उच्च गुणवत्ता और स्केलेबल वेब एप्लिकेशन देने के लिए प्रतिबद्ध।",
-  downloadResume: "रिज्यूमे डाउनलोड करें",
-  viewProjects: "प्रोजेक्ट्स देखें",
-  connectWithMe: "मुझसे जुड़ें",
-
-  // Blog categories
-  webDevelopment: "वेब डेवलपमेंट",
-  javascript: "जावास्क्रिप्ट",
-  react: "रिएक्ट",
-  nextjs: "नेक्स्ट.जेएस",
-  typescript: "टाइपस्क्रिप्ट",
-  uiux: "यूआई/यूएक्स",
-  performance: "परफॉरमेंस",
-  careerGrowth: "करियर ग्रोथ",
-
-  // Topics
-  exploreTopics: "विषयों की खोज करें",
-  recentArticles: "हाल के लेख",
-
-  // Project sections
-  myProjects: "मेरे प्रोजेक्ट्स",
-  projectsDescription: "यहां कुछ प्रोजेक्ट्स हैं जिन पर मैंने काम किया है।",
-  viewLiveDemo: "लाइव डेमो देखें",
-  viewSourceCode: "सोर्स कोड देखें",
-  technologiesUsed: "प्रयुक्त तकनीकें",
-
-  // Skills section
-  mySkills: "मेरे कौशल",
-  frontendDevelopment: "फ्रंटएंड डेवलपमेंट",
   backendDevelopment: "बैकएंड डेवलपमेंट",
-  devOps: "डेवऑप्स",
-  tools: "टूल्स",
+  backendDevelopmentDescription:
+    "हम आपकी ऑनलाइन उपस्थिति को बेहतर बनाने के लिए प्रतिक्रियाशील, सुरक्षित और उपयोगकर्ता-अनुकूल वेब समाधान प्रदान करते हैं। हमारा दृष्टिकोण आपकी वेबसाइट को आधुनिक मानकों के अनुरूप बनाने और व्यवसायिक वृद्धि को बढ़ावा देने पर केंद्रित है।",
 
-  // Contact form
-  getInTouch: "संपर्क में रहें",
-  fullName: "पूरा नाम",
-  email: "ईमेल",
-  message: "संदेश",
+  frontendDevelopment: "फ्रंटएंड डेवलपमेंट",
+  frontendDevelopmentDescription:
+    "हम सौंदर्यशास्त्र और कार्यक्षमता का संयोजन करते हुए विशेषज्ञता से तैयार की गई वेबसाइट डिज़ाइन प्रदान करते हैं। हमारे डिज़ाइन उपयोगकर्ता अनुभव और सहज नेविगेशन को प्राथमिकता देते हैं।",
+
+  artificialIntelligence: "कृत्रिम बुद्धिमत्ता",
+  artificialIntelligenceDescription:
+    "हम एआई की शक्ति का उपयोग करके जानकारी को जोड़ने और डेटा को कार्रवाई योग्य अंतर्दृष्टियों में बदलने पर ध्यान केंद्रित करते हैं। इससे संगठनों को सटीकता के साथ रणनीतिक निर्णय लेने में मदद मिलती है।",
+
+  dataScience: "डेटा विश्लेषण और डेटा साइंस",
+  dataScienceDescription:
+    "हम उन्नत विज़ुअलाइज़ेशन, कार्रवाई योग्य अंतर्दृष्टियों और सटीक पूर्वानुमान का उपयोग करके आपके डेटा में छिपी कहानियों को उजागर करने में माहिर हैं, जिससे रणनीतिक निर्णयों को सशक्त बनाया जा सके।",
+
+  cloudDevOps: "मैनेज्ड क्लाउड और देवऑप्स",
+  cloudDevOpsDescription:
+    "हम मैनेज्ड क्लाउड और देवऑप्स सेवाओं के माध्यम से आपके क्लाउड इन्फ्रास्ट्रक्चर को अनुकूलित करने और संचालन को सुव्यवस्थित करने में विशेषज्ञ हैं। हमारा दृष्टिकोण स्वचालन, सतत निगरानी और एगाइल पद्धतियों को एकीकृत करता है।",
+
+    getStartedWithUs: "हमारे साथ शुरू करें",
+  readyToGetStarted: "क्या आप शुरू करने के लिए तैयार हैं?",
+  joinThousandsOfSatisfiedCustomersToday: "आज ही हजारों संतुष्ट ग्राहकों से जुड़ें।",
+  contactUs: "हमसे संपर्क करें",
+  getInTouch: "संपर्क करें",
+  letsStartAConversation: "चलिए बात शुरू करते हैं",
+  wantToWorkTogether: "कोई सवाल है या साथ काम करना चाहते हैं? हम आपसे सुनना पसंद करेंगे। नीचे दिए गए किसी भी माध्यम से हमसे जुड़ें।",
+  trustedByClients: "500+ ग्राहकों द्वारा भरोसेमंद",
+  responseTime: "24 घंटे में जवाब",
+  freeConsultation: "नि:शुल्क परामर्श",
+  sendAMessage: "संदेश भेजें",
+  willGetBack: "नीचे दिए गए फॉर्म को भरें और हम 24 घंटे के भीतर आपसे संपर्क करेंगे।",
+  yourName: "आपका नाम",
+  vijeetShah: "विजीत शाह",
+  emailAddress: "ईमेल पता",
+  yourEmail: "your@email.com",
+  yourMessage: "आपका संदेश",
+  weCanHelpYou: "अपने प्रोजेक्ट के बारे में बताएं या हम आपकी कैसे मदद कर सकते हैं...",
   sendMessage: "संदेश भेजें",
-  contactSuccess: "आपके संदेश के लिए धन्यवाद! मैं जल्द ही आपसे संपर्क करूंगा।",
-
-  // About page
-  aboutMe: "मेरे बारे में",
-  myJourney: "मेरी यात्रा",
-  myExperience: "मेरा अनुभव",
-  education: "शिक्षा",
-
-  line1: "मेरी यात्रा",
-  line2:
-    "कंप्यूटर साइंस में स्नातक करने के बाद, मैंने अपना करियर एक सॉफ्टवेयर इंजीनियर के रूप में शुरू किया, साथ ही मैंने अपनी मास्टर्स डिग्री भी पूरी की। कॉर्पोरेट जगत में लगभग दो साल बिताने के बाद, मैंने अंतरराष्ट्रीय स्टार्टअप के साथ रिमोट काम करने का फैसला किया।",
-  line3:
-    "इस दौरान, मुझे प्रबंधन और उत्पाद विकास के प्रति अपना जुनून मिला, जिससे मैंने अपनी खुद की एजेंसी, Loopxo शुरू की। वहां, मैंने ग्राहकों को MVPs, वेबसाइट और डिजिटल उत्पाद (SAAS) बनाने में मदद की, साथ ही मार्केटिंग प्रोजेक्ट्स भी हाथ में लिए।",
-  line4:
-    "बाद में, मैंने RBI लाइसेंस प्राप्त करने के बाद श्रीलक्ष्मी फाइनेंस की स्थापना की, जो भारत में एक ऋण व्यवसाय है। Loopxo और श्रीलक्ष्मी फाइनेंस दोनों का प्रबंधन करने से मेरे नेतृत्व, परिचालन और तकनीकी कौशल मजबूत हुए।",
-  line5:
-    "आज, मैं तकनीकी उत्पादों के निर्माण और अपने वित्तीय व्यवसाय के तकनीकी पहलू के प्रबंधन पर ध्यान केंद्रित करता हूं, जिसमें उद्यमिता, प्रौद्योगिकी और नवाचार का संयोजन है।",
-
-  youTubeChannel: "मेरा यूट्यूब चैनल",
-  latestVideos: "मेरे नवीनतम वीडियो देखें",
-  subscribe: "सदस्यता लें",
-  vlogVideos: "मज़ेदार और व्लॉग वीडियो",
-  technicalContent: "तकनीकी सामग्री",
-  comingSoon: "जल्द आ रहा है",
-  technicalLine:
-    "तकनीकी ट्यूटोरियल और कोडिंग वीडियो निर्माणाधीन हैं। नई सामग्री जारी होने पर सूचित किए जाने के लिए मेरे चैनल को सब्सक्राइब करें!",
-  getNotified: "सूचित रहें",
+  creatingInnovativeDigitalSolutions: "हम अभिनव डिजिटल समाधान बनाने में विशेषज्ञ हैं जो व्यापारिक विकास को बढ़ावा देते हैं। हमारी विशेषज्ञ टीम असाधारण परिणाम देने के लिए समर्पित है जो आपकी अपेक्षाओं से अधिक हों।"
 };
 
-// German translations
 const de: BaseTranslations = {
-  // Navigation
   home: "Startseite",
-  about: "Über mich",
-  services: "Dienstleistungen",
-  blog: "Blog",
-  contact: "Kontakt",
+  digitalInnovation: "Digitale Innovation",
+  digitalSolutions: "Digitale Lösungen",
+  thatDriveGrowth: "Die Wachstum fördern",
+  yourVisionBuilt:
+    "Ihre Vision, validiert und umgesetzt. Wir arbeiten partnerschaftlich zusammen, um Ihre Konzepte effizient in wirkungsvolle digitale Lösungen umzusetzen und schnell greifbare Ergebnisse zu liefern.",
+  deliveringResults: "Erzielte Ergebnisse",
+  partneringWith: "Partnerschaft mit über 100 Visionären",
+  clientSupport: "Engagierter 5-Sterne-Kundensupport",
+  getStarted: "Loslegen",
+  viewOurWork: "Unsere Arbeit ansehen",
+  transformingBusinesses: "Unternehmen transformieren",
+  latestProjectGrowth: "Unser letztes Projekt erzielte ein Wachstum von 40%",
+  projects: "Projekte",
+  clients: "Kunden",
+  caseStudies: "Fallstudien",
+  ourCoreValues: "Unsere Grundwerte",
+  valuesDescription:
+    "Im Herzen unserer Organisation liegt ein unverrückbares Wertesystem, das uns definiert und jede Entscheidung leitet. Diese Werte sind nicht nur Worte an der Wand – sie sind die DNA unseres Erfolgs, das Versprechen, das wir bei jeder Kundeninteraktion einhalten, und das Fundament, auf dem wir dauerhafte Partnerschaften aufbauen.",
+  integrity: "Integrität",
+  integrityDescription:
+    "Transparenz und ethische Exzellenz sind das Fundament unserer Identität. Wir handeln mit festen moralischen Standards und fördern durch authentische Kommunikation, vollständige Verantwortlichkeit und ehrliches Handeln tiefes Vertrauen.",
+  collaboration: "Zusammenarbeit",
+  collaborationDescription:
+    "Unsere größten Erfolge entstehen aus der Synergie kollektiver Brillanz. Wir fördern ein Umfeld, in dem vielfältige Perspektiven zusammenkommen, Wissen frei fließt und individuelle Stärken sich zu außergewöhnlichen Ergebnissen vereinen, die Erwartungen übertreffen.",
+  reliability: "Zuverlässigkeit",
+  reliabilityDescription:
+    "Beständigkeit ist unser Markenzeichen. Wir liefern konstante Leistung und halten die höchsten Standards an Verlässlichkeit ein. Unsere Zuverlässigkeit gibt Ihnen das Vertrauen, sich bei jedem Projekt auf uns verlassen zu können.",
+  innovation: "Innovation",
+  innovationDescription:
+    "Wir sind Pioniere in einem sich ständig wandelnden Umfeld und überschreiten kontinuierlich Grenzen, um das Mögliche neu zu definieren. Unser Innovationsgeist treibt uns an, zukünftige Herausforderungen vorherzusehen und bahnbrechende Lösungen zu liefern, die Branchen transformieren.",
+  uiUxDesign: "UI/UX-Design",
+  uiUxDesignDescription:
+    "Wir konzentrieren uns auf die Erstellung attraktiver und benutzerfreundlicher Oberflächen, die Engagement und Benutzerzufriedenheit erheblich steigern. Durch intuitive Designelemente schaffen wir Erlebnisse, die Nutzer binden.",
 
-  // Common actions
-  login: "Anmelden",
-  register: "Registrieren",
-  applyNow: "Jetzt bewerben",
-  learnMore: "Mehr erfahren",
-  viewAll: "Alle anzeigen",
+  mobileApps: "Mobile Apps",
+  mobileAppsDescription:
+    "Wir sind auf die Entwicklung innovativer und benutzerfreundlicher mobiler Anwendungen für iOS- und Android-Plattformen spezialisiert. Unser Prozess umfasst alle Phasen von der Idee über das Design bis hin zur finalen Bereitstellung.",
 
-  // Hero section
-  name: "Vijeet Shah",
-  post: "Technischer Produktmanager",
-  line: "Ideen in wirkungsvolle Produkte verwandeln | Produktführung mit technischer Exzellenz",
-  heroTitle: "Willkommen auf Vijeet Shahs Blog",
-  heroDescription:
-    "Teilen von Ideen, Tutorials und Einblicken über Entwicklung und Technologie.",
-  exploreMore: "Mehr entdecken",
-
-  // Blog specific
-  blogTitle: "Blog",
-  blogDescription: "All meine schriftlichen Inhalte an einem Ort gesammelt",
-  featuredPost: "Empfohlener Beitrag",
-  allPosts: "Alle Beiträge",
-  readMore: "Weiterlesen",
-  minRead: "Min. Lesezeit",
-  backToBlog: "Zurück zum Blog",
-  tableOfContents: "Inhaltsverzeichnis",
-  ViewAllPosts: "Alle Beiträge anzeigen",
-
-  // Footer
-  footerTagline: "Software-Ingenieur & Pädagoge",
-  allRightsReserved: "Alle Rechte vorbehalten.",
-  quickLinks: "Schnelllinks",
-
-  // Newsletter
-  joinNewsletter: "Abonnieren Sie meinen Newsletter",
-  newsletterDescription:
-    "Erhalten Sie die neuesten Artikel, Tutorials und Updates direkt in Ihren Posteingang.",
-  subscribeButton: "Abonnieren",
-  privacyNotice:
-    "Ich respektiere Ihre Privatsphäre. Kein Spam, niemals. Jederzeit abmelden.",
-    stayUpdated: "Bleiben Sie mit meinem Newsletter auf dem Laufenden",
-  subscribed: "Sie haben unseren Newsletter abonniert",
-  receiving: "erhält unsere wöchentlichen Updates.",
-  subscribeAnother: "Mit einer anderen E-Mail abonnieren",
-
-  // Personal branding
-  developer: "Entwickler",
-  educator: "Pädagoge",
-  personalBio:
-    "Vielseitiger Software-Ingenieur, der sich der Bereitstellung hochwertiger und skalierbarer Webanwendungen verschrieben hat.",
-  downloadResume: "Lebenslauf herunterladen",
-  viewProjects: "Projekte anzeigen",
-  connectWithMe: "Verbinden Sie sich mit mir",
-
-  // Blog categories
-  webDevelopment: "Webentwicklung",
-  javascript: "JavaScript",
-  react: "React",
-  nextjs: "Next.js",
-  typescript: "TypeScript",
-  uiux: "UI/UX",
-  performance: "Performance",
-  careerGrowth: "Karrierewachstum",
-
-  // Topics
-  exploreTopics: "Themen erkunden",
-  recentArticles: "Neueste Artikel",
-
-  // Project sections
-  myProjects: "Meine Projekte",
-  projectsDescription:
-    "Hier sind einige der Projekte, an denen ich gearbeitet habe.",
-  viewLiveDemo: "Live-Demo ansehen",
-  viewSourceCode: "Quellcode ansehen",
-  technologiesUsed: "Verwendete Technologien",
-
-  // Skills section
-  mySkills: "Meine Fähigkeiten",
-  frontendDevelopment: "Frontend-Entwicklung",
   backendDevelopment: "Backend-Entwicklung",
-  devOps: "DevOps",
-  tools: "Werkzeuge",
+  backendDevelopmentDescription:
+    "Wir bieten reaktionsfähige, sichere und benutzerzentrierte Weblösungen zur Verbesserung Ihrer Online-Präsenz. Unser Ansatz richtet sich nach modernen Standards und fördert das Unternehmenswachstum.",
 
-  // Contact form
+  frontendDevelopment: "Frontend-Entwicklung",
+  frontendDevelopmentDescription:
+    "Wir liefern fachmännisch gestaltete Webseiten, die Ästhetik und Funktionalität vereinen. Unsere Designs legen Wert auf Benutzererfahrung und intuitive Navigation.",
+
+  artificialIntelligence: "Künstliche Intelligenz",
+  artificialIntelligenceDescription:
+    "Wir nutzen die Kraft der KI, um Informationen zu verknüpfen und Daten in umsetzbare Erkenntnisse zu verwandeln, damit Organisationen präzise strategische Entscheidungen treffen können.",
+
+  dataScience: "Datenwissenschaft & Analyse",
+  dataScienceDescription:
+    "Wir decken mit fortschrittlichen Visualisierungen, umsetzbaren Erkenntnissen und präzisen Prognosen verborgene Geschichten in Ihren Daten auf, um strategische Entscheidungen zu stärken.",
+
+  cloudDevOps: "Managed Cloud & DevOps",
+  cloudDevOpsDescription:
+    "Wir optimieren Ihre Cloud-Infrastruktur und vereinfachen Abläufe durch verwaltete Cloud- und DevOps-Dienste. Unser Ansatz integriert Automatisierung, kontinuierliche Überwachung und agile Methoden.",
+
+    getStartedWithUs: "Starten Sie mit uns",
+  readyToGetStarted: "Bereit loszulegen?",
+  joinThousandsOfSatisfiedCustomersToday: "Schließen Sie sich noch heute tausenden zufriedenen Kunden an.",
+  contactUs: "Kontaktieren Sie uns",
   getInTouch: "Kontakt aufnehmen",
-  fullName: "Vollständiger Name",
-  email: "E-Mail",
-  message: "Nachricht",
+  letsStartAConversation: "Lassen Sie uns ein Gespräch beginnen",
+  wantToWorkTogether: "Haben Sie eine Frage oder möchten Sie mit uns zusammenarbeiten? Wir würden uns freuen, von Ihnen zu hören.",
+  trustedByClients: "Vertrauen von über 500 Kunden",
+  responseTime: "Antwortzeit: 24 Stunden",
+  freeConsultation: "Kostenlose Beratung",
+  sendAMessage: "Nachricht senden",
+  willGetBack: "Füllen Sie das folgende Formular aus und wir melden uns innerhalb von 24 Stunden bei Ihnen.",
+  yourName: "Ihr Name",
+  vijeetShah: "Vijeet Shah",
+  emailAddress: "E-Mail-Adresse",
+  yourEmail: "your@email.com",
+  yourMessage: "Ihre Nachricht",
+  weCanHelpYou: "Erzählen Sie uns von Ihrem Projekt oder wie wir Ihnen helfen können...",
   sendMessage: "Nachricht senden",
-  contactSuccess:
-    "Vielen Dank für Ihre Nachricht! Ich werde mich in Kürze bei Ihnen melden.",
-
-  // About page
-  aboutMe: "Über mich",
-  myJourney: "Mein Werdegang",
-  myExperience: "Meine Erfahrung",
-  education: "Ausbildung",
-
-  line1: "Mein Werdegang",
-  line2:
-    "Nach meinem Abschluss in Informatik begann ich meine Karriere als Software-Ingenieur, während ich gleichzeitig meinen Master abschloss. Nach fast zwei Jahren in der Unternehmenswelt wechselte ich zur Remote-Arbeit mit internationalen Startups.",
-  line3:
-    "Während dieser Zeit entdeckte ich meine Leidenschaft für Management und Produktentwicklung, was mich dazu führte, meine eigene Agentur, Loopxo, zu gründen. Dort half ich Kunden beim Aufbau von MVPs, Websites und digitalen Produkten (SAAS) und übernahm auch Marketingprojekte.",
-  line4:
-    "Später gründete ich Srilakshmi Finance, ein Kreditunternehmen in Indien, nachdem ich eine RBI-Lizenz erhalten hatte. Die Verwaltung von sowohl Loopxo als auch Srilakshmi Finance stärkte meine Führungs-, Betriebs- und technischen Fähigkeiten.",
-  line5:
-    "Heute konzentriere ich mich auf die Entwicklung von Technologieprodukten und die Verwaltung der technischen Seite meines Finanzgeschäfts, wobei ich Unternehmertum, Technologie und Innovation kombiniere.",
-
-  youTubeChannel: "Mein YouTube-Kanal",
-  latestVideos: "Schauen Sie sich meine neuesten Videos an",
-  subscribe: "Abonnieren",
-  vlogVideos: "Spaß- und Vlog-Videos",
-  technicalContent: "Technische Inhalte",
-  comingSoon: "Demnächst",
-  technicalLine:
-    "Technische Tutorials und Coding-Videos sind in Produktion. Abonnieren Sie meinen Kanal, um benachrichtigt zu werden, wenn neue Inhalte veröffentlicht werden!",
-  getNotified: "Benachrichtigt werden",
+  creatingInnovativeDigitalSolutions: "Wir sind spezialisiert auf die Entwicklung innovativer digitaler Lösungen, die das Unternehmenswachstum fördern. Unser Expertenteam ist bestrebt, außergewöhnliche Ergebnisse zu liefern, die die Erwartungen übertreffen."
 };
 
-// French translations
 const fr: BaseTranslations = {
-  // Navigation
   home: "Accueil",
-  about: "À propos",
-  services: "Services",
-  blog: "Blog",
-  contact: "Contact",
+  digitalInnovation: "Innovation numérique",
+  digitalSolutions: "Solutions numériques",
+  thatDriveGrowth: "Qui stimulent la croissance",
+  yourVisionBuilt:
+    "Votre vision, validée et concrétisée. Nous collaborons pour développer efficacement vos concepts en solutions numériques percutantes, livrant des résultats tangibles rapidement.",
+  deliveringResults: "Des résultats éprouvés",
+  partneringWith: "Partenariat avec plus de 100 visionnaires",
+  clientSupport: "Support client 5 étoiles dédié",
+  getStarted: "Commencer",
+  viewOurWork: "Voir notre travail",
+  transformingBusinesses: "Transformer les entreprises",
+  latestProjectGrowth: "Notre dernier projet a généré une croissance de 40%",
+  projects: "Projets",
+  clients: "Clients",
+  caseStudies: "Études de cas",
+  ourCoreValues: "Nos valeurs fondamentales",
+  valuesDescription:
+    "Au cœur de notre organisation se trouvent des principes inébranlables qui définissent qui nous sommes et guident chacune de nos décisions. Ces valeurs ne sont pas que des mots – elles sont l'ADN de notre succès, la promesse que nous tenons à chaque interaction avec un client, et la base sur laquelle nous construisons des partenariats durables.",
+  integrity: "Intégrité",
+  integrityDescription:
+    "La transparence et l'excellence éthique sont les pierres angulaires de notre identité. Nous agissons selon des normes morales strictes, favorisant une confiance profonde grâce à une communication authentique, une responsabilité totale et une conduite honnête.",
+  collaboration: "Collaboration",
+  collaborationDescription:
+    "Nos plus grands succès naissent de la synergie des talents collectifs. Nous favorisons un environnement où les perspectives diverses se rejoignent, où la connaissance circule librement, et où les forces individuelles s’unissent pour créer des résultats extraordinaires qui dépassent les attentes.",
+  reliability: "Fiabilité",
+  reliabilityDescription:
+    "La constance est notre signature. Nous livrons des performances constantes en maintenant les normes les plus élevées de fiabilité. Notre engagement envers la fiabilité signifie que vous pouvez toujours compter sur nous pour dépasser les attentes.",
+  innovation: "Innovation",
+  innovationDescription:
+    "Nous sommes des pionniers dans un paysage en constante évolution, repoussant sans cesse les limites pour redéfinir ce qui est possible. Notre quête incessante d'innovation nous pousse à anticiper les défis de demain et à fournir des solutions de pointe qui transforment les industries.",
+  uiUxDesign: "Conception UI/UX",
+  uiUxDesignDescription:
+    "Nous nous concentrons sur la création d’interfaces attrayantes et conviviales qui augmentent considérablement l’engagement et la satisfaction des utilisateurs. En mettant l’accent sur des éléments de conception intuitifs, nous créons des expériences captivantes.",
 
-  // Common actions
-  login: "Connexion",
-  register: "S'inscrire",
-  applyNow: "Postuler maintenant",
-  learnMore: "En savoir plus",
-  viewAll: "Voir tout",
+  mobileApps: "Applications mobiles",
+  mobileAppsDescription:
+    "Nous sommes spécialisés dans le développement d’applications mobiles innovantes et conviviales pour les plateformes iOS et Android. Notre processus couvre toutes les étapes de l’idéation à la mise en production.",
 
-  // Hero section
-  name: "Vijeet Shah",
-  post: "Chef de produit technique",
-  line: "Transformer des idées en produits percutants | Leadership produit avec excellence en ingénierie",
-  heroTitle: "Bienvenue sur le blog de Vijeet Shah",
-  heroDescription:
-    "Partage d'idées, de tutoriels et d'aperçus sur le développement et la technologie.",
-  exploreMore: "Explorer davantage",
-
-  // Blog specific
-  blogTitle: "Blog",
-  blogDescription: "Tout mon contenu écrit rassemblé en un seul endroit",
-  featuredPost: "Article à la une",
-  allPosts: "Tous les articles",
-  readMore: "Lire la suite",
-  minRead: "min de lecture",
-  backToBlog: "Retour au blog",
-  tableOfContents: "Table des matières",
-  ViewAllPosts: "Voir tous les articles",
-
-  // Footer
-  footerTagline: "Ingénieur logiciel et éducateur",
-  allRightsReserved: "Tous droits réservés.",
-  quickLinks: "Liens rapides",
-
-  // Newsletter
-  joinNewsletter: "Rejoignez ma newsletter",
-  newsletterDescription:
-    "Recevez les derniers articles, tutoriels et mises à jour directement dans votre boîte de réception.",
-  subscribeButton: "S'abonner",
-  privacyNotice:
-    "Je respecte votre vie privée. Jamais de spam. Désabonnez-vous à tout moment.",
-    stayUpdated: "Restez à jour avec ma newsletter",
-  subscribed: "Vous êtes abonné à notre newsletter",
-  receiving: "reçoit nos mises à jour hebdomadaires.",
-  subscribeAnother: "S'abonner avec une autre adresse e-mail",
-
-  // Personal branding
-  developer: "Développeur",
-  educator: "Éducateur",
-  personalBio:
-    "Ingénieur logiciel polyvalent, engagé à fournir des applications web de haute qualité et évolutives.",
-  downloadResume: "Télécharger le CV",
-  viewProjects: "Voir les projets",
-  connectWithMe: "Connectez-vous avec moi",
-
-  // Blog categories
-  webDevelopment: "Développement Web",
-  javascript: "JavaScript",
-  react: "React",
-  nextjs: "Next.js",
-  typescript: "TypeScript",
-  uiux: "UI/UX",
-  performance: "Performance",
-  careerGrowth: "Évolution de carrière",
-
-  // Topics
-  exploreTopics: "Explorer les sujets",
-  recentArticles: "Articles récents",
-
-  // Project sections
-  myProjects: "Mes projets",
-  projectsDescription: "Voici quelques projets sur lesquels j'ai travaillé.",
-  viewLiveDemo: "Voir la démo en direct",
-  viewSourceCode: "Voir le code source",
-  technologiesUsed: "Technologies utilisées",
-
-  // Skills section
-  mySkills: "Mes compétences",
-  frontendDevelopment: "Développement frontend",
   backendDevelopment: "Développement backend",
-  devOps: "DevOps",
-  tools: "Outils",
+  backendDevelopmentDescription:
+    "Nous proposons des solutions web réactives, sécurisées et centrées sur l’utilisateur pour renforcer votre présence en ligne. Notre approche vise à répondre aux standards modernes et à favoriser la croissance de votre activité.",
 
-  // Contact form
-  getInTouch: "Contactez-moi",
-  fullName: "Nom complet",
-  email: "Email",
-  message: "Message",
+  frontendDevelopment: "Développement frontend",
+  frontendDevelopmentDescription:
+    "Nous proposons des designs de sites web élaborés avec soin, alliant esthétique et fonctionnalité. Nos créations mettent l’accent sur l’expérience utilisateur et la navigation intuitive.",
+
+  artificialIntelligence: "Intelligence artificielle",
+  artificialIntelligenceDescription:
+    "Nous utilisons la puissance de l’IA pour connecter les informations et transformer les données en insights exploitables, aidant les organisations à prendre des décisions stratégiques avec précision.",
+
+  dataScience: "Science des données & Analyse",
+  dataScienceDescription:
+    "Nous révélons les histoires cachées dans vos données grâce à des visualisations avancées, des insights exploitables et des prévisions précises pour appuyer vos décisions stratégiques.",
+
+  cloudDevOps: "Cloud géré & DevOps",
+  cloudDevOpsDescription:
+    "Nous optimisons votre infrastructure cloud et rationalisons les opérations grâce à des services de cloud géré et DevOps. Notre approche intègre l’automatisation, la surveillance continue et les pratiques agiles.",
+
+    getStartedWithUs: "Commencez avec nous",
+  readyToGetStarted: "Prêt à commencer ?",
+  joinThousandsOfSatisfiedCustomersToday: "Rejoignez des milliers de clients satisfaits dès aujourd'hui.",
+  contactUs: "Contactez-nous",
+  getInTouch: "Entrer en contact",
+  letsStartAConversation: "Commençons une conversation",
+  wantToWorkTogether: "Vous avez une question ou souhaitez collaborer ? Nous serions ravis d'échanger avec vous.",
+  trustedByClients: "Fait confiance par plus de 500 clients",
+  responseTime: "Délai de réponse de 24h",
+  freeConsultation: "Consultation gratuite",
+  sendAMessage: "Envoyer un message",
+  willGetBack: "Remplissez le formulaire ci-dessous et nous vous répondrons sous 24 heures.",
+  yourName: "Votre nom",
+  vijeetShah: "Vijeet Shah",
+  emailAddress: "Adresse e-mail",
+  yourEmail: "your@email.com",
+  yourMessage: "Votre message",
+  weCanHelpYou: "Parlez-nous de votre projet ou de la manière dont nous pouvons vous aider...",
   sendMessage: "Envoyer le message",
-  contactSuccess: "Merci pour votre message ! Je vous répondrai bientôt.",
-
-  // About page
-  aboutMe: "À propos de moi",
-  myJourney: "Mon parcours",
-  myExperience: "Mon expérience",
-  education: "Éducation",
-
-  line1: "Mon Parcours",
-  line2:
-    "Après avoir obtenu mon diplôme en informatique, j'ai commencé ma carrière en tant qu'ingénieur logiciel tout en terminant mon master. Après près de deux ans dans le monde de l'entreprise, j'ai fait la transition vers le travail à distance avec des startups internationales.",
-  line3:
-    "Pendant cette période, j'ai découvert ma passion pour la gestion et le développement de produits, ce qui m'a conduit à créer ma propre agence, Loopxo. Là, j'ai aidé des clients à créer des MVP, des sites web et des produits numériques (SAAS), tout en travaillant également sur des projets marketing.",
-  line4:
-    "Plus tard, j'ai fondé Srilakshmi Finance, une entreprise de prêts en Inde, après avoir obtenu une licence RBI. La gestion simultanée de Loopxo et de Srilakshmi Finance a renforcé mes compétences en leadership, en exploitation et en technique.",
-  line5:
-    "Aujourd'hui, je me concentre sur la création de produits technologiques et la gestion du côté technique de mon entreprise financière, combinant entrepreneuriat, technologie et innovation.",
-
-  youTubeChannel: "Ma chaîne YouTube",
-  latestVideos: "Découvrez mes dernières vidéos",
-  subscribe: "S'abonner",
-  vlogVideos: "Vidéos amusantes et vlogs",
-  technicalContent: "Contenu technique",
-  comingSoon: "Bientôt disponible",
-  technicalLine:
-    "Des tutoriels techniques et des vidéos de codage sont en cours de production. Abonnez-vous à ma chaîne pour être informé lorsque du nouveau contenu est publié!",
-  getNotified: "Être notifié",
+  creatingInnovativeDigitalSolutions: "Nous sommes spécialisés dans la création de solutions numériques innovantes qui stimulent la croissance des entreprises. Notre équipe d'experts est dédiée à fournir des résultats exceptionnels qui dépassent les attentes."
 };
 
-// Spanish translations
 const es: BaseTranslations = {
-  // Navigation
   home: "Inicio",
-  about: "Sobre mí",
-  services: "Servicios",
-  blog: "Blog",
-  contact: "Contacto",
+  digitalInnovation: "Innovación digital",
+  digitalSolutions: "Soluciones digitales",
+  thatDriveGrowth: "Que impulsan el crecimiento",
+  yourVisionBuilt:
+    "Tu visión, validada y construida. Colaboramos para desarrollar eficientemente tus conceptos en soluciones digitales impactantes, entregando resultados tangibles rápidamente.",
+  deliveringResults: "Entregando resultados comprobados",
+  partneringWith: "Colaborando con más de 100 visionarios",
+  clientSupport: "Soporte al cliente de 5 estrellas",
+  getStarted: "Comenzar",
+  viewOurWork: "Ver nuestro trabajo",
+  transformingBusinesses: "Transformando negocios",
+  latestProjectGrowth: "Nuestro último proyecto generó un crecimiento del 40%",
+  projects: "Proyectos",
+  clients: "Clientes",
+  caseStudies: "Estudios de caso",
+  ourCoreValues: "Nuestros valores fundamentales",
+  valuesDescription:
+    "En el corazón de nuestra organización hay un conjunto de principios inquebrantables que definen quiénes somos y guían cada decisión que tomamos. Estos valores no son solo palabras: son el ADN de nuestro éxito, la promesa que cumplimos en cada interacción con el cliente y la base sobre la que construimos asociaciones duraderas.",
+  integrity: "Integridad",
+  integrityDescription:
+    "La transparencia y la excelencia ética son la base de nuestra identidad. Operamos con estándares morales inquebrantables, fomentando una profunda confianza a través de una comunicación auténtica, plena responsabilidad y tratos honestos.",
+  collaboration: "Colaboración",
+  collaborationDescription:
+    "Nuestros mayores logros surgen de la sinergia del talento colectivo. Fomentamos un entorno donde convergen perspectivas diversas, el conocimiento fluye libremente y las fortalezas individuales se unen para crear resultados extraordinarios que superan las expectativas.",
+  reliability: "Fiabilidad",
+  reliabilityDescription:
+    "La constancia es nuestra firma. Entregamos un rendimiento constante, manteniendo los más altos estándares de confiabilidad. Nuestro compromiso con la fiabilidad significa que puedes confiar plenamente en nosotros para superar las expectativas cada vez.",
+  innovation: "Innovación",
+  innovationDescription:
+    "Somos pioneros en un entorno en constante evolución, empujando continuamente los límites para redefinir lo posible. Nuestra búsqueda incansable de la innovación nos impulsa a anticipar los desafíos del mañana y ofrecer soluciones innovadoras que transforman industrias.",
 
-  // Common actions
-  login: "Iniciar sesión",
-  register: "Registrarse",
-  applyNow: "Aplicar ahora",
-  learnMore: "Saber más",
-  viewAll: "Ver todo",
+  uiUxDesign: "Diseño UI/UX",
+  uiUxDesignDescription:
+    "Nos enfocamos en crear interfaces atractivas y fáciles de usar que aumentan significativamente el compromiso y la satisfacción del usuario. Con un enfoque en elementos de diseño intuitivos, creamos experiencias que mantienen a los usuarios conectados.",
 
-  // Hero section
-  name: "Vijeet Shah",
-  post: "Gerente de producto técnico",
-  line: "Convertir ideas en productos impactantes | Liderazgo de producto con excelencia en ingeniería",
-  heroTitle: "Bienvenido al blog de Vijeet Shah",
-  heroDescription:
-    "Compartiendo ideas, tutoriales y perspectivas sobre desarrollo y tecnología.",
-  exploreMore: "Explorar más",
+  mobileApps: "Aplicaciones móviles",
+  mobileAppsDescription:
+    "Nos especializamos en desarrollar aplicaciones móviles innovadoras y fáciles de usar para plataformas iOS y Android. Nuestro proceso abarca desde la ideación y el diseño hasta la implementación final.",
 
-  // Blog specific
-  blogTitle: "Blog",
-  blogDescription: "Todo mi contenido escrito recopilado en un solo lugar",
-  featuredPost: "Artículo destacado",
-  allPosts: "Todos los artículos",
-  readMore: "Leer más",
-  minRead: "min de lectura",
-  backToBlog: "Volver al blog",
-  tableOfContents: "Tabla de contenidos",
-  ViewAllPosts: "Ver todas las publicaciones",
+  backendDevelopment: "Desarrollo Backend",
+  backendDevelopmentDescription:
+    "Ofrecemos soluciones web seguras, receptivas y centradas en el usuario para mejorar su presencia en línea. Nuestro enfoque se centra en cumplir con los estándares modernos y promover el crecimiento empresarial.",
 
-  // Footer
-  footerTagline: "Ingeniero de software y educador",
-  allRightsReserved: "Todos los derechos reservados.",
-  quickLinks: "Enlaces rápidos",
+  frontendDevelopment: "Desarrollo Frontend",
+  frontendDevelopmentDescription:
+    "Entregamos diseños de sitios web cuidadosamente elaborados que combinan estética y funcionalidad. Nuestros diseños priorizan la experiencia del usuario y la navegación intuitiva.",
 
-  // Newsletter
-  joinNewsletter: "Únete a mi boletín",
-  newsletterDescription:
-    "Recibe los últimos artículos, tutoriales y actualizaciones directamente en tu bandeja de entrada.",
-  subscribeButton: "Suscribirse",
-  privacyNotice:
-    "Respeto tu privacidad. Sin spam, nunca. Cancela la suscripción en cualquier momento.",
-    stayUpdated: "Mantente actualizado con mi boletín",
-  subscribed: "Estás suscrito a nuestro boletín",
-  receiving: "está recibiendo nuestras actualizaciones semanales.",
-  subscribeAnother: "Suscribirse con otro correo electrónico",
+  artificialIntelligence: "Inteligencia artificial",
+  artificialIntelligenceDescription:
+    "Aprovechamos el poder de la IA para conectar la información y convertir los datos en conocimientos procesables, ayudando a las organizaciones a tomar decisiones estratégicas con precisión.",
 
-  // Personal branding
-  developer: "Desarrollador",
-  educator: "Educador",
-  personalBio:
-    "Ingeniero de software versátil, comprometido con la entrega de aplicaciones web de alta calidad y escalables.",
-  downloadResume: "Descargar currículum",
-  viewProjects: "Ver proyectos",
-  connectWithMe: "Conecta conmigo",
+  dataScience: "Ciencia de datos y análisis",
+  dataScienceDescription:
+    "Nos especializamos en descubrir historias ocultas en sus datos utilizando visualizaciones avanzadas, conocimientos procesables y pronósticos precisos para fortalecer las decisiones estratégicas.",
 
-  // Blog categories
-  webDevelopment: "Desarrollo Web",
-  javascript: "JavaScript",
-  react: "React",
-  nextjs: "Next.js",
-  typescript: "TypeScript",
-  uiux: "UI/UX",
-  performance: "Rendimiento",
-  careerGrowth: "Crecimiento profesional",
+  cloudDevOps: "Nube gestionada y DevOps",
+  cloudDevOpsDescription:
+    "Optimizamos su infraestructura en la nube y racionalizamos las operaciones mediante servicios gestionados de nube y DevOps. Nuestro enfoque integra automatización, monitoreo continuo y metodologías ágiles.",
 
-  // Topics
-  exploreTopics: "Explorar temas",
-  recentArticles: "Artículos recientes",
-
-  // Project sections
-  myProjects: "Mis proyectos",
-  projectsDescription:
-    "Aquí hay algunos de los proyectos en los que he trabajado.",
-  viewLiveDemo: "Ver demostración en vivo",
-  viewSourceCode: "Ver código fuente",
-  technologiesUsed: "Tecnologías utilizadas",
-
-  // Skills section
-  mySkills: "Mis habilidades",
-  frontendDevelopment: "Desarrollo frontend",
-  backendDevelopment: "Desarrollo backend",
-  devOps: "DevOps",
-  tools: "Herramientas",
-
-  // Contact form
+    getStartedWithUs: "Empieza con nosotros",
+  readyToGetStarted: "¿Listo para empezar?",
+  joinThousandsOfSatisfiedCustomersToday: "Únete hoy a miles de clientes satisfechos.",
+  contactUs: "Contáctanos",
   getInTouch: "Ponte en contacto",
-  fullName: "Nombre completo",
-  email: "Correo electrónico",
-  message: "Mensaje",
+  letsStartAConversation: "Comencemos una conversación",
+  wantToWorkTogether: "¿Tienes una pregunta o quieres trabajar con nosotros? Nos encantaría saber de ti.",
+  trustedByClients: "Confiado por más de 500 clientes",
+  responseTime: "Tiempo de respuesta de 24h",
+  freeConsultation: "Consulta gratuita",
+  sendAMessage: "Enviar un mensaje",
+  willGetBack: "Rellena el siguiente formulario y te responderemos en un plazo de 24 horas.",
+  yourName: "Tu nombre",
+  vijeetShah: "Vijeet Shah",
+  emailAddress: "Correo electrónico",
+  yourEmail: "your@email.com",
+  yourMessage: "Tu mensaje",
+  weCanHelpYou: "Cuéntanos sobre tu proyecto o cómo podemos ayudarte...",
   sendMessage: "Enviar mensaje",
-  contactSuccess:
-    "¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.",
-
-  // About page
-  aboutMe: "Sobre mí",
-  myJourney: "Mi trayectoria",
-  myExperience: "Mi experiencia",
-  education: "Educación",
-
-  line1: "Mi Trayectoria",
-  line2:
-    "Después de graduarme en Informática, comencé mi carrera como Ingeniero de Software mientras completaba mi maestría. Tras casi dos años en el mundo corporativo, hice la transición a trabajar de forma remota con startups internacionales.",
-  line3:
-    "Durante este tiempo, descubrí mi pasión por la gestión y el desarrollo de productos, lo que me llevó a iniciar mi propia agencia, Loopxo. Allí, ayudé a clientes a construir MVPs, sitios web y productos digitales (SAAS), mientras también asumía proyectos de marketing.",
-  line4:
-    "Más tarde, fundé Srilakshmi Finance, un negocio de préstamos en India, después de obtener una licencia del RBI. Gestionar tanto Loopxo como Srilakshmi Finance fortaleció mis habilidades de liderazgo, operativas y técnicas.",
-  line5:
-    "Hoy, me enfoco en desarrollar productos tecnológicos y gestionar el lado técnico de mi negocio financiero, combinando emprendimiento, tecnología e innovación.",
-
-  youTubeChannel: "Mi canal de YouTube",
-  latestVideos: "Mira mis videos más recientes",
-  subscribe: "Suscribirse",
-  vlogVideos: "Videos divertidos y vlogs",
-  technicalContent: "Contenido técnico",
-  comingSoon: "Próximamente",
-  technicalLine:
-    "Los tutoriales técnicos y videos de codificación están en producción. ¡Suscríbete a mi canal para recibir notificaciones cuando se publique nuevo contenido!",
-  getNotified: "Recibir notificaciones",
+  creatingInnovativeDigitalSolutions: "Nos especializamos en crear soluciones digitales innovadoras que impulsan el crecimiento empresarial. Nuestro equipo de expertos se dedica a ofrecer resultados excepcionales que superan las expectativas."
 };
 
-// Chinese translations
 const zh: BaseTranslations = {
-  // Navigation
   home: "首页",
-  about: "关于我",
-  services: "服务",
-  blog: "博客",
-  contact: "联系",
+  digitalInnovation: "数字创新",
+  digitalSolutions: "数字解决方案",
+  thatDriveGrowth: "推动增长",
+  yourVisionBuilt:
+    "您的愿景已验证并实现。我们合作高效地将您的构想转化为有影响力的数字解决方案，快速交付切实成果。",
+  deliveringResults: "交付可靠成果",
+  partneringWith: "与100多位远见者合作",
+  clientSupport: "专属五星客户支持",
+  getStarted: "立即开始",
+  viewOurWork: "查看我们的作品",
+  transformingBusinesses: "转型企业",
+  latestProjectGrowth: "我们最近的项目带来了40%的增长",
+  projects: "项目",
+  clients: "客户",
+  caseStudies: "案例研究",
+  ourCoreValues: "我们的核心价值观",
+  valuesDescription:
+    "我们组织的核心是一组坚定不移的原则，定义了我们是谁，并指导我们做出的每一个决策。这些价值观不仅仅是墙上的字句——它们是我们成功的DNA，是我们与每一位客户互动时坚持的承诺，也是我们建立长期合作伙伴关系的基础。",
+  integrity: "诚信",
+  integrityDescription:
+    "透明度和道德卓越是我们身份的基石。我们秉持坚定的道德标准，通过真实沟通、完全责任感和诚实交易建立深厚信任。",
+  collaboration: "协作",
+  collaborationDescription:
+    "我们最伟大的成就源于集体智慧的协同。我们营造一个多元观点汇聚、知识自由流动、个体优势融合的环境，创造出超越期望的非凡成果。",
+  reliability: "可靠性",
+  reliabilityDescription:
+    "一致性是我们的标志。我们提供始终如一的表现，保持最高的可靠性标准。我们的可靠性承诺意味着您每次都可以放心依赖我们。",
+  innovation: "创新",
+  innovationDescription:
+    "我们是不断变化环境中的先驱，不断突破界限，重新定义可能性。我们对创新的不懈追求驱使我们预见未来挑战，并提供改变行业的尖端解决方案。",
+  uiUxDesign: "UI/UX设计",
+  uiUxDesignDescription:
+    "我们专注于打造具有吸引力且用户友好的界面，大幅提升用户参与度和满意度。通过注重直观的设计元素，我们创造能够持续吸引用户的体验。",
 
-  // Common actions
-  login: "登录",
-  register: "注册",
-  applyNow: "立即申请",
-  learnMore: "了解更多",
-  viewAll: "查看全部",
+  mobileApps: "移动应用",
+  mobileAppsDescription:
+    "我们专注于为iOS和Android平台开发创新且用户友好的移动应用程序。从构思、设计到最终部署，我们覆盖整个流程。",
 
-  // Hero section
-  name: "Vijeet Shah",
-  post: "技术产品经理",
-  line: "将创意转化为有影响力的产品 | 具有工程卓越性的产品领导力",
-  heroTitle: "欢迎来到Vijeet Shah的博客",
-  heroDescription: "分享关于开发和技术的想法、教程和见解。",
-  exploreMore: "探索更多",
-
-  // Blog specific
-  blogTitle: "博客",
-  blogDescription: "我所有的书面内容都集中在一个地方",
-  featuredPost: "精选文章",
-  allPosts: "所有文章",
-  readMore: "阅读更多",
-  minRead: "分钟阅读",
-  backToBlog: "返回博客",
-  tableOfContents: "目录",
-  ViewAllPosts: "查看所有帖子",
-
-  // Footer
-  footerTagline: "软件工程师和教育者",
-  allRightsReserved: "版权所有。",
-  quickLinks: "快速链接",
-
-  // Newsletter
-  joinNewsletter: "订阅我的通讯",
-  newsletterDescription: "获取最新文章、教程和更新直接发送到您的收件箱。",
-  subscribeButton: "订阅",
-  privacyNotice: "我尊重您的隐私。绝不发送垃圾邮件。随时可以取消订阅。",
-  stayUpdated: "订阅我的通讯以获取最新消息",
-  subscribed: "您已订阅我们的通讯",
-  receiving: "正在接收我们的每周更新。",
-  subscribeAnother: "使用其他电子邮箱订阅",
-
-  // Personal branding
-  developer: "开发者",
-  educator: "教育者",
-  personalBio: "多才多艺的软件工程师，致力于提供高质量和可扩展的网络应用程序。",
-  downloadResume: "下载简历",
-  viewProjects: "查看项目",
-  connectWithMe: "与我联系",
-
-  // Blog categories
-  webDevelopment: "网页开发",
-  javascript: "JavaScript",
-  react: "React",
-  nextjs: "Next.js",
-  typescript: "TypeScript",
-  uiux: "UI/UX",
-  performance: "性能优化",
-  careerGrowth: "职业发展",
-
-  // Topics
-  exploreTopics: "探索主题",
-  recentArticles: "近期文章",
-
-  // Project sections
-  myProjects: "我的项目",
-  projectsDescription: "这里是我参与过的一些项目。",
-  viewLiveDemo: "查看在线演示",
-  viewSourceCode: "查看源代码",
-  technologiesUsed: "使用的技术",
-
-  // Skills section
-  mySkills: "我的技能",
-  frontendDevelopment: "前端开发",
   backendDevelopment: "后端开发",
-  devOps: "DevOps",
-  tools: "工具",
+  backendDevelopmentDescription:
+    "我们提供响应迅速、安全且以用户为中心的网页解决方案，帮助提升您的在线形象。我们的策略致力于满足现代标准并推动业务增长。",
 
-  // Contact form
-  getInTouch: "联系我",
-  fullName: "全名",
-  email: "电子邮件",
-  message: "消息",
-  sendMessage: "发送消息",
-  contactSuccess: "感谢您的留言！我会尽快回复您。",
+  frontendDevelopment: "前端开发",
+  frontendDevelopmentDescription:
+    "我们提供精心打造的网站设计，兼顾美感与功能。我们的设计优先考虑用户体验和直观导航。",
 
-  // About page
-  aboutMe: "关于我",
-  myJourney: "我的旅程",
-  myExperience: "我的经验",
-  education: "教育背景",
+  artificialIntelligence: "人工智能",
+  artificialIntelligenceDescription:
+    "我们利用人工智能的力量连接信息，将数据转化为可操作的洞察，帮助组织精准地做出战略决策。",
 
-  line1: "我的历程",
-  line2:
-    "在计算机科学专业毕业后，我开始了软件工程师的职业生涯，同时完成了硕士学位。在企业界工作近两年后，我转向与国际初创公司远程合作。",
-  line3:
-    "在此期间，我发现了自己对管理和产品开发的热情，这促使我创办了自己的代理公司 Loopxo。在那里，我帮助客户构建最小可行产品(MVP)、网站和数字产品(SAAS)，同时也承担营销项目。",
-  line4:
-    "之后，我在获得印度储备银行(RBI)许可证后创立了 Srilakshmi Finance，这是一家在印度的贷款业务。同时管理 Loopxo 和 Srilakshmi Finance 加强了我的领导能力、运营能力和技术技能。",
-  line5:
-    "如今，我专注于构建技术产品和管理我的金融业务的技术方面，将创业精神、技术和创新结合起来。",
+  dataScience: "数据科学与分析",
+  dataScienceDescription:
+    "我们擅长利用高级可视化、可操作的洞察和准确预测，揭示数据背后的故事，为战略决策赋能。",
 
-  youTubeChannel: "我的YouTube频道",
-  latestVideos: "查看我的最新视频",
-  subscribe: "订阅",
-  vlogVideos: "有趣和视频博客",
-  technicalContent: "技术内容",
-  comingSoon: "即将推出",
-  technicalLine:
-    "技术教程和编程视频正在制作中。订阅我的频道，以便在发布新内容时收到通知！",
-  getNotified: "获取通知",
+  cloudDevOps: "托管云和DevOps",
+  cloudDevOpsDescription:
+    "我们通过托管云和DevOps服务优化您的云基础设施并简化操作。我们的方法融合了自动化、持续监控和敏捷实践。",
+
+    getStartedWithUs: "与我们一起开始",
+  readyToGetStarted: "准备好开始了吗？",
+  joinThousandsOfSatisfiedCustomersToday: "立即加入数千名满意客户的行列。",
+  contactUs: "联系我们",
+  getInTouch: "取得联系",
+  letsStartAConversation: "让我们开始对话",
+  wantToWorkTogether: "有问题或想合作？我们非常乐意听到您的声音。",
+  trustedByClients: "获得500+客户信任",
+  responseTime: "24小时响应时间",
+  freeConsultation: "免费咨询",
+  sendAMessage: "发送消息",
+  willGetBack: "请填写以下表格，我们将在24小时内与您联系。",
+  yourName: "您的姓名",
+  vijeetShah: "Vijeet Shah",
+  emailAddress: "电子邮箱地址",
+  yourEmail: "your@email.com",
+  yourMessage: "您的信息",
+  weCanHelpYou: "请告诉我们您的项目或我们如何帮助您...",
+  sendMessage: "发送信息",
+  creatingInnovativeDigitalSolutions: "我们专注于创建推动业务增长的创新数字解决方案。我们的专家团队致力于提供超出预期的卓越成果。"
 };
 
-// Export the dictionary with all supported languages
 export const dictionary: TranslationDictionary<BaseTranslations> = {
   en,
   hi,
@@ -884,7 +567,6 @@ export const dictionary: TranslationDictionary<BaseTranslations> = {
   zh,
 };
 
-// Export language names for the language selector
 export const languageNames: Record<string, string> = {
   en: "English",
   hi: "हिन्दी",

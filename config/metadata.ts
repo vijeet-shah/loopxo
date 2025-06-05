@@ -3,14 +3,14 @@ import type { Metadata } from 'next';
 import { siteConfig } from './site';
 
 // Define base keywords for SEO
-// config/metadata.ts
 const baseKeywords = [
-  'web development', 'programming', 'react', 'nextjs', 'javascript', 'typescript'
+  'nextjs', 'react', 'typescript', 'tailwindcss', 'template', 'web development'
 ];
 
+// Client-specific keywords - should be customized for each client
 const clientKeywords = [
-  'vijeet shah', 'developer blog', 'tech blog', 'coding tutorials', 
-  'web developer', 'software engineer', 'programming tips', 'react development'
+  'loopxo', 'template', 'nextjs template', 'react template', 'web template',
+  'typescript template', 'tailwind template', 'performance', 'accessibility'
 ];
 
 /**
@@ -30,7 +30,7 @@ export function generateMetadata(
   // Construct title with client name
   const title = pageTitle 
     ? `${pageTitle} | ${siteConfig.name}`
-    : `${siteConfig.name}`;
+    : `${siteConfig.name} | Modern Web Template`;
   
   // Use page-specific description or fall back to site description
   const description = pageDescription ?? siteConfig.description;
@@ -86,7 +86,12 @@ export function generateMetadata(
       description,
       images: [ogImage],
     },
-   
+    applicationName: siteConfig.name,
+    verification: {
+      // Replace these with actual verification IDs when deploying
+      google: 'google-site-verification-id',
+      yandex: 'yandex-verification-id',
+    },
   };
 }
 
