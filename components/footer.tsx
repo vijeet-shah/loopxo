@@ -276,7 +276,7 @@ export function Footer() {
                   className="text-primary mr-2.5 mt-0.5 flex-shrink-0"
                 />
                 <span className="text-xs leading-tight">
-                  123 Innovation Street, Tech City, State 12345
+                  Lokhandwala, Kandivali East, Mumbai - 400101
                 </span>
               </li>
               <li className="flex items-center text-muted-foreground">
@@ -285,7 +285,7 @@ export function Footer() {
                   className="text-primary mr-2.5 flex-shrink-0"
                 />
                 <a href="tel:+1234567890" className="text-xs hover:underline">
-                  +1 (234) 567-890
+                  +91 9082053880
                 </a>
               </li>
               <li className="flex items-center text-muted-foreground">
@@ -294,18 +294,15 @@ export function Footer() {
                   href="mailto:contact@example.com"
                   className="text-xs hover:underline"
                 >
-                  contact@example.com
+                  hello@loopxo.com
                 </a>
               </li>
             </ul>
 
             <div className="text-xs text-muted-foreground/80">
               <span className="font-medium block mb-1">Business Hours:</span>
-              Monday - Friday: 9am - 6pm
-              <br />
-              Saturday: 10am - 4pm
-              <br />
-              Sunday: Closed
+              Monday - Saturday: 9am - 6pm IST
+                            
             </div>
           </motion.div>
 
