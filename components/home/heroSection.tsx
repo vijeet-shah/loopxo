@@ -12,7 +12,6 @@ import {
   Maximize2,
 } from "lucide-react";
 import {
-  FloatingObject,
   StatItem,
   TrustBadge,
 } from "../animation/floatingElements";
@@ -58,7 +57,7 @@ export function HeroSection() {
   return (
     <motion.section
       ref={heroRef}
-      className="min-h-screen relative overflow-hidden pt-20"
+      className=" relative overflow-hidden pt-20 pb-5"
       onMouseMove={handleMouseMove}
     >
       {/* Animated background gradient */}
@@ -71,23 +70,7 @@ export function HeroSection() {
         }}
       />
 
-      {/* Floating decorative elements */}
-      <FloatingObject delay={0} duration={12} x={85} y={15} size="8rem">
-        <div className={`w-full h-full rounded-full backdrop-blur-md `} />
-      </FloatingObject>
-
-      <FloatingObject delay={1} duration={15} x={10} y={70} size="6rem">
-        <div
-          className={`w-full h-full rounded-full bg-gradient-to-tr 
-          `}
-        />
-      </FloatingObject>
-
-      <FloatingObject delay={2} duration={10} x={75} y={80} size="5rem">
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-cyan-500/10 to-blue-500/10" />
-      </FloatingObject>
-
-      {/* Award badge */}
+      
 
       {/* Main content container with 3D tilt effect */}
       <motion.div

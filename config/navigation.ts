@@ -41,24 +41,24 @@ export const navigationConfig: NavigationConfig = {
       title: "Home",
       href: "/",
     },
-    {
-      title: "Features",
-      href: "#",
-      children: [
-        {
-          title: "Overview",
-          href: "/features/overview",
-        },
-        {
-          title: "Components",
-          href: "/features/components",
-        },
-        {
-          title: "Integrations",
-          href: "/features/integrations",
-        },
-      ],
-    },
+    // {
+    //   title: "Features",
+    //   href: "#",
+    //   children: [
+    //     {
+    //       title: "Overview",
+    //       href: "/features/overview",
+    //     },
+    //     {
+    //       title: "Components",
+    //       href: "/features/components",
+    //     },
+    //     {
+    //       title: "Integrations",
+    //       href: "/features/integrations",
+    //     },
+    //   ],
+    // },
     {
       title: "Services",
       href: "#",
@@ -116,7 +116,7 @@ export const navigationConfig: NavigationConfig = {
     displayVariant: 'icon-only',
   },
   announcement: {
-    text: "Book a Appoinent with us right Now",
+    text: "Book Your Free Consultation...",
     href: "/intro",
     enabled: true,
     bgColor: "#000000", 

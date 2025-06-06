@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronRight, Briefcase, Clock, MapPin, CreditCard, Check, Sparkles, Users, GraduationCap, Globe } from "lucide-react";
+import { ChevronDown, ChevronRight, Clock, MapPin, CreditCard, Check, Sparkles, Users, GraduationCap, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 
 // Define the job posting interface
@@ -31,7 +31,7 @@ const jobPostings: JobPosting[] = [
     id: "fe-dev",
     title: "Senior Frontend Developer",
     department: "Engineering",
-    location: "New York, NY (Hybrid)",
+    location: "Remote",
     type: "Full-time",
     experience: "3+ years",
     salary: "$100,000 - $130,000",
@@ -105,7 +105,7 @@ const jobPostings: JobPosting[] = [
     id: "be-dev",
     title: "Backend Engineer",
     department: "Engineering",
-    location: "San Francisco, CA",
+    location: "Remote",
     type: "Full-time",
     experience: "4+ years",
     salary: "$120,000 - $150,000",
@@ -142,10 +142,10 @@ const jobPostings: JobPosting[] = [
     id: "data-sci",
     title: "Data Scientist",
     department: "Data",
-    location: "Boston, MA (Hybrid)",
+    location: "Remote",
     type: "Full-time",
     experience: "3+ years",
-    salary: "$110,000 - $140,000",
+    salary: "122",
     description: "Join our data team to extract insights from complex datasets and develop machine learning models that power our products. You'll work with cross-functional teams to drive data-informed decisions.",
     responsibilities: [
       "Develop and implement machine learning and statistical models",
@@ -214,33 +214,6 @@ const jobPostings: JobPosting[] = [
   }
 ];
 
-// Floating decorative element component
-const FloatingObject = ({ delay, duration, x, y, size, children }) => {
-  return (
-    <motion.div
-      className="absolute"
-      style={{
-        left: `${x}%`,
-        top: `${y}%`,
-        width: size,
-        height: size
-      }}
-      animate={{
-        y: [0, -20, 0, 20, 0],
-        x: [0, 15, 0, -15, 0],
-        rotate: [0, 10, 0, -10, 0]
-      }}
-      transition={{
-        duration,
-        delay,
-        repeat: Infinity,
-        repeatType: "loop"
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-};
 
 // Benefit item component
 const BenefitItem = ({ icon: Icon, title }) => {
@@ -355,18 +328,17 @@ const JobCard = ({
           
           {/* Job details in a grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-muted-foreground">
+            
             <div className="flex items-center gap-1.5">
               <MapPin size={14} className="text-muted-foreground" />
               <span>{job.location}</span>
             </div>
+
             <div className="flex items-center gap-1.5">
               <Clock size={14} className="text-muted-foreground" />
               <span>{job.type}</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CreditCard size={14} className="text-muted-foreground" />
-              <span>{job.salary}</span>
-            </div>
+           
           </div>
           
           {/* Expand/collapse chevron */}
@@ -587,18 +559,7 @@ export default function CareersPage() {
         } as React.CSSProperties}
       />
 
-      {/* Floating decorative elements */}
-      <FloatingObject delay={0} duration={12} x={85} y={25} size="6rem">
-        <div className="w-full h-full rounded-full border border-border/20 backdrop-blur-md bg-muted/10" />
-      </FloatingObject>
-      
-      <FloatingObject delay={1} duration={15} x={10} y={70} size="8rem">
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-purple-500/10 to-blue-500/10 border border-border/10" />
-      </FloatingObject>
-      
-      <FloatingObject delay={2} duration={10} x={75} y={80} size="4rem">
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-amber-500/10 to-red-500/10" />
-      </FloatingObject>
+    
 
       {/* Main content container - 3D tilt effect */}
       <div className="container mx-auto max-w-6xl px-6 relative z-10">
@@ -613,88 +574,27 @@ export default function CareersPage() {
             damping: 30
           }}
         >
-          {/* Hero section */}
+          
+
+
+
+
+
+          {/* Why join us section */}
           <motion.div 
-            className="text-center mb-16 relative"
-            initial="hidden"
-            animate={controls}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { 
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.2
-                }
-              }
-            }}
+            className="mb-16 p-8 rounded-2xl bg-muted/40 border border-border backdrop-blur-sm relative overflow-hidden"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
           >
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20
-                  }
-                }
-              }}
-              className="inline-flex items-center justify-center mb-4"
-            >
-              <span className="h-px w-10 bg-primary"></span>
-              <motion.div 
-                className="mx-4 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-medium backdrop-blur-sm border border-primary/20"
-                whileHover={{
-                  y: -5,
-                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.25)"
-                }}
-              >
-                <span className="relative flex items-center gap-2">
-                  <Briefcase className="h-4 w-4" />
-                  <span>Join Our Team</span>
-                </span>
-              </motion.div>
-              <span className="h-px w-10 bg-primary"></span>
-            </motion.div>
+            {/* Background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary-dark/5 z-0" />
             
-            <motion.h1 
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 20,
-                    delay: 0.1
-                  }
-                }
-              }}
-              className="text-4xl md:text-6xl font-bold mb-6 relative"
-            >
-              <span className="text-foreground">
-                Build Your Career
-              </span>
-              <br />
-              <span className="relative inline-block text-primary">
-                With Our Agency
-                <motion.span
-                  className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full"
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ 
-                    delay: 1.2,
-                    duration: 0.8,
-                    ease: "easeInOut"
-                  }}
-                />
-              </span>
-            </motion.h1>
-            
-            <motion.p 
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">Why Join Our Agency?</h2>
+
+              <motion.p 
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { 
@@ -712,21 +612,7 @@ export default function CareersPage() {
             >
               Join our team of passionate professionals creating innovative solutions for the digital age. We offer a collaborative environment where your skills and creativity can thrive.
             </motion.p>
-          </motion.div>
-
-          {/* Why join us section */}
-          <motion.div 
-            className="mb-16 p-8 rounded-2xl bg-muted/40 border border-border backdrop-blur-sm relative overflow-hidden"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary-dark/5 z-0" />
-            
-            <div className="relative z-10">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">Why Join Our Agency?</h2>
+            <br/>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <BenefitItem 

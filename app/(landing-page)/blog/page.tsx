@@ -38,22 +38,7 @@ export default async function Blog() {
     <div className="min-h-screen bg-gradient-to-b from-primary/5 to-background">
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/20" />
-        <div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: 'radial-gradient(circle at center, white 0.5px, transparent 0.5px)',
-            backgroundSize: '24px 24px'
-          }}
-        />
-        <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center text-foreground">
-            {t.blogTitle || 'Blog'}
-          </h1>
-          <div className={cn("h-1 w-20 mx-auto mb-6", primaryBgClass)}></div>
-          <p className="text-xl text-center text-muted-foreground max-w-2xl mx-auto">
-            {t.blogDescription || 'Latest articles and updates'}
-          </p>
-        </div>
+        
       </div>
 
       <main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -85,7 +70,6 @@ export default async function Blog() {
           <div className="mb-16">
             <h2 className={cn("text-2xl font-bold mb-6 text-foreground flex items-center")}>
               {t.featuredPost || 'Featured Post'}
-              <div className={cn("h-1 w-6 ml-2", primaryBgClass)}></div>
             </h2>
             <Link href={`/blog/${allPosts[0].slug}`} className="group">
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-0">

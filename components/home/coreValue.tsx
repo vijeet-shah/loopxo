@@ -1,6 +1,6 @@
 "use client";
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
+import React, { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n/client-utils";
 import Image from "next/image";
@@ -13,7 +13,7 @@ const defaultValuesConfig = {
   descriptionKey: 'valuesDescription',
   values: [
     {
-      image: '/images/values/integrity.jpg',
+      image: '/assets/v1.jpeg',
       title: 'Integrity',
       titleKey: 'integrity',
       description: 'Transparency and ethical excellence form the cornerstone of our identity. We operate with unwavering moral standards, fostering deep trust through authentic communication, complete accountability, and honest dealings in every interaction.',
@@ -22,7 +22,7 @@ const defaultValuesConfig = {
       accent: 'bg-blue-500/10 border-blue-500/20'
     },
     {
-      image: '/images/values/teamwork.jpg',
+      image: '/assets/v2.jpeg',
       title: 'Collaboration',
       titleKey: 'collaboration',
       description: 'Our greatest triumphs emerge from the synergy of collective brilliance. We cultivate an environment where diverse perspectives converge, knowledge flows freely, and individual strengths unite to create extraordinary outcomes that exceed expectations.',
@@ -31,7 +31,7 @@ const defaultValuesConfig = {
       accent: 'bg-emerald-500/10 border-emerald-500/20'
     },
     {
-      image: '/images/values/reliability.jpg',
+      image: '/assets/v3.jpeg',
       title: 'Reliability',
       titleKey: 'reliability',
       description: 'Consistency is our signature. We deliver unwavering performance, maintaining the highest standards of dependability. Our commitment to reliability means you can confidently rely on us to exceed expectations, every single time.',
@@ -40,7 +40,7 @@ const defaultValuesConfig = {
       accent: 'bg-purple-500/10 border-purple-500/20'
     },
     {
-      image: '/images/values/innovation.jpg',
+      image: '/assets/v4.jpeg',
       title: 'Innovation',
       titleKey: 'innovation',
       description: 'We are pioneers in an ever-evolving landscape, continuously pushing boundaries to redefine what\'s possible. Our relentless pursuit of innovation drives us to anticipate tomorrow\'s challenges and deliver cutting-edge solutions that transform industries.',
@@ -51,271 +51,224 @@ const defaultValuesConfig = {
   ]
 };
 
-// Enhanced Value card with premium design
-const ValueCard = ({ value, index, isActive, t }) => {
+// Define interface for ValueCard props
+interface ValueCardProps {
+  value: {
+    image: string;
+    title: string;
+    titleKey: string;
+    description: string;
+    descriptionKey: string;
+    color: string;
+    accent: string;
+  };
+  index: number;
+  isActive: boolean;
+  t: Record<string, string>;
+}
+
+// Optimized Value card with reduced animations
+const ValueCard = React.memo(({ value, index, isActive, t }: ValueCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Memoize transition configs
+  const hoverTransition = useMemo(() => ({
+    type: "spring",
+    stiffness: 300,
+    damping: 25
+  }), []);
+
+  const baseTransition = useMemo(() => ({
+    duration: 0.4,
+    ease: [0.25, 0.46, 0.45, 0.94]
+  }), []);
+
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ 
-        opacity: isActive ? 1 : 0.7, 
-        y: 0, 
-        scale: isActive ? 1 : 0.95,
-        filter: isActive ? "blur(0px)" : "blur(1px)"
+        opacity: isActive ? 1 : 0.8, 
+        y: 0,
+        scale: isActive ? 1 : 0.98
       }}
       whileHover={{ 
-        y: -15, 
+        y: -8, 
         scale: 1.02,
-        boxShadow: "0 30px 60px -12px rgba(0, 0, 0, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3)",
-        filter: "blur(0px)",
-        transition: { type: "spring", stiffness: 300, damping: 20 }
+        transition: hoverTransition
       }}
-      transition={{
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }}
+      transition={baseTransition}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className={cn(
-        "relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 group cursor-pointer",
+        "relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group cursor-pointer",
         value.accent,
-        isActive ? "ring-2 ring-primary/20" : ""
+        isActive ? "ring-1 ring-primary/30" : ""
       )}
     >
-      {/* Gradient Overlay */}
+      {/* Static gradient overlay */}
       <div className={cn("absolute inset-0 bg-gradient-to-br opacity-5", value.color)} />
       
-      {/* Professional Image Container */}
-      <motion.div 
-        className="relative h-64 w-full overflow-hidden"
-        whileHover={{ scale: 1.08 }}
-        transition={{ duration: 0.4 }}
-      >
+      {/* Optimized Image Container */}
+      <div className="relative h-48 w-full overflow-hidden">
         <Image
           width={400}
           height={300}
           src={value.image} 
           alt={t[value.titleKey] || value.title}
-          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+          className={cn(
+            "w-full h-full object-cover transition-transform duration-500",
+            isHovered ? "scale-105" : "scale-100"
+          )}
         />
         
-        {/* Dynamic overlay */}
-        <motion.div 
-          className={cn("absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent")}
-          initial={{ opacity: 0.3 }}
-          whileHover={{ opacity: 0.6 }}
-          transition={{ duration: 0.3 }}
-        />
+        {/* Simplified overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
         
-        {/* Floating number indicator */}
-        <motion.div
-          className="absolute top-6 left-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center"
-          whileHover={{ scale: 1.2, rotate: 360 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-white font-bold text-lg">{index + 1}</span>
-        </motion.div>
-        
-        {/* Animated corner accent */}
-        <motion.div
-          className="absolute top-6 right-6 w-3 h-3 rounded-full bg-white/80"
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.7, 1, 0.7]
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            repeatType: "loop"
-          }}
-        />
-      </motion.div>
+        {/* Static number indicator */}
+        <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+          <span className="text-white font-semibold text-sm">{index + 1}</span>
+        </div>
+      </div>
       
-      {/* Enhanced Content Section */}
-      <div className="p-8 relative">
-        <motion.div
-          className={cn("absolute top-0 left-8 w-16 h-1 rounded-full bg-gradient-to-r", value.color)}
-          initial={{ width: 0 }}
-          whileInView={{ width: "4rem" }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        />
+      {/* Simplified Content Section */}
+      <div className="p-6 relative">
+        <div className={cn("absolute top-0 left-6 w-12 h-0.5 rounded-full bg-gradient-to-r", value.color)} />
         
-        <motion.h3 
-          className="text-2xl font-bold mb-4 text-foreground pt-4"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-        >
+        <h3 className="text-xl font-bold mb-3 text-foreground pt-3">
           <span className={cn("bg-clip-text text-transparent bg-gradient-to-r", value.color)}>
             {t[value.titleKey] || value.title}
           </span>
-        </motion.h3>
+        </h3>
         
-        <motion.p 
-          className="text-muted-foreground leading-relaxed text-base"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
+        <p className="text-muted-foreground leading-relaxed text-sm ">
           {t[value.descriptionKey] || value.description}
-        </motion.p>
+        </p>
         
-        {/* Interactive hover element */}
-        <motion.div
-          className={cn("mt-6 inline-flex items-center text-sm font-medium bg-gradient-to-r bg-clip-text text-transparent", value.color)}
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1, x: 5 }}
-          transition={{ duration: 0.3 }}
-        >
-          Learn More →
-        </motion.div>
+        {/* Simple hover element */}
+       
       </div>
     </motion.div>
   );
-};
+});
 
-
+ValueCard.displayName = "ValueCard";
 
 export function CoreValue() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, margin: "-10% 0px" });
+  const isInView = useInView(sectionRef, { once: true, margin: "-20%" });
   const controls = useAnimation();
   
-  // Carousel state
+  // Optimized carousel state
   const [currentIndex, setCurrentIndex] = useState(0);
-  const isPlaying = true;
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
   
-  const valuesConfig = defaultValuesConfig;
+  const valuesConfig = useMemo(() => defaultValuesConfig, []);
   
-  // Auto-play functionality
+  // Optimized auto-play with proper cleanup
   useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % valuesConfig.values.length);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying, valuesConfig.values.length]);
+    if (!isAutoPlay) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % valuesConfig.values.length);
+    }, 5000); // Increased interval for better UX
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlay, valuesConfig.values.length]);
   
+  // Simplified animation trigger
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
     }
   }, [isInView, controls]);
-  
 
-  
+  // Pause autoplay on hover
+  const handleMouseEnter = useCallback(() => {
+    setIsAutoPlay(false);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsAutoPlay(true);
+  }, []);
+
+  // Memoize animation variants
+  const containerVariants = useMemo(() => ({
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        duration: 0.6
+      }
+    }
+  }), []);
+
+  const itemVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  }), []);
+
   return (
     <motion.section 
       ref={sectionRef}
-      className=" px-6 bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden"
+      className="py-20 px-6 bg-gradient-to-br from-background via-background to-primary/3 relative overflow-hidden"
       initial="hidden"
       animate={controls}
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { 
-          opacity: 1,
-          transition: {
-            staggerChildren: 0.3
-          }
-        }
-      }}
+      variants={containerVariants}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Enhanced animated background */}
-      <motion.div 
-        className="absolute inset-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 30%, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%)",
-            "radial-gradient(circle at 80% 70%, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%)",
-            "radial-gradient(circle at 40% 90%, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%)",
-            "radial-gradient(circle at 20% 30%, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%)"
-          ]
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
-      />
+      {/* Simplified background animation */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 opacity-50" />
       
-      {/* Floating particles */}
-      {Array.from({ length: 6 }).map((_, i) => (
+      {/* Reduced floating particles */}
+      {Array.from({ length: 3 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-primary/20 rounded-full"
+          className="absolute w-1 h-1 bg-primary/30 rounded-full"
           animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-            opacity: [0, 1, 0]
+            y: [-20, -100, -20],
+            opacity: [0, 0.6, 0]
           }}
           transition={{
-            duration: 8 + i * 2,
+            duration: 8,
             repeat: Infinity,
-            delay: i * 1.5
+            delay: i * 3,
+            ease: "linear"
           }}
           style={{
-            left: `${10 + i * 15}%`,
-            top: `${20 + i * 10}%`
+            left: `${20 + i * 30}%`,
+            top: `${80}%`
           }}
         />
       ))}
 
       <div className="container mx-auto max-w-7xl relative z-10">
-        {/* Enhanced Header */}
+        {/* Optimized Header */}
         <motion.div 
-          className="text-center mb-20"
-          variants={{
-            hidden: { opacity: 0, y: -30 },
-            visible: { opacity: 1, y: 0 }
-          }}
+          className="text-center mb-16"
+          variants={itemVariants}
         >
           <motion.div 
-            className="inline-flex items-center justify-center mb-8"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
+            className="inline-flex items-center justify-center mb-6"
+            variants={itemVariants}
           >
-            <motion.span 
-              className="h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent"
-              initial={{ width: 0 }}
-              whileInView={{ width: "4rem" }}
-              transition={{ delay: 0.2, duration: 1 }}
-            />
-            <motion.span 
-              className="mx-8 text-sm font-bold tracking-widest uppercase px-8 py-3 rounded-full bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 text-primary backdrop-blur-sm"
-              whileHover={{
-                y: -4,
-                boxShadow: "0 20px 40px -12px rgba(var(--primary-rgb), 0.35)",
-                scale: 1.05
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              {t[valuesConfig.titleKey] || "Our Core Values"}
-            </motion.span>
-            <motion.span 
-              className="h-px w-16 bg-gradient-to-r from-transparent via-primary to-transparent"
-              initial={{ width: 0 }}
-              whileInView={{ width: "4rem" }}
-              transition={{ delay: 0.2, duration: 1 }}
-            />
+            <span className="h-px w-12 bg-gradient-to-r from-transparent via-primary to-transparent" />
+            
           </motion.div>
           
           <motion.h2 
-            className="text-6xl font-bold mb-10 text-foreground leading-tight max-w-4xl mx-auto"
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { 
-                opacity: 1, 
-                y: 0,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: 0.3
-                }
-              }
-            }}
+            className="text-4xl md:text-5xl font-bold mb-8 text-foreground leading-tight max-w-4xl mx-auto"
+            variants={itemVariants}
           >
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/90 to-primary/80">
               {t[valuesConfig.titleKey] || valuesConfig.title}
@@ -323,42 +276,29 @@ export function CoreValue() {
           </motion.h2>
           
           <motion.p 
-            className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed"
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { 
-                opacity: 1, 
-                y: 0,
-                transition: {
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: 0.5
-                }
-              }
-            }}
+            className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            variants={itemVariants}
           >
             {t[valuesConfig.descriptionKey] || valuesConfig.description}
           </motion.p>
         </motion.div>
         
-        {/* Enhanced Carousel Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <AnimatePresence mode="wait">
-            {valuesConfig.values.map((value, index) => (
-              <ValueCard 
-                key={index}
-                value={value}
-                index={index}
-                isActive={index === currentIndex}
-                t={t}
-              />
-            ))}
-          </AnimatePresence>
-        </div>
+        {/* Optimized Grid */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          variants={itemVariants}
+        >
+          {valuesConfig.values.map((value, index) => (
+            <ValueCard 
+              key={index}
+              value={value}
+              index={index}
+              isActive={index === currentIndex}
+              t={t}
+            />
+          ))}
+        </motion.div>
         
-        {/* Enhanced Carousel Controls */}
-       
        
       </div>
     </motion.section>

@@ -3,11 +3,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useTranslation } from "@/lib/i18n/client-utils";
+import { FloatingObject } from "../animation/floatingElements";
 
 // Service items data structure with translation keys
 const getServiceItems = (t: any) => [
@@ -126,7 +127,7 @@ const ServiceCard = ({
   const colorClass = theme === "dark" ? service.color.dark : service.color.light;
   
   // Animation for particles in expanded state
-  const particleCount = 8;
+  const particleCount = 2;
   const particles = Array.from({ length: particleCount }).map((_, i) => ({
     id: i,
     initialX: Math.random() * 100,
@@ -320,7 +321,7 @@ const ServiceCard = ({
                 repeatType: "loop"
               }}
             >
-              Service {service.id}
+              Service {service.id} 
             </motion.div>
           </div>
         </div>
@@ -498,35 +499,7 @@ const ServiceCard = ({
   );
 };
 
-// Enhanced decorative floating objects
-const FloatingObject = ({ delay, duration, x, y, size, children }) => {
-  return (
-    <motion.div
-      className="absolute opacity-40"
-      style={{
-        left: `${x}%`,
-        top: `${y}%`,
-        width: size,
-        height: size
-      }}
-      animate={{
-        y: [0, -15, 0, 15, 0],
-        x: [0, 10, 0, -10, 0],
-        rotate: [0, 5, 0, -5, 0],
-        scale: [1, 1.05, 1, 0.95, 1]
-      }}
-      transition={{
-        duration,
-        delay,
-        repeat: Infinity,
-        repeatType: "loop",
-        ease: "easeInOut"
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+
 
 // Main component
 export function ServiceSection() {
@@ -649,18 +622,7 @@ export function ServiceSection() {
               className="inline-flex items-center justify-center mb-6"
             >
               <span className="h-px w-12 bg-gradient-to-r from-transparent to-primary"></span>
-              <motion.div 
-                className="mx-4 px-6 py-2 rounded-full bg-primary/10 text-primary font-semibold backdrop-blur-sm border border-primary/20 shadow-lg"
-                whileHover={{
-                  y: -3,
-                  boxShadow: "0 15px 35px -5px rgba(var(--primary), 0.25)"
-                }}
-              >
-                <span className="relative flex items-center gap-2">
-                  <Sparkles className="h-4 w-4" />
-                  <span>{t?.ourExpertise || "Our Expertise"}</span>
-                </span>
-              </motion.div>
+             
               <span className="h-px w-12 bg-gradient-to-l from-transparent to-primary"></span>
             </motion.div>
             
