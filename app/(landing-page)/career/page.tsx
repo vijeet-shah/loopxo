@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronRight, Clock, MapPin, CreditCard, Check, Sparkles, Users, GraduationCap, Globe } from "lucide-react";
+import { ChevronDown, ChevronRight, Clock, MapPin, Check, Sparkles, Users, GraduationCap, Globe } from "lucide-react";
 import { useTheme } from "next-themes";
 
 // Define the job posting interface

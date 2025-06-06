@@ -50,7 +50,7 @@ export async function LandingPage() {
     <div className="min-h-screen bg-background">
      <HeroSection/>
 
-    <CoreValue translations = {t} s={lang} />
+    <CoreValue   />
      <ServiceSection/>
 
       {/* CTA Section */}
