@@ -15,14 +15,13 @@ import {
   User, 
   Server,
   Settings,
-  ChevronRight,
   GitBranch,
   LineChart,
   Globe,
   Target
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { SectionHeader, FeatureCard, FloatingObject } from "@/components/animation/floatingElements";
+import {  FeatureCard } from "@/components/animation/floatingElements";
 
 // Interface for platform feature
 interface PlatformFeature {
@@ -263,16 +262,7 @@ const PlatformCard = ({
           </div>
           
           {/* Expand/collapse indicator */}
-          <motion.div
-            animate={{ 
-              rotate: isExpanded ? 90 : 0,
-              y: isExpanded ? -3 : 0
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="w-8 h-8 rounded-full flex items-center justify-center bg-muted/50 text-foreground flex-shrink-0"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </motion.div>
+         
         </div>
       </motion.div>
 
@@ -469,138 +459,79 @@ export default function MobileAppDevelopmentPage() {
 
   return (
     <motion.div 
-      ref={pageRef}
-      className="min-h-screen relative overflow-hidden py-16 bg-background"
-      onMouseMove={handleMouseMove}
-    >
-      {/* Animated background gradient */}
-      <motion.div 
-        className="absolute inset-0 opacity-30"
-        animate={{
-          background: [
-            "radial-gradient(circle at 20% 30%, var(--gradient-1) 0%, transparent 70%)",
-            "radial-gradient(circle at 70% 60%, var(--gradient-1) 0%, transparent 70%)",
-            "radial-gradient(circle at 20% 30%, var(--gradient-1) 0%, transparent 70%)"
-          ]
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          repeatType: "loop"
-        }}
-        style={{ 
-          "--gradient-1": theme === "dark" 
-            ? "rgba(30, 64, 175, 0.15)" 
-            : "rgba(59, 130, 246, 0.1)"
-        } as React.CSSProperties}
-      />
-
-      {/* Floating decorative elements */}
-      <FloatingObject delay={0} duration={12} x={85} y={15} size="8rem">
-        <div className="w-full h-full rounded-full border border-border/20 backdrop-blur-md bg-muted/10" />
-      </FloatingObject>
-      
-      <FloatingObject delay={1} duration={15} x={10} y={70} size="9rem">
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-blue-500/10 to-indigo-500/10 border border-border/10" />
-      </FloatingObject>
-      
-      <FloatingObject delay={2} duration={10} x={75} y={80} size="5rem">
-        <div className="w-full h-full rounded-full bg-gradient-to-tr from-cyan-500/10 to-blue-500/10" />
-      </FloatingObject>
-
-      <div className="container mx-auto max-w-5xl px-6 relative z-10">
-        <motion.div
-          style={{
-            perspective: "1200px",
-            transform: `rotateX(${mousePosition.x}deg) rotateY(${mousePosition.y}deg)`,
-            transformStyle: "preserve-3d"
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 30
-          }}
+          ref={pageRef}
+          className="min-h-screen relative overflow-hidden py-16 bg-background"
+          onMouseMove={handleMouseMove}
         >
-          {/* Hero section - narrower max-width */}
-          <SectionHeader
-            overline="Mobile App Development"
-            overlineIcon={Smartphone}
-            title={
-              <>
-                <span className="text-foreground">
-                  Innovative Mobile Solutions
-                </span>
-                <br />
-                <span className="relative inline-block text-primary">
-                  For iOS & Android
-                  <motion.span
-                    className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-primary to-primary-dark rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ 
-                      delay: 1.2,
-                      duration: 0.8,
-                      ease: "easeInOut"
-                    }}
-                  />
-                </span>
-              </>
-            }
-            description="We specialize in the development of innovative and user-friendly mobile applications for both iOS and Android platforms. Our process encompasses every stage, from initial concept and design to final deployment."
-            maxWidth="2xl"
-          />
-          
+          {/* Animated background gradient */}
           <motion.div 
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { 
-                opacity: 1, 
-                y: 0,
-                transition: {
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20,
-                  delay: 0.4
-                }
-              }
+            className="absolute inset-0 opacity-30"
+            animate={{
+              background: [
+                "radial-gradient(circle at 20% 30%, var(--gradient-1) 0%, transparent 70%)",
+                "radial-gradient(circle at 70% 60%, var(--gradient-1) 0%, transparent 70%)",
+                "radial-gradient(circle at 20% 30%, var(--gradient-1) 0%, transparent 70%)"
+              ]
             }}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2 group"
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              repeatType: "loop"
+            }}
+            style={{ 
+              "--gradient-1": theme === "dark" 
+                ? "rgba(94, 63, 206, 0.15)" 
+                : "rgba(124, 58, 237, 0.1)"
+            } as React.CSSProperties}
+          />
+    
+        
+          <div className="container mx-auto max-w-7xl px-6 relative z-10">
+            <motion.div
+              style={{
+                perspective: "1200px",
+                transform: `rotateX(${mousePosition.x}deg) rotateY(${mousePosition.y}deg)`,
+                transformStyle: "preserve-3d"
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 30
+              }}
             >
-              Start Your Mobile Project
-              <motion.div
-                animate={{
-                  x: [0, 5, 0]
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  repeatType: "loop"
-                }}
-              >
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </motion.div>
-            </motion.button>
-            
-            <Link href="/portfolio/mobile-apps">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="border border-border bg-transparent text-foreground px-8 py-3 rounded-lg font-medium"
-              >
-                View App Portfolio
-              </motion.button>
-            </Link>
-          </motion.div>
+              
+         
 
-          {/* Stats section */}
-          <motion.div 
+          {/* Key Features section */}
+          <div className="mb-20">
+          <div className="text-center mb-12">
+            
+           <motion.h2 
+                           className="text-3xl font-bold text-foreground mb-3"
+                           initial={{ opacity: 0, y: 20 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           transition={{ duration: 0.6 }}
+                           viewport={{ once: true, margin: "-100px" }}
+                         >
+              Why Choose Our Mobile App Services
+            </motion.h2>
+
+
+            <motion.p 
+                            className="text-muted-foreground max-w-3xl mx-auto"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                          >
+       We specialize in the development of innovative and user-friendly mobile applications for both iOS and Android platforms. Our process encompasses every stage, from initial concept and design to final deployment.
+       </motion.p>
+       </div>
+
+     
+
+
+            <motion.div 
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -622,18 +553,6 @@ export default function MobileAppDevelopmentPage() {
               <p className="text-muted-foreground">Typical user engagement increase</p>
             </div>
           </motion.div>
-
-          {/* Key Features section */}
-          <div className="mb-20">
-            <motion.h2 
-              className="text-3xl font-bold text-foreground mb-10 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, margin: "-100px" }}
-            >
-              Why Choose Our Mobile App Services
-            </motion.h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <FeatureCard 
@@ -725,55 +644,9 @@ export default function MobileAppDevelopmentPage() {
           </div>
 
           {/* Mobile app showcase */}
-          <motion.div 
-            className="mb-20 rounded-xl border border-border overflow-hidden"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <div className="bg-muted p-6">
-              <h3 className="text-2xl font-bold text-foreground mb-2">Featured Mobile Projects</h3>
-              <p className="text-muted-foreground">A selection of our recent mobile app development work</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
-              {/* These would ideally be real projects with images */}
-              <div className="bg-card aspect-square relative group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                  <h4 className="text-white font-medium">HealthTracker Pro</h4>
-                  <p className="text-white/80 text-sm">iOS & Android health monitoring app</p>
-                </div>
-              </div>
-              
-              <div className="bg-card aspect-square relative group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t fromblack/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                  <h4 className="text-white font-medium">Finance Master</h4>
-                  <p className="text-white/80 text-sm">Personal finance management app</p>
-                </div>
-              </div>
-              
-              <div className="bg-card aspect-square relative group overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                  <h4 className="text-white font-medium">EcoRoute</h4>
-                  <p className="text-white/80 text-sm">Sustainable transportation app</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="p-4 bg-muted flex justify-center">
-              <Link href="/portfolio/mobile-apps">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="text-primary flex items-center gap-1 font-medium"
-                >
-                  View all mobile projects
-                  <ArrowRight size={16} />
-                </motion.button>
-              </Link>
-            </div>
-          </motion.div>
+
+          
+      
 
           {/* CTA section */}
           <motion.div 
@@ -800,7 +673,7 @@ export default function MobileAppDevelopmentPage() {
               >
                 <Link 
                   href="/contact" 
-                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center gap-2  text-primary-foreground px-8 py-3.5 rounded-lg font-medium  transition-colors"
                 >
                   Schedule a Mobile Consultation
                   <ArrowRight size={16} />

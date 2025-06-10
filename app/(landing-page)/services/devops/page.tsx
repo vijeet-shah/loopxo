@@ -5,27 +5,30 @@ import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
 import {
   ArrowRight,
-  Brain,
-  Cpu,
+  Cloud,
   Shield,
+  Database,
+  GitBranch,
+  Monitor,
+  Layers,
   BookOpen,
+  TestTube,
   Rocket,
   Target,
-  Bot,
-  Database,
   Settings,
-  LineChart,
-  MessageSquare,
-  CloudCog,
+  Container,
+  Workflow,
+  Lock,
   Activity,
-  CheckCircle,
+  Gauge,
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ServiceCard } from "@/components/serviceCard";
+import DeliverableCard from "@/components/services/deliverableCard";
 import ProcessCard from "@/components/services/processCard";
 
 // Interface for service
-interface AIService {
+interface CloudDevOpsService {
   id: string;
   title: string;
   description: string;
@@ -37,223 +40,194 @@ interface AIService {
   };
 }
 
-// AI Integration Services data
-const aiServices: AIService[] = [
+// Cloud & DevOps Services data
+const cloudDevOpsServices: CloudDevOpsService[] = [
   {
-    id: "llm-integration",
-    title: "LLM & GPT Integration Solutions",
+    id: "cloud-infrastructure",
+    title: "Cloud Infrastructure & Architecture",
     description:
-      "We integrate cutting-edge Large Language Models including GPT-4, Claude, and custom fine-tuned models into your applications, creating intelligent conversational experiences and automated workflows.",
-    icon: Brain,
+      "We design and implement scalable, secure cloud architectures on AWS, Azure, and GCP that optimize performance, reduce costs, and ensure high availability for mission-critical applications.",
+    icon: Cloud,
     features: [
-      "OpenAI GPT-4, Anthropic Claude, and Google Bard integration",
-      "Custom prompt engineering and optimization strategies",
-      "Multi-model fallback systems for reliability",
-      "Token optimization and cost management solutions",
-      "Real-time streaming responses and chat interfaces",
+      "Multi-cloud and hybrid cloud architecture design",
+      "Infrastructure as Code with Terraform and CloudFormation",
+      "Auto-scaling and load balancing configuration",
+      "Cloud migration strategy and implementation",
+      "Cost optimization and resource management",
     ],
     color: {
-      light: "from-blue-500 to-purple-600",
-      dark: "from-blue-400 to-purple-500",
+      light: "from-blue-500 to-cyan-600",
+      dark: "from-blue-400 to-cyan-500",
     },
   },
   {
-    id: "custom-ai-models",
-    title: "Custom AI Models & Machine Learning",
+    id: "devops-automation",
+    title: "DevOps Automation & CI/CD Pipelines",
     description:
-      "We develop and deploy custom AI models tailored to your specific business needs, from computer vision to natural language processing and predictive analytics.",
-    icon: Cpu,
+      "We streamline development workflows with advanced CI/CD pipelines, automated testing, and deployment strategies that accelerate delivery while maintaining code quality and reliability.",
+    icon: Workflow,
     features: [
-      "Custom neural network architecture design",
-      "TensorFlow, PyTorch, and Hugging Face implementations",
-      "Computer vision and image recognition systems",
-      "Natural language processing and sentiment analysis",
-      "Predictive analytics and recommendation engines",
+      "CI/CD pipeline development with Jenkins, GitLab, GitHub Actions",
+      "Automated testing and quality assurance integration",
+      "Blue-green and canary deployment strategies",
+      "Infrastructure automation and configuration management",
+      "Release management and rollback procedures",
     ],
     color: {
-      light: "from-emerald-500 to-teal-600",
-      dark: "from-emerald-400 to-teal-500",
+      light: "from-emerald-500 to-green-600",
+      dark: "from-emerald-400 to-green-500",
     },
   },
   {
-    id: "ai-chatbots",
-    title: "Intelligent Chatbots & Virtual Assistants",
+    id: "container-orchestration",
+    title: "Container Orchestration & Microservices",
     description:
-      "We create sophisticated AI-powered chatbots and virtual assistants that understand context, maintain conversations, and integrate seamlessly with your business systems.",
-    icon: MessageSquare,
+      "We architect and deploy containerized applications using Kubernetes and Docker, enabling scalable microservices architectures that improve development velocity and system resilience.",
+    icon: Container,
     features: [
-      "Multi-platform chatbot deployment (web, mobile, messaging)",
-      "Context-aware conversation management",
-      "Integration with CRM, helpdesk, and business systems",
-      "Voice recognition and text-to-speech capabilities",
-      "Analytics dashboard for conversation insights",
+      "Kubernetes cluster setup and management",
+      "Docker containerization and optimization",
+      "Microservices architecture design and implementation",
+      "Service mesh configuration with Istio/Linkerd",
+      "Container security and compliance",
     ],
     color: {
-      light: "from-purple-500 to-pink-600",
-      dark: "from-purple-400 to-pink-500",
+      light: "from-purple-500 to-indigo-600",
+      dark: "from-purple-400 to-indigo-500",
     },
   },
   {
-    id: "ai-automation",
-    title: "AI-Powered Business Automation",
+    id: "monitoring-observability",
+    title: "Monitoring, Logging & Observability",
     description:
-      "We implement intelligent automation solutions that learn from your business processes, make decisions, and continuously improve operational efficiency.",
-    icon: Settings,
+      "We implement comprehensive monitoring solutions that provide real-time insights into system performance, enabling proactive issue resolution and optimal resource utilization.",
+    icon: Monitor,
     features: [
-      "Document processing and intelligent data extraction",
-      "Automated workflow orchestration with AI decision points",
-      "Email and communication automation with context understanding",
-      "Intelligent content generation and management",
-      "Process optimization through machine learning insights",
+      "Application and infrastructure monitoring with Prometheus, Grafana",
+      "Centralized logging with ELK stack and Fluentd",
+      "Distributed tracing and APM implementation",
+      "Custom alerting and incident response automation",
+      "Performance metrics and SLA monitoring",
     ],
     color: {
-      light: "from-amber-500 to-orange-600",
-      dark: "from-amber-400 to-orange-500",
+      light: "from-orange-500 to-red-600",
+      dark: "from-orange-400 to-red-500",
     },
   },
   {
-    id: "ai-analytics",
-    title: "AI Analytics & Business Intelligence",
+    id: "security-compliance",
+    title: "Cloud Security & Compliance",
     description:
-      "We build intelligent analytics platforms that provide predictive insights, automated reporting, and data-driven recommendations to accelerate business growth.",
-    icon: LineChart,
-    features: [
-      "Predictive analytics and forecasting models",
-      "Automated report generation with natural language summaries",
-      "Anomaly detection and alert systems",
-      "Customer behavior analysis and segmentation",
-      "Real-time dashboard with AI-powered insights",
-    ],
-    color: {
-      light: "from-indigo-500 to-blue-600",
-      dark: "from-indigo-400 to-blue-500",
-    },
-  },
-  {
-    id: "ai-security",
-    title: "AI Security & Compliance Management",
-    description:
-      "We implement robust security measures for AI systems, ensuring data privacy, model security, and compliance with industry regulations and ethical AI practices.",
+      "We implement robust security frameworks and ensure compliance with industry standards, protecting your cloud infrastructure and applications from threats while maintaining regulatory requirements.",
     icon: Shield,
     features: [
-      "AI model security and adversarial attack prevention",
-      "Data privacy protection and anonymization techniques",
-      "GDPR, HIPAA, and SOC2 compliance implementation",
-      "Bias detection and fairness monitoring systems",
-      "Audit trails and explainable AI documentation",
+      "Identity and Access Management (IAM) configuration",
+      "Security scanning and vulnerability assessment",
+      "Compliance automation for SOC2, HIPAA, PCI-DSS",
+      "Network security and firewall management",
+      "Secrets management and encryption strategies",
     ],
     color: {
-      light: "from-red-500 to-rose-600",
-      dark: "from-red-400 to-rose-500",
+      light: "from-red-500 to-pink-600",
+      dark: "from-red-400 to-pink-500",
+    },
+  },
+  {
+    id: "database-management",
+    title: "Database Management & Optimization",
+    description:
+      "We manage and optimize database systems in the cloud, ensuring high performance, availability, and security for your critical data infrastructure with automated backup and disaster recovery.",
+    icon: Database,
+    features: [
+      "Cloud database setup and migration (RDS, CosmosDB, BigQuery)",
+      "Database performance tuning and optimization",
+      "Automated backup and disaster recovery planning",
+      "Database security and access control",
+      "Multi-region replication and high availability",
+    ],
+    color: {
+      light: "from-teal-500 to-blue-600",
+      dark: "from-teal-400 to-blue-500",
     },
   },
 ];
 
-// Professional AI development process steps
+// Professional development process steps
 const processSteps = [
   {
     id: "01",
-    title: "AI Strategy & Requirements Analysis",
+    title: "Infrastructure Assessment & Planning",
     description:
-      "We conduct comprehensive business analysis to identify AI opportunities, define use cases, and create a strategic roadmap. This includes feasibility assessment, ROI projections, and technology stack planning tailored to your specific needs.",
+      "We conduct comprehensive infrastructure audits, analyze current architecture, and define cloud strategy. This includes stakeholder interviews, performance assessment, and identifying optimization opportunities to ensure alignment with business objectives.",
     icon: Target,
   },
   {
     id: "02",
-    title: "Data Architecture & Model Selection",
+    title: "Cloud Architecture & Design",
     description:
-      "Our AI architects design scalable data pipelines and select optimal AI models for your use case. We establish data governance, quality frameworks, and choose between pre-trained models, fine-tuning, or custom development approaches.",
-    icon: Database,
+      "Our cloud architects design scalable, secure infrastructure with modern cloud platforms, define governance policies, and plan migration strategies. We establish cloud-native architectures optimized for performance and cost.",
+    icon: Layers,
   },
   {
     id: "03",
-    title: "AI Development & Training",
+    title: "DevOps Pipeline Development",
     description:
-      "We develop and train AI models using industry best practices, implementing robust MLOps pipelines for continuous integration and deployment. Our team ensures models are optimized for performance, accuracy, and scalability.",
-    icon: Bot,
+      "We develop robust CI/CD pipelines using industry-leading tools and practices. This includes automated testing integration, deployment automation, and quality gates to ensure reliable software delivery.",
+    icon: GitBranch,
   },
   {
     id: "04",
-    title: "Integration & System Architecture",
+    title: "Infrastructure as Code Implementation",
     description:
-      "Our senior developers integrate AI capabilities into your existing systems with minimal disruption. We design fault-tolerant architectures with proper error handling, monitoring, and fallback mechanisms for enterprise reliability.",
-    icon: CloudCog,
+      "Our DevOps engineers implement Infrastructure as Code solutions with comprehensive peer review processes. Every configuration follows best practices, includes extensive documentation, and undergoes thorough validation.",
+    icon: Settings,
   },
   {
     id: "05",
-    title: "Testing & Performance Optimization",
+    title: "Testing & Security Validation",
     description:
-      "We implement comprehensive testing suites including model validation, A/B testing, and performance benchmarking. All AI systems undergo rigorous testing for accuracy, bias, security, and scalability before deployment.",
-    icon: Activity,
+      "We implement comprehensive testing suites including infrastructure tests, security scans, and compliance checks. All solutions are tested for performance, scalability, and security across multiple environments.",
+    icon: TestTube,
   },
   {
     id: "06",
-    title: "Deployment & Continuous Monitoring",
+    title: "Deployment & Ongoing Management",
     description:
-      "We deploy AI systems with comprehensive monitoring dashboards and implement continuous learning pipelines. Clients receive detailed documentation, training, and ongoing support for model maintenance and improvements.",
+      "We deploy cloud solutions with monitoring and alerting in place. Clients receive detailed documentation, team training, and ongoing support for maintenance, optimization, and scaling.",
     icon: Rocket,
   },
 ];
 
 // Client deliverables and tools
-const deliverables = [
+const deliverableTools = [
   {
-    title: "AI Model Documentation",
+    title: "Infrastructure Monitoring Dashboards",
     description:
-      "Comprehensive technical documentation with model architecture and API specifications",
+      "Real-time infrastructure monitoring with performance metrics and automated alerting",
+    icon: Activity,
+  },
+  {
+    title: "DevOps Documentation & Runbooks",
+    description:
+      "Comprehensive operational procedures, deployment guides, and troubleshooting documentation",
     icon: BookOpen,
   },
   {
-    title: "Performance Dashboards",
+    title: "Security & Compliance Framework",
     description:
-      "Real-time monitoring dashboards for model performance and business metrics",
-    icon: LineChart,
+      "Complete security policies, compliance reports, and governance documentation",
+    icon: Lock,
   },
   {
-    title: "Training Materials",
-    description: "Complete training guides and best practices for your team",
-    icon: CheckCircle,
-  },
-  {
-    title: "Compliance Reports",
+    title: "Performance Analytics & Reports",
     description:
-      "Detailed AI ethics and compliance documentation for regulatory requirements",
-    icon: Shield,
+      "Detailed infrastructure performance metrics, cost analysis, and optimization recommendations",
+    icon: Gauge,
   },
 ];
 
-
-
-
-// Deliverables card component
-const DeliverableCard = ({
-  deliverable,
-  index,
-}: {
-  deliverable: any;
-  index: number;
-}) => {
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, margin: "-50px 0px" });
-
-  return (
-    <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="bg-card rounded-lg p-6 border border-border hover:border-blue-500/50 transition-colors"
-    >
-      <div className="flex items-center gap-3 mb-3">
-        <h3 className="font-semibold text-foreground">{deliverable.title}</h3>
-      </div>
-      <p className="text-sm text-muted-foreground">{deliverable.description}</p>
-    </motion.div>
-  );
-};
-
-// Main AI Integration Page Component
-export default function AIIntegration() {
+// Main Cloud DevOps Page Component
+export default function CloudDevOpsManagement() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const pageRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(pageRef, { once: false, margin: "-10% 0px" });
@@ -313,8 +287,8 @@ export default function AIIntegration() {
           {
             "--gradient-1":
               theme === "dark"
-                ? "rgba(59, 130, 246, 0.15)"
-                : "rgba(37, 99, 235, 0.1)",
+                ? "rgba(6, 182, 212, 0.15)"
+                : "rgba(14, 165, 233, 0.1)",
           } as React.CSSProperties
         }
       />
@@ -332,9 +306,7 @@ export default function AIIntegration() {
             damping: 30,
           }}
         >
-         
-
-          {/* Professional Deliverables section */}
+          {/* Client Deliverables section */}
           <div className="mb-20">
             <div className="text-center mb-12">
               <motion.h2
@@ -344,7 +316,7 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                Comprehensive AI Implementation & Documentation
+                Professional Cloud Solutions & DevOps Deliverables
               </motion.h2>
               <motion.p
                 className="text-muted-foreground max-w-3xl mx-auto"
@@ -353,9 +325,9 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                We provide complete AI solutions with detailed documentation,
-                monitoring dashboards, and comprehensive training to ensure
-                successful adoption and long-term success.
+                We provide comprehensive cloud infrastructure and DevOps
+                solutions that ensure seamless deployment, monitoring, and
+                scaling of your applications with enterprise-grade reliability.
               </motion.p>
             </div>
 
@@ -369,43 +341,41 @@ export default function AIIntegration() {
             >
               <div className="bg-card rounded-xl p-6 border border-border">
                 <h3 className="text-4xl font-bold text-foreground mb-2">
-                  150+
+                  200+
                 </h3>
-                <p className="text-muted-foreground">AI projects delivered</p>
+                <p className="text-muted-foreground">
+                  Cloud migrations completed
+                </p>
               </div>
 
               <div className="bg-card rounded-xl p-6 border border-border">
-                <h3 className="text-4xl font-bold text-foreground mb-2">95%</h3>
-                <p className="text-muted-foreground">
-                  AI implementation success rate
-                </p>
+                <h3 className="text-4xl font-bold text-foreground mb-2">
+                  99.9%
+                </h3>
+                <p className="text-muted-foreground">Infrastructure uptime</p>
               </div>
 
               <div className="bg-card rounded-xl p-6 border border-border">
                 <h3 className="text-4xl font-bold text-foreground mb-2">10+</h3>
-                <p className="text-muted-foreground">Years AI/ML expertise</p>
+                <p className="text-muted-foreground">
+                  Years of DevOps expertise
+                </p>
               </div>
 
               <div className="bg-card rounded-xl p-6 border border-border">
-                <h3 className="text-4xl font-bold text-foreground mb-2">60%</h3>
-                <p className="text-muted-foreground">
-                  Average efficiency improvement
-                </p>
+                <h3 className="text-4xl font-bold text-foreground mb-2">50%</h3>
+                <p className="text-muted-foreground">Average cost reduction</p>
               </div>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {deliverables.map((deliverable, index) => (
-                <DeliverableCard
-                  key={deliverable.title}
-                  deliverable={deliverable}
-                  index={index}
-                />
+              {deliverableTools.map((tool, index) => (
+                <DeliverableCard key={tool.title} tool={tool} index={index} />
               ))}
             </div>
           </div>
 
-          {/* Our AI Process section */}
+          {/* Our Process section */}
           <div className="mb-20">
             <div className="text-center mb-12">
               <motion.h2
@@ -415,7 +385,7 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                Our Proven AI Development Process
+                Our Proven Cloud & DevOps Process
               </motion.h2>
               <motion.p
                 className="text-muted-foreground max-w-3xl mx-auto"
@@ -424,9 +394,9 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                We follow enterprise-grade AI development methodologies refined
-                over 10+ years of project management experience to deliver AI
-                solutions that drive measurable business outcomes.
+                We follow industry best practices and proven methodologies
+                refined over 10+ years to deliver cloud infrastructure that
+                drives business growth and operational efficiency.
               </motion.p>
             </div>
 
@@ -437,7 +407,7 @@ export default function AIIntegration() {
             </div>
           </div>
 
-          {/* AI Services section */}
+          {/* Cloud DevOps Services section */}
           <div className="mb-20">
             <div className="text-center mb-12">
               <motion.h2
@@ -447,7 +417,7 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                Our AI Integration Services
+                Our Cloud & DevOps Services
               </motion.h2>
               <motion.p
                 className="text-muted-foreground max-w-3xl mx-auto"
@@ -456,14 +426,14 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                From intelligent automation to predictive analytics, we provide
-                comprehensive AI solutions that transform how businesses operate
-                and engage with customers.
+                From cloud architecture to automated deployments, we provide
+                comprehensive DevOps solutions that accelerate development
+                cycles and ensure reliable, scalable infrastructure.
               </motion.p>
             </div>
 
             <div className="space-y-6">
-              {aiServices.map((service, index) => (
+              {cloudDevOpsServices.map((service, index) => (
                 <ServiceCard
                   key={service.id}
                   service={service}
@@ -475,7 +445,7 @@ export default function AIIntegration() {
             </div>
           </div>
 
-          {/* AI Technology Stack section */}
+          {/* Technology Stack section */}
           <div className="mb-20">
             <div className="text-center mb-12">
               <motion.h2
@@ -485,7 +455,7 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                Our AI Technology Stack
+                Our Cloud & DevOps Technology Stack
               </motion.h2>
               <motion.p
                 className="text-muted-foreground max-w-3xl mx-auto"
@@ -494,25 +464,25 @@ export default function AIIntegration() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true, margin: "-100px" }}
               >
-                We leverage industry-leading AI platforms and frameworks to
-                build robust, scalable AI solutions.
+                We leverage cutting-edge cloud platforms and DevOps tools to
+                build resilient, scalable infrastructure solutions.
               </motion.p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {[
-                "OpenAI GPT-4",
-                "Anthropic Claude",
-                "TensorFlow",
-                "PyTorch",
-                "Hugging Face",
-                "LangChain",
-                "Vector DBs",
-                "MLflow",
-                "Docker",
+                "AWS",
+                "Azure",
+                "Google Cloud",
                 "Kubernetes",
-                "AWS SageMaker",
-                "Azure AI",
+                "Docker",
+                "Terraform",
+                "Jenkins",
+                "GitLab CI",
+                "Prometheus",
+                "Grafana",
+                "ELK Stack",
+                "Ansible",
               ].map((tech, index) => (
                 <motion.div
                   key={tech}
@@ -537,17 +507,17 @@ export default function AIIntegration() {
             viewport={{ once: true, margin: "-100px" }}
           >
             {/* Background gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 z-0" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-cyan-500/5 z-0" />
 
             <div className="relative z-10">
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Ready to Harness the Power of AI?
+                Ready to Scale Your Cloud Infrastructure?
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-                Let&#39;s integrate intelligent AI solutions that automate
-                processes, enhance decision-making, and accelerate growth. Get
-                enterprise-grade AI implementation with comprehensive support
-                from our expert team.
+                Let&#39;s transform your infrastructure into a scalable, secure,
+                and cost-effective solution that drives business growth. Get
+                expert cloud architecture, DevOps automation, and strategic
+                guidance from our experienced team.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -558,14 +528,12 @@ export default function AIIntegration() {
                 >
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3.5 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-3.5 rounded-lg font-medium hover:from-blue-700 hover:to-cyan-700 transition-all"
                   >
-                    Start AI Integration
+                    Start Cloud Migration
                     <ArrowRight size={16} />
                   </Link>
                 </motion.div>
-
-                
               </div>
             </div>
           </motion.div>

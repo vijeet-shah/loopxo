@@ -14,7 +14,6 @@ import {
   Shield,
   Zap,
   MessageCircle,
-  Eye,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -611,13 +610,7 @@ export default async function DocumentationPage() {
                     <span>Book Free Discovery Session</span>
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                  <Link
-                    href="/portfolio"
-                    className="border-2 border-white/30 text-white hover:border-white/60 hover:bg-white/10 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center"
-                  >
-                    <Eye className="mr-2 w-5 h-5" />
-                    <span>View Our Portfolio</span>
-                  </Link>
+                 
                 </div>
               </div>
             </section>
