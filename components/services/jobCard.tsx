@@ -1,14 +1,9 @@
-
-
-
-
-
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, {  useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronRight, Clock, MapPin, Check, Sparkles, Users, GraduationCap, Globe } from "lucide-react";
+import { ChevronDown, Clock, MapPin, Check} from "lucide-react";
 import { useTheme } from "next-themes";
 
 
@@ -44,6 +39,7 @@ interface JobPosting {
     description: string;
     responsibilities: string[];
     requirements: string[];
+    benefits: string[];
     color: {
       light: string;
       dark: string;
