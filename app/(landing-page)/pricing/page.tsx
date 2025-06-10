@@ -77,7 +77,7 @@ export default async function ServicesPage() {
         { name: "Advanced Analytics Setup", included: true },
         { name: "Custom Integrations", included: true },
       ],
-      cta: "Schedule Enterprise Consultation",
+      cta: " Enterprise Consultation",
       popular: false,
       icon: <Trophy className="w-6 h-6" />,
       color: "purple"
@@ -167,7 +167,7 @@ export default async function ServicesPage() {
                     className={cn(
                       "w-full py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 mb-8",
                       pkg.popular 
-                        ? "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800" 
+                        ? "bg-gradient-to-r text-white from-blue-600 to-blue-700 " 
                         : ""
                     )}
                     variant={pkg.popular ? "default" : "outline"}
