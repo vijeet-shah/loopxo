@@ -15,6 +15,7 @@ import {
   Zap,
   MessageCircle,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function DocumentationPage() {
@@ -216,6 +217,7 @@ export default async function DocumentationPage() {
         "We dive deep into your vision, goals, and challenges to understand your unique needs.",
       icon: Lightbulb,
       duration: "30-60 min",
+      image: "/assets/p6.png",
     },
     {
       title: "Strategic Proposal",
@@ -223,6 +225,7 @@ export default async function DocumentationPage() {
         "Receive a comprehensive project roadmap with timeline, deliverables, and investment details.",
       icon: Target,
       duration: "2-3 days",
+      image: "/assets/p1.jpeg",
     },
     {
       title: "Design & Development",
@@ -230,6 +233,7 @@ export default async function DocumentationPage() {
         "Our expert team brings your vision to life with regular updates and collaboration.",
       icon: Code,
       duration: "4-12 weeks",
+      image: "/assets/p3.jpeg",
     },
     {
       title: "Launch & Optimization",
@@ -237,6 +241,7 @@ export default async function DocumentationPage() {
         "Your solution goes live with performance monitoring and initial optimization.",
       icon: Rocket,
       duration: "1-2 weeks",
+      image: "/assets/p4.jpeg",
     },
     {
       title: "Growth & Support",
@@ -244,13 +249,12 @@ export default async function DocumentationPage() {
         "Ongoing partnership with continuous improvements, updates, and scaling support.",
       icon: TrendingUp,
       duration: "Ongoing",
+      image: "/assets/p5.jpeg",
     },
   ];
 
   return (
     <div className="min-h-screen " dir={isRTL ? "rtl" : "ltr"}>
-      
-
       {/* Main content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 py-16">
@@ -531,59 +535,70 @@ export default async function DocumentationPage() {
               </div>
 
               <div className="relative">
-                {/* Process timeline */}
-                <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-200 via-purple-200 to-teal-200 transform -translate-x-1/2"></div>
+  {/* Process timeline */}
+  <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-200 via-purple-200 to-teal-200 transform -translate-x-1/2"></div>
 
-                <div className="space-y-12 lg:space-y-24">
-                  {processSteps.map((step, i) => (
-                    <div
-                      key={i}
-                      className={`flex flex-col lg:flex-row items-center gap-8 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
-                    >
-                      {/* Timeline dot */}
-                      <div className="hidden lg:flex absolute left-1/2 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full items-center justify-center z-10 transform -translate-x-1/2 shadow-lg">
-                        <step.icon className="w-8 h-8 " />
-                      </div>
+  <div className="space-y-12 lg:space-y-24">
+    {processSteps.map((step, i) => (
+      <div
+        key={i}
+        className={`flex flex-col lg:flex-row items-center gap-8 ${
+          i % 2 === 1 ? "lg:flex-row-reverse" : ""
+        }`}
+      >
+        {/* Timeline dot (optional – remove if image should replace this too) */}
+        <div className="hidden lg:flex absolute left-1/2 w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full items-center justify-center z-10 transform -translate-x-1/2 shadow-lg">
+          <step.icon className="w-8 h-8" />
+        </div>
 
-                      {/* Step number for mobile */}
-                      <div className="lg:hidden w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
-                        {i + 1}
-                      </div>
+        {/* Step number for mobile */}
+        <div className="lg:hidden w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mb-4">
+          {i + 1}
+        </div>
 
-                      {/* Content */}
-                      <div className="flex-1 lg:w-1/2">
-                        <div
-                          className={` rounded-2xl p-8 shadow-lg border ${i % 2 === 1 ? "lg:mr-12" : "lg:ml-12"}`}
-                        >
-                          <div className="flex items-center mb-4">
-                            <div className="lg:hidden p-3 rounded-lg  mr-4">
-                              <step.icon className="w-6 h-6 text-blue-600" />
-                            </div>
-                            <div>
-                              <h3 className="text-xl font-bold ">
-                                {step.title}
-                              </h3>
-                              <span className="text-sm text-blue-600 font-medium">
-                                {step.duration}
-                              </span>
-                            </div>
-                          </div>
-                          <p className=" leading-relaxed">{step.description}</p>
-                        </div>
-                      </div>
-
-                      {/* Visual placeholder */}
-                      <div className="flex-1 lg:w-1/2">
-                        <div
-                          className={`h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl flex items-center justify-center ${i % 2 === 1 ? "lg:ml-12" : "lg:mr-12"}`}
-                        >
-                          <step.icon className="w-12 h-12 text-slate-400" />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        {/* Text content */}
+        <div className="flex-1 lg:w-1/2">
+          <div
+            className={`rounded-2xl p-8 shadow-lg border ${
+              i % 2 === 1 ? "lg:mr-12" : "lg:ml-12"
+            }`}
+          >
+            <div className="flex items-center mb-4">
+              <div className="lg:hidden p-3 rounded-lg mr-4">
+                <step.icon className="w-6 h-6 text-blue-600" />
               </div>
+              <div>
+                <h3 className="text-xl font-bold">{step.title}</h3>
+                <span className="text-sm text-blue-600 font-medium">
+                  {step.duration}
+                </span>
+              </div>
+            </div>
+            <p className="leading-relaxed">{step.description}</p>
+          </div>
+        </div>
+
+        {/* Visual placeholder with image */}
+        <div className="flex-1 lg:w-1/2">
+          <div
+            className={`h-48 bg-white rounded-2xl flex items-center justify-center ${
+              i % 2 === 1 ? "lg:ml-12" : "lg:mr-12"
+            }`}
+          >
+            <div className="relative w-full h-full p-4">
+              <Image
+                src={step.image}
+                alt={`Image for ${step.title}`}
+                fill
+                className="object-contain rounded-xl"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
             </section>
 
             {/* Final CTA */}
@@ -610,7 +625,6 @@ export default async function DocumentationPage() {
                     <span>Book Free Discovery Session</span>
                     <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
-                 
                 </div>
               </div>
             </section>
@@ -637,7 +651,6 @@ export default async function DocumentationPage() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
       </div>
-
     </div>
   );
 }
