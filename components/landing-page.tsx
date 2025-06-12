@@ -2,13 +2,13 @@
 import React from "react";
 import Link from "next/link";
 // import { siteConfig } from "@/config/site";
-import { getLanguage, getTranslations } from "@/lib/i18n/server-utils";
 import { cn } from "@/lib/utils";
 import {  CTAConfig } from "@/types";
 import { HeroSection } from "./home/heroSection";
 import { ServiceSection } from "./home/serviceSection";
 import {CoreValue}  from "./home/coreValue";
 import { GetInTouchSection } from "./home/getInTouch";
+import { useTranslation } from "@/lib/i18n/client-utils";
 
 
 
@@ -35,9 +35,9 @@ const defaultCTAConfig: CTAConfig = {
 //   mapLink: 'https://maps.google.com'
 // };
 
-export async function LandingPage() {
-  const lang = await getLanguage();
-  const t = await getTranslations(lang);
+export function LandingPage() {
+    const { t } = useTranslation();
+  
 
 
   const ctaConfig: CTAConfig =  defaultCTAConfig;

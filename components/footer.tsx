@@ -16,7 +16,6 @@ import {
   Send,
   ArrowRight,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 // Social media links with animations
@@ -42,7 +41,6 @@ const SocialLink = ({ href, icon: Icon, color }) => {
 };
 
 export function Footer() {
-  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.1 });
@@ -115,14 +113,8 @@ export function Footer() {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        style={
-          {
-            "--gradient-1":
-              theme === "dark"
-                ? "rgba(79, 70, 229, 0.15)"
-                : "rgba(59, 130, 246, 0.1)",
-          } as React.CSSProperties
-        }
+        
+        
       />
 
       {/* Main Footer Content */}
